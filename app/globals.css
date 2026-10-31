@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+:root {
+  --background: var(--color-bg, #0f172a);
+  --foreground: var(--color-text, #f8fafc);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  margin: 0;
+  min-height: 100vh;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+*:focus {
+  outline: none;
+}
+
+*:active {
+  cursor: none !important;
+}
+
+/* Kills the blinking text-caret universally on interaction to prevent it being stuck */
+* {
+  caret-color: transparent;
+}
+input, textarea {
+  caret-color: auto; /* Only allow caret inside actual input fields */
+}
+
+/* Elegant, deep, premium midnight theme with subtle movement */
+.gradient-bg {
+  background: linear-gradient(-45deg, #030c0d 0%, #061214 35%, #0d2629 65%, #061214 100%);
+  background-size: 300% 300%;
+  animation: gradient 20s ease infinite;
+  min-height: 100vh;
+  position: relative;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}

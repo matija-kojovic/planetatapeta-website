@@ -1,0 +1,32 @@
+{
+  "hero": {
+    "titleLine1": "Ozivite",
+    "titleLine2": "Vase Ideje",
+    "subtitle": "Premium usluge digitalne stampe prilagodene kreatorima, profesionalcima i kompanijama.",
+    "buttonText": "Zatrazite ponudu"
+  },
+  "header": {
+    "logoText": "PLANETATAPETA",
+    "announcement": ""
+  },
+  "theme": {
+    "primaryColor": "#1d4b53",
+    "secondaryColor": "#15363c",
+    "accentColor": "#d4a373",
+    "bgColor": "#061214",
+    "headerBg": "#06121480",
+    "textColor": "#f8f3e9"
+  },
+  "contact": {
+    "address": "Božice Divnić 10",
+    "city": "Beograd",
+    "zip": "11080",
+    "email": "djoletodorovic20@gmail.com",
+    "phone": "+381 62 814 8444",
+    "instagram": "https://www.instagram.com/planetatapeta/"
+  },
+  "seo": {
+    "title": "PLANETATAPETA - Premium Foto Tapete",
+    "description": "Vrhunske usluge stampe na svim formatima i materijalima."
+  }
+}

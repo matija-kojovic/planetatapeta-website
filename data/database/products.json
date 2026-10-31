@@ -1,0 +1,142 @@
+[
+  {
+    "id": "tapeta-1",
+    "categoryId": "digitalna_stampa",
+    "itemId": "tapete",
+    "title": "Foto tapeta 'Priroda'",
+    "price": 3500,
+    "image": "🖼️",
+    "imageSrc": "/tapete/cvetne/cvetnaTapeta1.webp",
+    "badge": "Novo"
+  },
+  {
+    "id": "tapeta-2",
+    "categoryId": "digitalna_stampa",
+    "itemId": "tapete",
+    "title": "Apstraktna tapeta",
+    "price": 4200,
+    "image": "🎨",
+    "imageSrc": "/tapete/decije/decijeTapete1.webp"
+  },
+  {
+    "id": "tapeta-3",
+    "categoryId": "digitalna_stampa",
+    "itemId": "tapete",
+    "title": "Geometrijska tapeta",
+    "price": 2800,
+    "image": "📐",
+    "imageSrc": "/tapete/3d/3Dtapete1.webp"
+  },
+  {
+    "id": "tapeta-4",
+    "categoryId": "digitalna_stampa",
+    "itemId": "tapete",
+    "title": "Cvetna tapeta",
+    "price": 3100,
+    "image": "🌸",
+    "imageSrc": "/tapete/cvetne/cvetnaTapeta2.webp"
+  },
+  {
+    "id": "tapeta-5",
+    "categoryId": "digitalna_stampa",
+    "itemId": "tapete",
+    "title": "Dečija tapeta",
+    "price": 2500,
+    "image": "🧸",
+    "imageSrc": "/tapete/decije/decijeTapete2.webp",
+    "badge": "Popularno"
+  },
+  {
+    "id": "tapeta-6",
+    "categoryId": "digitalna_stampa",
+    "itemId": "tapete",
+    "title": "Vintage tapeta",
+    "price": 3800,
+    "image": "🕰️",
+    "imageSrc": "/tapete/cvetne/cvetnaTapeta3.webp"
+  },
+  {
+    "id": "tapeta-7",
+    "categoryId": "digitalna_stampa",
+    "itemId": "tapete",
+    "title": "Minimalistička tapeta",
+    "price": 2900,
+    "image": "〽️",
+    "imageSrc": "/tapete/3d/3Dtapete2.webp"
+  },
+  {
+    "id": "tapeta-8",
+    "categoryId": "digitalna_stampa",
+    "itemId": "tapete",
+    "title": "Gradovi tapeta",
+    "price": 4500,
+    "image": "🏙️",
+    "imageSrc": "/tapete/grad/gradTapete1.webp"
+  },
+  {
+    "id": "tapeta-9",
+    "categoryId": "digitalna_stampa",
+    "itemId": "tapete",
+    "title": "3D tapeta",
+    "price": 5000,
+    "image": "🧊",
+    "imageSrc": "/tapete/3d/3Dtapete3.webp",
+    "badge": "Premium"
+  },
+  {
+    "id": "tapeta-10",
+    "categoryId": "digitalna_stampa",
+    "itemId": "tapete",
+    "title": "Mermer tapeta",
+    "price": 4100,
+    "image": "🏛️",
+    "imageSrc": "/tapete/mermer/mermerTapete1.webp"
+  },
+  {
+    "id": "platno-1",
+    "categoryId": "digitalna_stampa",
+    "itemId": "slike_na_platnu",
+    "title": "Slika na platnu 50x70cm",
+    "price": 2800,
+    "image": "🖼️",
+    "imageSrc": "/slike-na-platnu/slikePlatno1.jpg",
+    "badge": "Popust"
+  },
+  {
+    "id": "stiker-1",
+    "categoryId": "digitalna_stampa",
+    "itemId": "zidni_stikeri",
+    "title": "Dečiji zidni stiker",
+    "price": 1500,
+    "image": "🦒",
+    "imageSrc": "/stikeri/decije/stikerDeca1.webp"
+  },
+  {
+    "id": "stiker-2",
+    "categoryId": "digitalna_stampa",
+    "itemId": "zidni_stikeri",
+    "title": "Stiker za dnevnu sobu",
+    "price": 1800,
+    "image": "🛋️",
+    "imageSrc": "/stikeri/soba/stikeriSoba1.webp"
+  },
+  {
+    "id": "nalepnica-1",
+    "categoryId": "digitalna_stampa",
+    "itemId": "izrada_nalepnica",
+    "title": "PVC Nalepnice (100 kom)",
+    "price": 2500,
+    "image": "🏷️",
+    "imageSrc": "/slike/slika1.jpg"
+  },
+  {
+    "id": "pleksiglas-1",
+    "categoryId": "digitalna_stampa",
+    "itemId": "slike_na_pleksiglasu",
+    "title": "Slika na pleksiglasu A3",
+    "price": 4500,
+    "image": "🪞",
+    "imageSrc": "/slike/slika2.jpg",
+    "badge": "Premium"
+  }
+]
