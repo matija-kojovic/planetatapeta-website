@@ -1,91 +1,82 @@
-import { NextResponse } from 'next/server';
-import { getProducts, saveProducts } from '@/lib/db';
+import crypto from "node:crypto";
+import { revalidatePath } from "next/cache";
+import { requireAdmin } from "@/lib/auth";
+import { getProducts, saveProducts, StorageUnavailableError } from "@/lib/db";
+import { CATEGORY_SLUGS } from "@/lib/orders";
+import { readJsonBody } from "@/lib/security";
 
-// GET all products
+// Fixed-price products managed in the admin. Configurable products (wallpaper,
+// stickers, canvas, plexiglass, sticker printing) are priced by lib/pricing.js.
+
 export async function GET() {
+  return Response.json(getProducts());
+}
+
+function validateProduct(input) {
+  const errors = {};
+  const title = typeof input.title === "string" ? input.title.trim() : "";
+  const description = typeof input.description === "string" ? input.description.trim() : "";
+  const image = typeof input.image === "string" ? input.image.trim() : "";
+  const price = Number(input.price);
+
+  if (title.length < 2 || title.length > 120) errors.title = "Naziv mora imati od 2 do 120 znakova.";
+  if (!CATEGORY_SLUGS.includes(input.category)) errors.category = "Izaberite kategoriju.";
+  if (!Number.isInteger(price) || price < 1 || price > 10_000_000) errors.price = "Cena mora biti ceo broj veći od nule.";
+  if (description.length > 1000) errors.description = "Opis može imati najviše 1000 znakova.";
+  if (image && !/^\/uploads\/[a-f0-9]{24}\.(jpg|png|webp)$/.test(image)) errors.image = "Slika nije ispravna.";
+
+  return { ok: Object.keys(errors).length === 0, errors, values: { title, category: input.category, price, description, image } };
+}
+
+function persist(products) {
   try {
-    const products = getProducts();
-    return NextResponse.json(products);
+    saveProducts(products);
+    revalidatePath("/", "layout");
+    return null;
   } catch (error) {
-    return NextResponse.json({ error: 'Greška pri učitavanju proizvoda' }, { status: 500 });
+    if (error instanceof StorageUnavailableError) {
+      return Response.json({ error: "Izmene nisu moguće: skladište na ovom serveru je samo za čitanje." }, { status: 503 });
+    }
+    throw error;
   }
 }
 
-// POST a new product
 export async function POST(request) {
-  try {
-    const data = await request.json();
-    
-    if (!data.title || !data.price || !data.categoryId) {
-      return NextResponse.json({ error: 'Neispravni podaci proizvoda' }, { status: 400 });
-    }
+  const denied = await requireAdmin(request);
+  if (denied) return denied;
+  const body = await readJsonBody(request);
+  if (!body) return Response.json({ error: "Neispravan zahtev." }, { status: 400 });
 
-    const products = getProducts();
-    
-    const newProduct = {
-      ...data,
-      id: data.id || `PROD-${Date.now()}`
-    };
+  const { ok, errors, values } = validateProduct(body);
+  if (!ok) return Response.json({ error: "Proverite podatke proizvoda.", fieldErrors: errors }, { status: 400 });
 
-    products.push(newProduct);
-    saveProducts(products);
-
-    return NextResponse.json({ success: true, product: newProduct }, { status: 201 });
-  } catch (error) {
-    console.error("Product adding error:", error);
-    return NextResponse.json({ error: 'Greška pri dodavanju proizvoda' }, { status: 500 });
-  }
+  const product = { id: `p-${crypto.randomBytes(4).toString("hex")}`, ...values };
+  return persist([...getProducts(), product]) || Response.json({ product }, { status: 201 });
 }
 
-// PUT (update) an existing product
 export async function PUT(request) {
-  try {
-    const data = await request.json();
-    
-    if (!data.id) {
-      return NextResponse.json({ error: 'ID proizvoda je obavezan' }, { status: 400 });
-    }
+  const denied = await requireAdmin(request);
+  if (denied) return denied;
+  const body = await readJsonBody(request);
+  if (!body || typeof body.id !== "string") return Response.json({ error: "ID proizvoda je obavezan." }, { status: 400 });
 
-    const products = getProducts();
-    const index = products.findIndex(p => p.id === data.id);
+  const products = getProducts();
+  const index = products.findIndex((p) => p.id === body.id);
+  if (index === -1) return Response.json({ error: "Proizvod nije pronađen." }, { status: 404 });
 
-    if (index === -1) {
-      return NextResponse.json({ error: 'Proizvod nije pronađen' }, { status: 404 });
-    }
+  const { ok, errors, values } = validateProduct(body);
+  if (!ok) return Response.json({ error: "Proverite podatke proizvoda.", fieldErrors: errors }, { status: 400 });
 
-    // Update the product keeping original ID
-    products[index] = { ...products[index], ...data, id: data.id };
-    saveProducts(products);
-
-    return NextResponse.json({ success: true, product: products[index] }, { status: 200 });
-  } catch (error) {
-    console.error("Product update error:", error);
-    return NextResponse.json({ error: 'Greška pri ažuriranju proizvoda' }, { status: 500 });
-  }
+  products[index] = { id: body.id, ...values };
+  return persist(products) || Response.json({ product: products[index] });
 }
 
-// DELETE a product
 export async function DELETE(request) {
-  try {
-    const { searchParams } = new URL(request.url);
-    const id = searchParams.get('id');
-
-    if (!id) {
-      return NextResponse.json({ error: 'ID proizvoda je obavezan' }, { status: 400 });
-    }
-
-    const products = getProducts();
-    const filteredProducts = products.filter(p => p.id !== id);
-
-    if (products.length === filteredProducts.length) {
-      return NextResponse.json({ error: 'Proizvod nije pronađen' }, { status: 404 });
-    }
-
-    saveProducts(filteredProducts);
-
-    return NextResponse.json({ success: true, message: 'Proizvod je obrisan' }, { status: 200 });
-  } catch (error) {
-    console.error("Product delete error:", error);
-    return NextResponse.json({ error: 'Greška pri brisanju proizvoda' }, { status: 500 });
-  }
+  const denied = await requireAdmin(request);
+  if (denied) return denied;
+  const id = new URL(request.url).searchParams.get("id");
+  const products = getProducts();
+  const remaining = products.filter((p) => p.id !== id);
+  if (!id || remaining.length === products.length) return Response.json({ error: "Proizvod nije pronađen." }, { status: 404 });
+  return persist(remaining) || Response.json({ ok: true });
 }

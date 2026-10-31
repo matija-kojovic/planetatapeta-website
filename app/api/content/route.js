@@ -1,29 +1,33 @@
-import { NextResponse } from 'next/server';
-import { getContent, saveContent } from '@/lib/db';
+import { revalidatePath } from "next/cache";
+import { requireAdmin } from "@/lib/auth";
+import { getContent, saveContent, StorageUnavailableError } from "@/lib/db";
+import { readJsonBody } from "@/lib/security";
+import { validateContent } from "@/lib/validation";
 
-export async function GET() {
-  try {
-    const content = getContent();
-    return NextResponse.json(content);
-  } catch (error) {
-    return NextResponse.json({ error: 'Greška pri učitavanju sadržaja' }, { status: 500 });
-  }
+export async function GET(request) {
+  const denied = await requireAdmin(request);
+  if (denied) return denied;
+  return Response.json(getContent(), { headers: { "Cache-Control": "no-store" } });
 }
 
 export async function POST(request) {
+  const denied = await requireAdmin(request);
+  if (denied) return denied;
+
+  const body = await readJsonBody(request);
+  if (!body) return Response.json({ error: "Neispravan zahtev." }, { status: 400 });
+
+  const { ok, errors, values } = validateContent(body);
+  if (!ok) return Response.json({ error: "Proverite označena polja.", fieldErrors: errors }, { status: 400 });
+
   try {
-    const data = await request.json();
-    
-    if (!data) {
-      return NextResponse.json({ error: 'Nema prosleđenih podataka' }, { status: 400 });
-    }
-
-    // Save and return new content
-    const updatedContent = saveContent(data);
-
-    return NextResponse.json({ success: true, content: updatedContent }, { status: 200 });
+    saveContent(values);
   } catch (error) {
-    console.error("Content saving error:", error);
-    return NextResponse.json({ error: 'Greška pri snimanju web sadržaja' }, { status: 500 });
+    if (error instanceof StorageUnavailableError) {
+      return Response.json({ error: "Izmene nisu moguće: skladište na ovom serveru je samo za čitanje." }, { status: 503 });
+    }
+    throw error;
   }
+  revalidatePath("/", "layout");
+  return Response.json({ content: values });
 }

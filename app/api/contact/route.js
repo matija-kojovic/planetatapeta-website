@@ -1,54 +1,21 @@
-import { NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+import { sendContactEmail, isMailConfigured } from "@/lib/mail";
+import { clientIp, rateLimit, readJsonBody, tooManyRequests } from "@/lib/security";
+import { validateContactMessage } from "@/lib/validation";
 
 export async function POST(request) {
-  try {
-    const data = await request.json();
-    
-    if (!data.ime || !data.prezime || !data.email || !data.telefon || !data.poruka) {
-      return NextResponse.json({ error: 'Sva polja su obavezna' }, { status: 400 });
-    }
+  if (!rateLimit(`contact:${clientIp(request)}`, { limit: 5, windowMs: 10 * 60_000 })) return tooManyRequests();
 
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.EMAIL_USER || 'planetatapeta20@gmail.com',
-        pass: process.env.EMAIL_PASS
-      }
-    });
+  const body = await readJsonBody(request, 20_000);
+  if (!body || body.website) return Response.json({ error: "Neispravan zahtev." }, { status: 400 });
 
-    const emailHtml = `
-      <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
-        <div style="background-color: #d946ef; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold; margin-bottom: 20px; text-transform: uppercase;">
-          PORUKA SA KONTAKT FORME
-        </div>
-        <h2 style="color: #d946ef;">Novi upit od: ${data.ime} ${data.prezime || ''}</h2>
-        
-        <h3 style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">Detalji pošiljaoca:</h3>
-        <ul style="list-style: none; padding: 0;">
-          <li><strong>Ime i prezime:</strong> ${data.ime} ${data.prezime}</li>
-          <li><strong>Telefon:</strong> ${data.telefon}</li>
-          <li><strong>Email:</strong> <a href="mailto:${data.email}">${data.email}</a></li>
-        </ul>
+  const { ok, values, errors } = validateContactMessage(body);
+  if (!ok) return Response.json({ error: "Proverite označena polja.", fieldErrors: errors }, { status: 400 });
 
-        <h3 style="border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-top: 30px;">Sadržaj poruke:</h3>
-        <div style="background-color: #f8fafc; padding: 15px; border-radius: 6px; border-left: 4px solid #d946ef; white-space: pre-wrap; font-size: 16px;">
-          ${data.poruka}
-        </div>
-      </div>
-    `;
-
-    await transporter.sendMail({
-      from: `"Kontakt Forma" <${process.env.EMAIL_USER || 'planetatapeta20@gmail.com'}>`,
-      to: 'planetatapeta20@gmail.com',
-      replyTo: data.email,
-      subject: `Upit: ${data.ime} ${data.prezime || ''}`,
-      html: emailHtml
-    });
-
-    return NextResponse.json({ success: true }, { status: 200 });
-  } catch (error) {
-    console.error("Zabeležena greška na kontakt formi:", error);
-    return NextResponse.json({ error: 'Greška pri slanju poruke' }, { status: 500 });
+  if (!isMailConfigured() || !(await sendContactEmail(values))) {
+    return Response.json(
+      { error: "Poruka trenutno ne može da se pošalje. Pozovite nas ili pišite direktno na našu e-adresu." },
+      { status: 503 }
+    );
   }
+  return Response.json({ ok: true });
 }
