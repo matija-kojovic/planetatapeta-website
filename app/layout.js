@@ -1,44 +1,45 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { EB_Garamond, Schibsted_Grotesk } from "next/font/google";
+import { getContent } from "@/lib/db";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { CartProvider } from "@/components/CartProvider";
-import ThemeProvider from "@/components/ThemeProvider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const garamond = EB_Garamond({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500"],
+  style: ["normal", "italic"],
+  variable: "--font-garamond",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const grotesk = Schibsted_Grotesk({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600"],
+  variable: "--font-grotesk",
+  display: "swap",
 });
 
-export const metadata = {
-  title: "PLANETATAPETA | Oživite Tvoje Ideje",
-  description: "Premium foto tapete, slike na platnu i pleksiglasu — vrhunski kvalitet štampe.",
+export function generateMetadata() {
+  const { seo } = getContent();
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: { default: seo.title, template: `%s | ${SITE_NAME}` },
+    description: seo.description,
+    applicationName: SITE_NAME,
+    openGraph: { type: "website", locale: "sr_RS", siteName: SITE_NAME },
+    formatDetection: { telephone: false },
+  };
+}
+
+export const viewport = {
+  themeColor: "#f9f0e5",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="sr">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        suppressHydrationWarning
-      >
-        <CartProvider>
-          <ThemeProvider>
-            <div className="gradient-bg">
-              <Header />
-              <main className="pt-24 min-h-screen relative z-10">
-                {children}
-              </main>
-              <Footer />
-            </div>
-          </ThemeProvider>
-        </CartProvider>
-      </body>
+    <html lang="sr-Latn" className={`${garamond.variable} ${grotesk.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }

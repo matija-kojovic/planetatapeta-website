@@ -1,0 +1,55 @@
+/** Labelled input/textarea with hint and inline error wired to aria-describedby. */
+export default function FormField({ id, label, optional, hint, error, as = "input", className = "", ...props }) {
+  const Control = as;
+  const describedBy = [error ? `${id}-error` : null, hint ? `${id}-hint` : null].filter(Boolean).join(" ") || undefined;
+  return (
+    <div className={`field ${className}`}>
+      <label htmlFor={id} className="label">
+        {label} {optional ? <span className="optional">(nije obavezno)</span> : null}
+      </label>
+      <Control id={id} name={id} className="input" aria-invalid={error ? true : undefined} aria-describedby={describedBy} {...props} />
+      {error ? (
+        <p id={`${id}-error`} className="error-text">
+          {error}
+        </p>
+      ) : null}
+      {hint ? (
+        <p id={`${id}-hint`} className="hint">
+          {hint}
+        </p>
+      ) : null}
+    </div>
+  );
+}
+
+/** Focusable error summary shown after a failed submit; each entry links to its field. */
+export function ErrorSummary({ errors, labels, summaryRef }) {
+  const entries = Object.entries(errors).filter(([field]) => labels[field]);
+  if (entries.length === 0) return null;
+  return (
+    <div ref={summaryRef} tabIndex={-1} role="alert" aria-labelledby="error-summary-title" className="notice notice-error outline-none">
+      <h2 id="error-summary-title" className="font-sans text-[0.9375rem] font-semibold">
+        Proverite {entries.length === 1 ? "jedno polje" : `${entries.length} polja`}
+      </h2>
+      <ul className="mt-2 grid gap-1">
+        {entries.map(([field, message]) => (
+          <li key={field}>
+            <a href={`#${field}`} className="underline underline-offset-4">
+              {labels[field]}: {message}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+/** Hidden field that people never fill in; submissions that do are rejected as spam. */
+export function Honeypot({ value, onChange }) {
+  return (
+    <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+      <label htmlFor="website">Ne popunjavajte ovo polje</label>
+      <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" value={value} onChange={(e) => onChange(e.target.value)} />
+    </div>
+  );
+}

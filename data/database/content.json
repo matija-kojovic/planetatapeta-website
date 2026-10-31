@@ -1,21 +1,11 @@
 {
   "hero": {
-    "titleLine1": "Ozivite",
-    "titleLine2": "Vase Ideje",
-    "subtitle": "Premium usluge digitalne stampe prilagodene kreatorima, profesionalcima i kompanijama.",
-    "buttonText": "Zatrazite ponudu"
+    "title": "Tapete i slike, štampane po meri vašeg zida",
+    "subtitle": "Izaberite dizajn, unesite dimenzije i odmah vidite cenu. Štampamo foto tapete, zidne stikere i slike na platnu i pleksiglasu.",
+    "buttonText": "Pogledajte tapete"
   },
   "header": {
-    "logoText": "PLANETATAPETA",
     "announcement": ""
-  },
-  "theme": {
-    "primaryColor": "#1d4b53",
-    "secondaryColor": "#15363c",
-    "accentColor": "#d4a373",
-    "bgColor": "#061214",
-    "headerBg": "#06121480",
-    "textColor": "#f8f3e9"
   },
   "contact": {
     "address": "Božice Divnić 10",
@@ -26,7 +16,7 @@
     "instagram": "https://www.instagram.com/planetatapeta/"
   },
   "seo": {
-    "title": "PLANETATAPETA - Premium Foto Tapete",
-    "description": "Vrhunske usluge stampe na svim formatima i materijalima."
+    "title": "PLANETATAPETA — foto tapete, zidni stikeri i slike po meri",
+    "description": "Foto tapete po meri zida, zidni stikeri, slike na platnu i pleksiglasu i izrada nalepnica. Izaberite dizajn, unesite dimenzije i poručite online."
   }
 }

@@ -1,55 +1,322 @@
 @import "tailwindcss";
 
+/* ──────────────────────────────────────────────────────────────────────────
+   PLANETATAPETA design system
+   Paper, teal ink and a gold hairline, taken from the logo. The signature
+   device is the architectural dimension line (.dim) used around walls.
+   ────────────────────────────────────────────────────────────────────────── */
+
+@theme {
+  --color-paper: #f9f0e5;      /* logo ground */
+  --color-board: #efe4d4;      /* sample boards, quiet panels */
+  --color-field: #fffcf7;      /* inputs, selected choices */
+  --color-ink: #1c3436;        /* text, 11.7:1 on paper */
+  --color-ink-2: #4d5f5e;      /* secondary text, 6:1 on paper */
+  --color-teal: #2f6466;       /* actions, 6.7:1 with white */
+  --color-teal-deep: #234c4d;
+  --color-gold: #9c7a3a;       /* dimension lines and hairline accents */
+  --color-line: #d9c9b3;       /* decorative separators */
+  --color-edge: #8c8273;       /* form control borders, 3.3:1 */
+  --color-error: #a13a2c;
+  --color-error-bg: #f6e3dc;
+  --color-ok-bg: #e2ebe4;
+
+  --font-display: var(--font-garamond), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-control: 3px;
+
+  --breakpoint-xs: 26rem;
+}
+
 :root {
-  --background: var(--color-bg, #0f172a);
-  --foreground: var(--color-text, #f8fafc);
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --page-max: 82.5rem;
+  --header-h: 4rem;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  color-scheme: light;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@media (min-width: 64rem) {
+  :root { --header-h: 4.75rem; }
 }
 
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  margin: 0;
-  min-height: 100vh;
+@layer base {
+  /* ── Base ─────────────────────────────────────────────────────────────── */
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    font-feature-settings: "kern", "liga";
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--color-teal); color: #fff; }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+  }
+
+  a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+
+  h1, h2, h3, .display {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  p { text-wrap: pretty; }
+
+  .tabular { font-variant-numeric: tabular-nums lining-nums; }
 }
 
-* {
-  -webkit-tap-highlight-color: transparent;
+@layer components {
+  /* ── Type scale (1.25 minor third, fluid at the top) ─────────────────── */
+
+  .t-hero    { font-size: clamp(2.5rem, 1.55rem + 4.2vw, 4.75rem); line-height: 1.02; letter-spacing: -0.02em; }
+  .t-page    { font-size: clamp(2.25rem, 1.75rem + 2.2vw, 3.75rem); line-height: 1.05; letter-spacing: -0.015em; }
+  .t-section { font-size: clamp(1.75rem, 1.45rem + 1.3vw, 2.625rem); line-height: 1.1; }
+  .t-title   { font-size: clamp(1.375rem, 1.25rem + 0.5vw, 1.75rem); line-height: 1.2; }
+  .t-lead    { font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem); line-height: 1.55; }
+  .t-small   { font-size: 0.875rem; line-height: 1.5; }
+  .t-micro   { font-size: 0.8125rem; line-height: 1.45; }
+
+  .measure { max-width: 62ch; }
+
+  /* ── Layout ───────────────────────────────────────────────────────────── */
+
+  .page {
+    width: 100%;
+    max-width: var(--page-max);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  .rule { border: 0; border-top: 1px solid var(--color-line); }
+
+  /* ── Buttons ──────────────────────────────────────────────────────────── */
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3rem;
+    padding: 0.75rem 1.4rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius-control);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    cursor: pointer;
+    touch-action: manipulation;
+    transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out), color 160ms var(--ease-out);
+  }
+  .btn:disabled, .btn[aria-disabled="true"] { opacity: 0.5; cursor: not-allowed; }
+
+  .btn-primary { background: var(--color-teal); color: #fff; }
+  .btn-primary:not(:disabled):hover { background: var(--color-teal-deep); }
+
+  .btn-secondary { background: transparent; color: var(--color-ink); border-color: var(--color-ink); }
+  .btn-secondary:not(:disabled):hover { background: var(--color-ink); color: var(--color-paper); }
+
+  .btn-quiet { background: transparent; color: var(--color-ink); padding-inline: 0.75rem; }
+  .btn-quiet:hover { background: var(--color-board); }
+
+  .btn-block { width: 100%; }
+
+  .link {
+    color: var(--color-teal);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--color-teal) 40%, transparent);
+  }
+  .link:hover { text-decoration-color: currentColor; }
+
+  /* ── Forms ────────────────────────────────────────────────────────────── */
+
+  .field { display: grid; gap: 0.4rem; align-content: start; }
+
+  .label { font-size: 0.875rem; font-weight: 600; color: var(--color-ink); }
+  .label .optional { font-weight: 400; color: var(--color-ink-2); }
+
+  .hint { font-size: 0.8125rem; color: var(--color-ink-2); }
+
+  .error-text { font-size: 0.8125rem; font-weight: 600; color: var(--color-error); }
+
+  .input {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid var(--color-edge);
+    border-radius: var(--radius-control);
+    background: var(--color-field);
+    color: var(--color-ink);
+    font: inherit;
+    font-size: 1rem; /* 16px keeps iOS from zooming */
+    transition: border-color 140ms var(--ease-out), box-shadow 140ms var(--ease-out);
+  }
+  .input::placeholder { color: var(--color-ink-2); opacity: 0.75; }
+  .input:hover { border-color: var(--color-ink-2); }
+  .input:focus-visible { outline: none; border-color: var(--color-teal); box-shadow: 0 0 0 2px var(--color-teal); }
+  .input[aria-invalid="true"] { border-color: var(--color-error); }
+  .input[aria-invalid="true"]:focus-visible { box-shadow: 0 0 0 2px var(--color-error); }
+  textarea.input { min-height: 7rem; resize: vertical; line-height: 1.5; }
+  select.input {
+    appearance: none;
+    padding-right: 2.5rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath stroke='%231c3436' stroke-width='1.5' d='m1 1.5 5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.9rem center;
+  }
+
+  /* Number with a unit suffix ("cm") */
+  .unit-input { position: relative; }
+  .unit-input .input { padding-right: 2.75rem; font-variant-numeric: tabular-nums; }
+  .unit-input > span {
+    position: absolute; right: 0.85rem; top: 50%; transform: translateY(-50%);
+    font-size: 0.875rem; color: var(--color-ink-2); pointer-events: none;
+  }
+  .unit-input input::-webkit-outer-spin-button,
+  .unit-input input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  .unit-input input[type="number"] { -moz-appearance: textfield; }
+
+  /* Option controls: a real radio/checkbox inside a label */
+  .choice-group { display: grid; gap: 0.5rem; border: 0; padding: 0; margin: 0; min-width: 0; }
+  .choice-group > legend { margin-bottom: 0.6rem; padding: 0; }
+
+  .choice {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 3.25rem;
+    padding: 0.7rem 0.95rem;
+    border: 1px solid var(--color-edge);
+    border-radius: var(--radius-control);
+    background: transparent;
+    cursor: pointer;
+    transition: border-color 140ms var(--ease-out), background-color 140ms var(--ease-out);
+  }
+  .choice:hover { border-color: var(--color-ink); }
+  .choice > input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+  .choice:has(input:checked) { border-color: var(--color-teal); background: var(--color-field); box-shadow: inset 0 0 0 1px var(--color-teal); }
+  .choice:has(input:focus-visible) { outline: 2px solid var(--color-ink); outline-offset: 2px; }
+  .choice .choice-mark {
+    flex: none; width: 1.125rem; height: 1.125rem; border-radius: 999px;
+    border: 1px solid var(--color-edge); background: var(--color-field);
+    display: grid; place-items: center;
+  }
+  .choice:has(input:checked) .choice-mark { border-color: var(--color-teal); }
+  .choice:has(input:checked) .choice-mark::after { content: ""; width: 0.55rem; height: 0.55rem; border-radius: 999px; background: var(--color-teal); }
+  .choice.is-checkbox .choice-mark { border-radius: 2px; }
+  .choice.is-checkbox:has(input:checked) .choice-mark { background: var(--color-teal); }
+  .choice.is-checkbox:has(input:checked) .choice-mark::after {
+    width: 0.65rem; height: 0.35rem; border-radius: 0; background: none;
+    border-left: 2px solid #fff; border-bottom: 2px solid #fff; transform: translateY(-1px) rotate(-45deg);
+  }
+  .choice-text { display: flex; align-items: center; gap: 0.75rem; min-width: 0; }
+  .choice-price { font-size: 0.875rem; color: var(--color-ink-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+  /* ── Dimension lines: the architectural measurement device ───────────── */
+
+  .dim {
+    --dim-color: var(--color-gold);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-ink-2);
+    font-size: 0.8125rem;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .dim::before, .dim::after { content: ""; flex: 1; height: 1px; background: var(--dim-color); }
+  .dim-h { position: relative; padding-inline: 1px; }
+  .dim-h > .tick, .dim-v > .tick { position: absolute; background: var(--dim-color); }
+  .dim-h > .tick { top: 50%; width: 1px; height: 0.75rem; transform: translateY(-50%); }
+  .dim-h > .tick:first-of-type { left: 0; }
+  .dim-h > .tick:last-of-type { right: 0; }
+
+  .dim-v { position: relative; padding-block: 1px; writing-mode: vertical-rl; }
+  .dim-v::before, .dim-v::after { width: 1px; height: auto; }
+  .dim-v > .label { transform: rotate(180deg); }
+  .dim-v > .tick { left: 50%; height: 1px; width: 0.75rem; transform: translateX(-50%); }
+  .dim-v > .tick:first-of-type { top: 0; }
+  .dim-v > .tick:last-of-type { bottom: 0; }
+
+  /* ── Sample boards: designs mounted uncropped, like a pattern book ───── */
+
+  .board {
+    position: relative;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    padding: 9%;
+    background: var(--color-board);
+    overflow: hidden;
+  }
+  .board img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+
+  .card-link { text-decoration: none; }
+  .card-link .board { transition: background-color 200ms var(--ease-out); }
+  .card-link:hover .board { background: #e7d9c5; }
+  .card-link:hover .card-title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+
+  /* ── Notices ──────────────────────────────────────────────────────────── */
+
+  .notice { padding: 0.9rem 1rem; border-radius: var(--radius-control); font-size: 0.9375rem; }
+  .notice-error { background: var(--color-error-bg); color: var(--color-error); }
+  .notice-ok { background: var(--color-ok-bg); color: var(--color-teal-deep); }
+  .notice-quiet { background: var(--color-board); color: var(--color-ink); }
+
+  /* ── Skeleton (loading) ───────────────────────────────────────────────── */
+
+  .skeleton { background: var(--color-board); border-radius: var(--radius-control); animation: pulse 1.4s ease-in-out infinite; }
+  @keyframes pulse { 50% { opacity: 0.55; } }
+
+  /* ── Dialog (lightbox, mobile menu) ───────────────────────────────────── */
+
+  dialog { color: inherit; }
+  html:has(dialog[open]) { overflow: hidden; }
+  dialog::backdrop { background: rgb(18 30 31 / 0.72); }
+
+  .sheet[open] { animation: sheet-in 260ms var(--ease-out); }
+  @keyframes sheet-in { from { transform: translateX(8%); opacity: 0; } }
+
+  /* ── Details/summary (FAQ) ────────────────────────────────────────────── */
+
+  .faq summary { list-style: none; cursor: pointer; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary .faq-icon { transition: transform 200ms var(--ease-out); }
+  .faq details[open] summary .faq-icon { transform: rotate(45deg); }
+
+  /* ── Skip link ────────────────────────────────────────────────────────── */
+
+  .skip-link {
+    position: absolute; left: 1rem; top: -4rem; z-index: 100;
+    padding: 0.75rem 1rem; background: var(--color-ink); color: var(--color-paper); font-weight: 600;
+  }
+  .skip-link:focus { top: 1rem; }
+
+  /* ── Scrollbar ────────────────────────────────────────────────────────── */
+
+  html { scrollbar-color: var(--color-edge) var(--color-paper); }
 }
 
-*:focus {
-  outline: none;
-}
-
-*:active {
-  cursor: none !important;
-}
-
-/* Kills the blinking text-caret universally on interaction to prevent it being stuck */
-* {
-  caret-color: transparent;
-}
-input, textarea {
-  caret-color: auto; /* Only allow caret inside actual input fields */
-}
-
-/* Elegant, deep, premium midnight theme with subtle movement */
-.gradient-bg {
-  background: linear-gradient(-45deg, #030c0d 0%, #061214 35%, #0d2629 65%, #061214 100%);
-  background-size: 300% 300%;
-  animation: gradient 20s ease infinite;
-  min-height: 100vh;
-  position: relative;
-}
-
-@keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
