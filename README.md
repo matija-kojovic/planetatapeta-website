@@ -131,7 +131,7 @@ These are known and need a decision before or soon after the next production dep
 
 ### Static preview on GitHub Pages
 
-`npm run pages:preview -- --publish` builds a static copy of the storefront under `/planetatapeta-website` and pushes it to the `gh-pages` branch (a normal push on top of the previous preview). It is for looking at the design on a phone: there is no server on Pages, so orders and contact messages are not sent, the admin is left out, and images are served at their original size. The app itself is not changed; the build happens in `.pages-build/` (git-ignored). The preview is public to anyone with the link and every page is marked `noindex`.
+`npm run pages:preview -- --publish` builds a static copy of the storefront and pushes it to the `gh-pages` branch of the public repository `matija-kojovic/planetatapeta-preview` (a normal push on top of the previous preview), served at https://matija-kojovic.github.io/planetatapeta-preview/. That repository holds only the built site, because GitHub Pages is not available for this private repository on the current plan. It is for looking at the design on a phone: there is no server on Pages, so orders and contact messages are not sent, the admin is left out, and images are served at their original size. The app itself is not changed; the build happens in `.pages-build/` (git-ignored). The preview is public to anyone with the link and every page is marked `noindex`.
 
 ### Old URLs
 

@@ -1,5 +1,6 @@
 // Builds a static preview of the storefront for GitHub Pages and, with --publish,
-// pushes it to the gh-pages branch. Preview only: there is no server on Pages, so
+// pushes it to the gh-pages branch of the public preview repository, which holds
+// only the built site (GitHub Pages is not available for this private repository). Preview only: there is no server on Pages, so
 // orders and contact messages are not sent and the admin is left out.
 //
 // The app is not changed: the project is copied to .pages-build/, the server-only
@@ -15,7 +16,8 @@ import path from "node:path";
 const ROOT = process.cwd();
 const DIR = path.join(ROOT, ".pages-build");
 const OUT = path.join(DIR, "out");
-const BASE = process.env.PAGES_BASE_PATH ?? "/planetatapeta-website";
+const BASE = process.env.PAGES_BASE_PATH ?? "/planetatapeta-preview";
+const REMOTE = process.env.PAGES_REMOTE ?? "https://github.com/matija-kojovic/planetatapeta-preview.git";
 const SITE = process.env.PAGES_SITE_URL ?? `https://matija-kojovic.github.io${BASE}`;
 const publish = process.argv.includes("--publish");
 
@@ -87,11 +89,10 @@ console.log(`\nStatic preview written to ${path.relative(ROOT, OUT)}/ (${SITE}/)
 
 // 5. Publish: a new commit on top of gh-pages (a normal push, never a force-push).
 if (publish) {
-  const origin = execFileSync("git", ["remote", "get-url", "origin"], { cwd: ROOT, encoding: "utf-8" }).trim();
   const source = execFileSync("git", ["rev-parse", "--short", "HEAD"], { cwd: ROOT, encoding: "utf-8" }).trim();
   const git = (...args) => run("git", args, { cwd: OUT });
   git("init", "-q", "-b", "gh-pages");
-  git("remote", "add", "origin", origin);
+  git("remote", "add", "origin", REMOTE);
   try {
     git("fetch", "-q", "--depth", "1", "origin", "gh-pages");
     git("reset", "-q", "--soft", "FETCH_HEAD");
