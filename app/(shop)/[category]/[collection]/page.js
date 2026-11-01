@@ -8,7 +8,7 @@ import { collectionHref, findDesign, getCategory, getCollection, getCollections,
 // Serves collection pages (/tapete/cvetne) and, because canvas has a single
 // collection, canvas design pages (/slike-na-platnu/motiv-03).
 
-export const dynamicParams = false;
+// Unknown slugs get notFound() below; see app/(shop)/[category]/page.js for why dynamicParams stays on.
 
 export function generateStaticParams() {
   return [

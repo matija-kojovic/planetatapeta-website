@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import DesignPage, { designMetadata } from "@/components/shop/DesignPage";
 import { allDesigns, findDesign } from "@/lib/catalog";
 
-export const dynamicParams = false;
+// Unknown slugs get notFound() below; see app/(shop)/[category]/page.js for why dynamicParams stays on.
 
 export const generateStaticParams = () =>
   allDesigns()

@@ -14,7 +14,9 @@ import { getContent } from "@/lib/db";
 import { PRICING, priceTeaser } from "@/lib/pricing";
 import { absoluteUrl } from "@/lib/site";
 
-export const dynamicParams = false;
+// Unknown slugs get notFound() below. Not `dynamicParams = false`: with it, the
+// on-demand revalidation after an admin edit fails (NoFallbackError) and turns
+// every prerendered page of this route into a 404 until the next deploy.
 export const generateStaticParams = () => CATEGORIES.map((c) => ({ category: c.slug }));
 
 export async function generateMetadata({ params }) {

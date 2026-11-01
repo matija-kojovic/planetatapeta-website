@@ -38,7 +38,7 @@ for (const source of SOURCES) {
   const files = fs
     .readdirSync(dir)
     .filter((f) => IMAGE_EXT.test(f))
-    .map((f) => ({ file: f, number: parseInt(f.replace(/\D/g, ""), 10) || 0 }))
+    .map((f) => ({ file: f, number: Number(f.match(/(\d+)\.[a-z]+$/i)?.[1]) || 0 })) // trailing file number; "3Dtapete12" → 12
     .sort((a, b) => a.number - b.number);
 
   for (const { file, number } of files) {
