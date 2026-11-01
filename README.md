@@ -1,36 +1,131 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# PLANETATAPETA
 
-## Getting Started
+Web shop for PLANETATAPETA (Belgrade): made-to-measure photo wallpaper, wall stickers, canvas and plexiglass prints, and custom printed stickers. Customers choose a design, enter dimensions, see the price and send an order. There is no online payment: the business contacts the customer to confirm each order.
 
-First, run the development server:
+Customer-facing copy is in Serbian (Latin script). Code and documentation are in English.
+
+## Stack
+
+| Layer | Choice |
+|---|---|
+| Framework | Next.js 16 (App Router), React 19 |
+| Styling | Tailwind CSS v4 + design tokens and component classes in `app/globals.css` |
+| Fonts | EB Garamond (display) and Schibsted Grotesk (UI), self-hosted with `next/font` |
+| E-mail | `nodemailer` over Gmail SMTP |
+| Storage | JSON files in `data/database/` (see [Deployment limitations](#deployment-limitations)) |
+| Tests | Node's built-in test runner (`node --test`) |
+
+Requires Node.js 20.9 or newer.
+
+## Setup
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.example .env.local   # then fill in the values
+npm run dev                  # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The shop works without any environment variables. The admin stays locked until `ADMIN_PASSWORD` and `ADMIN_SESSION_SECRET` are set, and e-mails are skipped until `EMAIL_USER` and `EMAIL_PASS` are set.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Required | Purpose |
+|---|---|---|
+| `ADMIN_PASSWORD` | for the admin | Admin login password, at least 12 characters. |
+| `ADMIN_SESSION_SECRET` | for the admin | HMAC key for the session cookie, at least 32 characters. Changing it logs everyone out. |
+| `EMAIL_USER`, `EMAIL_PASS` | for e-mail | Gmail address and [app password](https://support.google.com/accounts/answer/185833) for order and contact e-mails. |
+| `ORDER_NOTIFY_EMAIL` | no | Inbox for order and contact notifications. Defaults to `planetatapeta20@gmail.com`. |
+| `NEXT_PUBLIC_SITE_URL` | in production | Public origin for canonical URLs, `sitemap.xml`, `robots.txt` and JSON-LD. Defaults to `http://localhost:3000`. |
 
-## Learn More
+`.env*` files are git-ignored, except `.env.example`, which must never contain real values.
 
-To learn more about Next.js, take a look at the following resources:
+## Commands
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Command | What it does |
+|---|---|
+| `npm run dev` | Development server with hot reload. |
+| `npm test` | Unit tests for pricing, option validation, admin auth, CSRF guard, form validation and HTML escaping. |
+| `npm run lint` | ESLint (`eslint-config-next`). |
+| `npm run build` | Production build. Category, collection and design pages are statically generated. |
+| `npm start` | Serves the production build (run `npm run build` first). |
+| `npm run catalog` | Regenerates `data/designs.json` from the image folders in `public/` (uses `sharp`, installed with Next.js). Run it after adding or removing design images, and commit the result. |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## How the code is organised
 
-## Deploy on Vercel
+```
+app/
+  (shop)/              Storefront: home, categories, collections, design pages, cart, checkout, contact
+  admin/               Admin: login, dashboard, orders, products and prices, site content
+  api/                 Orders, order quotes, products, content, uploads, contact, admin login/logout
+  uploads/[file]/      Serves images uploaded in the admin
+  sitemap.js, robots.js
+components/
+  shop/                Header, footer, cards, design page, cart, checkout, contact form
+  configurators/       Price configurators for each product type
+  admin/               Admin navigation, tables and forms
+lib/
+  pricing.js           The only source of prices and option rules, shared by browser and server
+  catalog.js           Categories, collections and designs (reads data/designs.json)
+  orders.js            Builds and prices order items on the server
+  db.js                JSON file storage with atomic writes
+  auth.js              Admin password check and signed session cookie
+  validation.js        Customer, contact, content and product validation
+  security.js, mail.js, format.js, site.js, faq.js, uploads.js
+data/
+  designs.json         Generated design catalog (do not edit by hand)
+  database/            content.json, products.json; orders.json is created on the first order and git-ignored
+proxy.js               Sends signed-out /admin requests to the login page
+next.config.mjs        Security headers, CSP, redirects from the old URLs
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Prices
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+All prices and option limits live in `lib/pricing.js`. The configurators use it to show prices, and the order API uses it to recalculate every line on the server; prices sent by the browser are ignored. To change a price, edit `lib/pricing.js`, update `tests/pricing.test.mjs` and run `npm test`. The admin shows these prices read-only under **Proizvodi i cene**.
+
+Some limits did not exist on the original site and are marked `ASSUMPTION` in `lib/pricing.js` (size limits, the custom sticker quantity range, and the provisional sticker printing rate of 0,35 RSD/cm²). They need confirmation from the business.
+
+### Admin
+
+`/admin` (login with `ADMIN_PASSWORD`):
+
+- **Pregled**: order counts and the latest orders.
+- **Porudžbine**: search, filter, status changes, order details and CSV export.
+- **Proizvodi i cene**: add, edit and delete fixed-price products (shown on their category page and at `/product/{id}`), and the read-only price list for the made-to-measure products.
+- **Sadržaj sajta**: homepage headline, announcement bar, contact details and SEO title and description.
+
+Security: the session cookie is HttpOnly, SameSite=Strict, Secure in production, signed with HMAC-SHA256 and expires after 8 hours. Login is rate-limited. Every admin page checks the session on the server, and every admin API handler checks the session and, for writes, that the request comes from the site's own origin. Uploads accept only JPG, PNG and WebP up to 5 MB, detected from the file contents.
+
+## Testing
+
+```bash
+npm test
+npm run lint
+npm run build
+```
+
+To try the admin and order flow locally, set `ADMIN_PASSWORD` and `ADMIN_SESSION_SECRET` in `.env.local` with test values. Orders placed locally are written to `data/database/orders.json` (git-ignored). Do not place test orders on the production site.
+
+Admin edits locally change `data/database/content.json` and `data/database/products.json`, which are committed. Revert them with `git checkout -- data/database` if they were only a test.
+
+## Deployment
+
+The site is hosted on Vercel. `vercel.json` pins functions to the `fra1` (Frankfurt) region. Set the environment variables above in the Vercel project settings before deploying.
+
+### Deployment limitations
+
+These are known and need a decision before or soon after the next production deploy:
+
+- **Read-only storage on Vercel.** Vercel functions cannot write to the deployment's files, so on Vercel:
+  - orders are not saved to `orders.json`. An order is still accepted if the notification e-mail is sent, so `EMAIL_USER` and `EMAIL_PASS` must be set. If both saving and e-mail fail, the customer is asked to call or e-mail instead;
+  - the admin's order list, status changes, product edits, content edits and image uploads do not persist. The admin shows a notice when storage is read-only.
+
+  A persistent store is needed for these to work on Vercel (for example a hosted Postgres database or blob storage), or the site can run on a server with a writable disk. This needs the owner's decision; nothing has been set up.
+- **Customer file upload** is not built, because it needs object storage. Customers send design files by e-mail with their order number.
+- **Rate limits** are kept in memory per server instance, so they are best-effort on serverless hosting.
+- **Legal pages** (privacy policy, terms of sale) show their structure only and are `noindex`. The texts must be written or approved by the business before launch.
+- **Design images** are watermarked stock previews. Licensed files or the business's own photos are needed; the watermarks must not be removed or hidden.
+- **Domain**: set `NEXT_PUBLIC_SITE_URL` to the production domain so canonical URLs and the sitemap are correct.
+
+### Old URLs
+
+The old `/category/...`, `/product/...`, `/privacy` and `/terms` URLs redirect permanently (308) to the new pages, so existing links and search results keep working.

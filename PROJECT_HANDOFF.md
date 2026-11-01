@@ -4,6 +4,20 @@ Written 2026-11-01 so a new Claude Code session (different Claude account, no ac
 
 ---
 
+## Status update, 2026-11-01 (second session)
+
+Sections below describe the state at the first handoff. Since then, on `redesign` (pushed):
+
+- **Committed and pushed.** The work from §2 was committed in 5 commits; this session added the commits listed by `git log origin/main..redesign`.
+- **Built (§8 items 1–3):** Admin › Proizvodi i cene (`components/admin/ProductsManager.js`, read-only `PriceList.js`) and Admin › Sadržaj sajta (`ContentForm.js`); `.env.example`; full `README.md`. Product validation moved to `lib/validation.js` (`validateProduct`, tested).
+- **Verified (§7):** `npm test` (19), `npm run lint` and `npm run build` pass. Live HTTP checks pass (APIs 401 signed out, 403 cross-origin, admin pages 307 to login, legacy URLs 308, security headers present, server-side pricing ignores client prices). Every storefront page was reviewed in a browser at 320/375/390/768/1024/1440 px (no horizontal overflow, no console errors), plus the cart, checkout (local test orders only), mobile menu and admin flows.
+- **Bugs found and fixed:** catalog pages returned 404 after any admin save (`dynamicParams = false` + `revalidatePath` → `NoFallbackError`); 3D wallpaper slugs were numbered 31–53 (digit of "3D" in the file name), which also hid a featured design; optional contact fields could not be cleared; admin form errors disappeared after editing a field; `.board` clipped portrait designs; tabular figures split "3.360 RSD" into "3 . 360"; header nav wrapped at 1024 px; empty-cart leftovers (§8.6); checkout success page still titled "Podaci za dostavu".
+- **Refinement (impeccable critique + polish):** dimensioned preview opens when the customer changes the size; sticker configurator shows the form first on phones; active states on view tabs, Kontakt and Korpa; collection pages show a one-line price on phones instead of the rate table.
+- **Performance (lab, Chrome, 4× CPU + slow 4G, 390 px):** unused italic Garamond removed (fonts 355 → 222 KB per page). LCP: home 1.29 s, collection 1.59 s, wallpaper design 1.94 s, canvas design 2.68 s; CLS ≤ 0.034; interaction latency ≤ 40 ms.
+- **Still open:** everything under "Blockers and business decisions" in §8, unchanged. The live production site has **not** been redeployed, so `GET /api/orders` there may still expose customer data.
+
+---
+
 ## 0. Read this first
 
 | What | Where / state |
