@@ -2,6 +2,7 @@ import Link from "next/link";
 import CanvasConfigurator from "@/components/configurators/CanvasConfigurator";
 import WallConfigurator from "@/components/configurators/WallConfigurator";
 import { collectionHref, designHref, getCategory, getCollection, getDesigns } from "@/lib/catalog";
+import { syncPricing } from "@/lib/prices";
 import { PRICING } from "@/lib/pricing";
 import { absoluteUrl } from "@/lib/site";
 import Breadcrumbs from "./Breadcrumbs";
@@ -43,6 +44,7 @@ function offerFor(category) {
 }
 
 export default function DesignPage({ design }) {
+  syncPricing();
   const category = getCategory(design.category);
   const collection = getCollection(design.category, design.collection);
   const isCanvas = design.category === "slike-na-platnu";

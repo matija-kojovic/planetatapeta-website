@@ -11,6 +11,7 @@ import { PlexiglassGlyph, StickerSheetGlyph } from "@/components/shop/ProductGly
 import RateTable from "@/components/shop/RateTable";
 import { CATEGORIES, CATEGORY_COVERS, collectionCover, collectionHref, getCategory, getCollections, getDesign, getDesigns } from "@/lib/catalog";
 import { getContent } from "@/lib/db";
+import { syncPricing } from "@/lib/prices";
 import { PRICING, priceTeaser } from "@/lib/pricing";
 import { absoluteUrl } from "@/lib/site";
 
@@ -120,6 +121,7 @@ function ConfiguratorSection({ category, email }) {
 }
 
 export default async function CategoryPage({ params }) {
+  syncPricing();
   const category = getCategory((await params).category);
   if (!category) notFound();
   const { contact } = getContent();

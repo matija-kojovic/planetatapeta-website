@@ -81,7 +81,9 @@ next.config.mjs        Security headers, CSP, redirects from the old URLs
 
 ### Prices
 
-All prices and option limits live in `lib/pricing.js`. The configurators use it to show prices, and the order API uses it to recalculate every line on the server; prices sent by the browser are ignored. To change a price, edit `lib/pricing.js`, update `tests/pricing.test.mjs` and run `npm test`. The admin shows these prices read-only under **Proizvodi i cene**.
+`lib/pricing.js` defines the products, options, size limits and **default** prices. The configurators use it to show prices, and the order API uses it to recalculate every line on the server; prices sent by the browser are ignored.
+
+Prices can be changed in the admin under **Proizvodi i cene** (every amount listed in `PRICE_FIELDS`). Only amounts that differ from the defaults are stored, in `data/database/prices.json`. The server applies them before rendering or pricing an order (`lib/prices.js`), and `<PricingSync>` in the root layout applies the same amounts in the browser, so the configurators, cart and server always agree. Saving revalidates the static pages. Orders already received keep the prices they were placed with. Products, options and size limits are not editable; change those in `lib/pricing.js` and run `npm test`.
 
 Some limits did not exist on the original site and are marked `ASSUMPTION` in `lib/pricing.js` (size limits, the custom sticker quantity range, and the provisional sticker printing rate of 0,35 RSD/cm²). They need confirmation from the business.
 
@@ -91,7 +93,7 @@ Some limits did not exist on the original site and are marked `ASSUMPTION` in `l
 
 - **Pregled**: order counts and the latest orders.
 - **Porudžbine**: search, filter, status changes, order details and CSV export.
-- **Proizvodi i cene**: add, edit and delete fixed-price products (shown on their category page and at `/product/{id}`), and the read-only price list for the made-to-measure products.
+- **Proizvodi i cene**: add, edit and delete fixed-price products (shown on their category page and at `/product/{id}`), edit the prices of the made-to-measure products, and see the size and quantity limits (read-only).
 - **Sadržaj sajta**: homepage headline, announcement bar, contact details and SEO title and description.
 
 Security: the session cookie is HttpOnly, SameSite=Strict, Secure in production, signed with HMAC-SHA256 and expires after 8 hours. Login is rate-limited. Every admin page checks the session on the server, and every admin API handler checks the session and, for writes, that the request comes from the site's own origin. Uploads accept only JPG, PNG and WebP up to 5 MB, detected from the file contents.
@@ -118,7 +120,7 @@ These are known and need a decision before or soon after the next production dep
 
 - **Read-only storage on Vercel.** Vercel functions cannot write to the deployment's files, so on Vercel:
   - orders are not saved to `orders.json`. An order is still accepted if the notification e-mail is sent, so `EMAIL_USER` and `EMAIL_PASS` must be set. If both saving and e-mail fail, the customer is asked to call or e-mail instead;
-  - the admin's order list, status changes, product edits, content edits and image uploads do not persist. The admin shows a notice when storage is read-only.
+  - the admin's order list, status changes, product edits, price edits, content edits and image uploads do not persist. The admin shows a notice when storage is read-only.
 
   A persistent store is needed for these to work on Vercel (for example a hosted Postgres database or blob storage), or the site can run on a server with a writable disk. This needs the owner's decision; nothing has been set up.
 - **Customer file upload** is not built, because it needs object storage. Customers send design files by e-mail with their order number.

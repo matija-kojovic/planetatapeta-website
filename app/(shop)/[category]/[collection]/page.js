@@ -4,6 +4,7 @@ import DesignPage, { designMetadata } from "@/components/shop/DesignPage";
 import PageHeader from "@/components/shop/PageHeader";
 import RateTable from "@/components/shop/RateTable";
 import { collectionCover, collectionHref, findDesign, getCategory, getCollection, getCollections, getDesigns } from "@/lib/catalog";
+import { syncPricing } from "@/lib/prices";
 import { priceTeaser } from "@/lib/pricing";
 
 // Serves collection pages (/tapete/cvetne) and, because canvas has a single
@@ -47,6 +48,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function CollectionPage({ params }) {
+  syncPricing();
   const match = resolve(await params);
   if (!match) notFound();
   if (match.design) return <DesignPage design={match.design} />;

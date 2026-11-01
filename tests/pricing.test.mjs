@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { calculatePrice, validateOptions, PRICING, configurationKey } from "../lib/pricing.js";
+import { calculatePrice, validateOptions, PRICING, configurationKey, PRICE_FIELDS, applyPriceOverrides, validatePriceOverrides, defaultPrice } from "../lib/pricing.js";
 
 const price = (category, raw) => {
   const { ok, options, errors } = validateOptions(category, raw);
@@ -79,4 +79,33 @@ test("identical configurations produce the same cart key regardless of field ord
     configurationKey("tapete", "d1", { width: 1, height: 2, material: "klasik" }),
     configurationKey("tapete", "d1", { material: "klasik", height: 2, width: 1 })
   );
+});
+
+test("admin price overrides change what is charged, and clearing them restores the defaults", () => {
+  const options = validateOptions("tapete", { material: "klasik", width: 300, height: 240, installation: false }).options;
+  assert.equal(calculatePrice("tapete", options).total, 5040);
+  try {
+    applyPriceOverrides({ "tapete.klasik": 800, "nalepnice.cm2": 0.4 });
+    assert.equal(PRICING.tapete.materials[0].pricePerM2, 800);
+    assert.equal(calculatePrice("tapete", options).total, 5760); // 7.2 m² × 800
+    assert.equal(PRICING["izrada-nalepnica"].pricePerCm2, 0.4);
+  } finally {
+    applyPriceOverrides({});
+  }
+  assert.equal(calculatePrice("tapete", options).total, 5040);
+  assert.ok(PRICE_FIELDS.every((f) => typeof defaultPrice(f) === "number" && defaultPrice(f) > 0));
+});
+
+test("price overrides accept positive whole dinars (decimals only per cm²) and keep only real changes", () => {
+  const { ok, values, errors } = validatePriceOverrides({
+    "tapete.klasik": "700", // same as default: not stored
+    "tapete.reljefne": "1200",
+    "nalepnice.cm2": "0,38",
+    "platno.1.small": "12.5",
+    "pleksiglas.90x100": -1,
+    "unknown.key": 5,
+  });
+  assert.equal(ok, false);
+  assert.deepEqual(values, { "tapete.reljefne": 1200, "nalepnice.cm2": 0.38 });
+  assert.deepEqual(Object.keys(errors).sort(), ["platno.1.small", "pleksiglas.90x100"]);
 });

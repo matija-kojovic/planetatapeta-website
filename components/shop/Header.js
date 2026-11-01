@@ -1,10 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CATEGORIES } from "@/lib/catalog";
+import { syncPricing } from "@/lib/prices";
 import { priceTeaser } from "@/lib/pricing";
 import { CartLink, ContactLink, DesktopNav, MobileMenu } from "./HeaderClient";
 
 export default function Header({ announcement, phone }) {
+  syncPricing();
   const nav = CATEGORIES.map(({ slug, label, navLabel }) => ({
     href: `/${slug}`,
     label,

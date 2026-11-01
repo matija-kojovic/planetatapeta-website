@@ -8,6 +8,7 @@ import { CATEGORIES, CATEGORY_COVERS, HERO_DESIGN_ID, featuredDesigns, getCollec
 import { getContent } from "@/lib/db";
 import { FAQ } from "@/lib/faq";
 import { formatRSD } from "@/lib/format";
+import { syncPricing } from "@/lib/prices";
 import { calculatePrice, priceTeaser } from "@/lib/pricing";
 import { SITE_URL, absoluteUrl } from "@/lib/site";
 
@@ -29,6 +30,7 @@ function CategoryThumb({ slug }) {
 }
 
 export default function HomePage() {
+  syncPricing();
   const { hero, contact } = getContent();
   const heroDesign = getDesign(HERO_DESIGN_ID);
   // The wall is drawn in the design's own proportions, so nothing is cropped.
