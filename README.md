@@ -129,6 +129,10 @@ These are known and need a decision before or soon after the next production dep
 - **Design images** are watermarked stock previews. Licensed files or the business's own photos are needed; the watermarks must not be removed or hidden.
 - **Domain**: set `NEXT_PUBLIC_SITE_URL` to the production domain so canonical URLs and the sitemap are correct.
 
+### Static preview on GitHub Pages
+
+`npm run pages:preview -- --publish` builds a static copy of the storefront under `/planetatapeta-website` and pushes it to the `gh-pages` branch (a normal push on top of the previous preview). It is for looking at the design on a phone: there is no server on Pages, so orders and contact messages are not sent, the admin is left out, and images are served at their original size. The app itself is not changed; the build happens in `.pages-build/` (git-ignored). The preview is public to anyone with the link and every page is marked `noindex`.
+
 ### Old URLs
 
 The old `/category/...`, `/product/...`, `/privacy` and `/terms` URLs redirect permanently (308) to the new pages, so existing links and search results keep working.

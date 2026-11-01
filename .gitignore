@@ -15,6 +15,9 @@
 /.next/
 /out/
 
+# static GitHub Pages preview build (npm run pages:preview)
+/.pages-build/
+
 # production
 /build
 

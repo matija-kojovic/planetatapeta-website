@@ -10,6 +10,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Static GitHub Pages preview build (npm run pages:preview)
+    ".pages-build/**",
   ]),
 ]);
 
