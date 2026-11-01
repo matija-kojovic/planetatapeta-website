@@ -29,7 +29,7 @@ const FIELDS = {
       zip: { label: "Poštanski broj", max: 10, optional: true, inputMode: "numeric" },
       phone: { label: "Telefon", max: 25, type: "tel" },
       email: { label: "E-adresa", max: 254, type: "email", inputMode: "email" },
-      instagram: { label: "Instagram", max: 200, optional: true, type: "url", placeholder: "https://www.instagram.com/planetatapeta/" },
+      instagram: { label: "Instagram", max: 200, optional: true, type: "url", hint: "Pun link profila" },
     },
   },
   seo: {
@@ -129,7 +129,6 @@ export default function ContentForm({ initialContent }) {
                   key={key}
                   id={key}
                   label={f.label}
-                  placeholder={f.placeholder}
                   as={f.as}
                   rows={f.rows}
                   type={f.as ? undefined : f.type || "text"}

@@ -75,14 +75,14 @@ export default function ContactForm({ email }) {
       {submitted && !validation.ok ? <ErrorSummary errors={validation.errors} labels={LABELS} summaryRef={summaryRef} /> : null}
       <RequiredNote />
       <div className="grid gap-5 sm:grid-cols-2">
-        <FormField {...fieldProps("ime")} autoComplete="given-name" placeholder="Ana" />
-        <FormField {...fieldProps("prezime")} autoComplete="family-name" placeholder="Petrović" />
+        <FormField {...fieldProps("ime")} autoComplete="given-name" />
+        <FormField {...fieldProps("prezime")} autoComplete="family-name" />
       </div>
       <div className="grid gap-5 sm:grid-cols-2">
-        <FormField {...fieldProps("email")} type="email" inputMode="email" autoComplete="email" placeholder="ime@primer.rs" />
-        <FormField {...fieldProps("telefon")} type="tel" autoComplete="tel" placeholder="060 123 4567" />
+        <FormField {...fieldProps("email")} type="email" inputMode="email" autoComplete="email" />
+        <FormField {...fieldProps("telefon")} type="tel" autoComplete="tel" />
       </div>
-      <FormField {...fieldProps("poruka")} as="textarea" rows={6} placeholder="Šta želite da odštampamo, dimenzije i rok, ako ih znate" />
+      <FormField {...fieldProps("poruka")} as="textarea" rows={6} />
       <Honeypot value={honeypot} onChange={setHoneypot} />
       {state.status === "error" ? (
         <p className="notice notice-error" role="alert">

@@ -189,7 +189,7 @@ export default function ProductsManager({ initialProducts, categories }) {
                   className="input float-input"
                   type="text"
                   inputMode="numeric"
-                  placeholder="4500"
+                  placeholder=" "
                   autoComplete="off"
                   value={values.price}
                   onChange={fieldProps("price").onChange}

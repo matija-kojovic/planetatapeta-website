@@ -196,21 +196,21 @@ export default function Checkout({ contactEmail }) {
 
         <fieldset className="grid gap-5">
             <legend className="display t-title mb-5">Kontakt</legend>
-            <FormField {...fieldProps("ime_prezime")} autoComplete="name" placeholder="Ana Petrović" required />
+            <FormField {...fieldProps("ime_prezime")} autoComplete="name" required />
             <div className="grid gap-5 sm:grid-cols-2">
-              <FormField {...fieldProps("email")} type="email" autoComplete="email" inputMode="email" placeholder="ime@primer.rs" required />
-              <FormField {...fieldProps("telefon")} type="tel" autoComplete="tel" placeholder="060 123 4567" required hint="Za potvrdu porudžbine." />
+              <FormField {...fieldProps("email")} type="email" autoComplete="email" inputMode="email" required />
+              <FormField {...fieldProps("telefon")} type="tel" autoComplete="tel" required hint="Za potvrdu porudžbine." />
             </div>
           </fieldset>
 
           <fieldset className="grid gap-5">
             <legend className="display t-title mb-5">Adresa za dostavu</legend>
-            <FormField {...fieldProps("adresa")} autoComplete="street-address" placeholder="Ulica i kućni broj, stan" required />
+            <FormField {...fieldProps("adresa")} autoComplete="street-address" required />
             <div className="grid gap-5 sm:grid-cols-[12rem_1fr]">
-              <FormField {...fieldProps("postanski_broj")} autoComplete="postal-code" inputMode="numeric" maxLength={5} placeholder="11000" />
-              <FormField {...fieldProps("grad")} autoComplete="address-level2" placeholder="Beograd" required />
+              <FormField {...fieldProps("postanski_broj")} autoComplete="postal-code" inputMode="numeric" maxLength={5} />
+              <FormField {...fieldProps("grad")} autoComplete="address-level2" required />
             </div>
-            <FormField {...fieldProps("napomena")} as="textarea" rows={4} placeholder="Sprat, interfon ili željeni termin ugradnje" />
+            <FormField {...fieldProps("napomena")} as="textarea" rows={4} />
           </fieldset>
 
           <Honeypot value={honeypot} onChange={setHoneypot} />

@@ -159,15 +159,13 @@
   .float-field { position: relative; --float-bg: var(--color-paper); --input-bg: var(--color-field); }
   .float-field:has([aria-invalid="true"]) { --input-bg: color-mix(in srgb, var(--color-error-bg) 45%, var(--color-field)); }
   .float-field .input { background-color: var(--input-bg); }
-  .float-field .float-input::placeholder { color: transparent; }
-  .float-field .float-input:focus::placeholder { color: #6a7675; }
   .float-label {
     position: absolute; left: 0.55rem; top: 1.5rem; transform: translateY(-50%);
     max-width: calc(100% - 1.1rem); padding: 0 0.3rem;
     overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
     font-size: 1rem; line-height: 1.2; color: var(--color-ink-2);
     pointer-events: none;
-    transition: top 160ms var(--ease-out), font-size 160ms var(--ease-out), color 160ms var(--ease-out);
+    transition: top 300ms var(--ease-out), font-size 300ms var(--ease-out), color 300ms var(--ease-out);
   }
   .float-input:focus + .float-label,
   .float-input:not(:placeholder-shown) + .float-label,

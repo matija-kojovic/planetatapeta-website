@@ -1,10 +1,10 @@
 /**
  * Input or textarea with a floating label: the label sits inside the empty field
- * and moves onto the top border on focus or once there is a value. The example
- * `placeholder` (e.g. "ime@primer.rs") shows only while the field has focus.
+ * and moves onto the top border on focus or once there is a value. The blank
+ * placeholder only lets CSS tell an empty field (:placeholder-shown) from a filled one.
  * The error or hint below has a reserved line, so an error never pushes the form.
  */
-export default function FormField({ id, label, hint, error, as = "input", className = "", placeholder = " ", ...props }) {
+export default function FormField({ id, label, hint, error, as = "input", className = "", ...props }) {
   const Control = as;
   return (
     <div className={`field ${className}`}>
@@ -13,7 +13,7 @@ export default function FormField({ id, label, hint, error, as = "input", classN
           id={id}
           name={id}
           className="input float-input"
-          placeholder={placeholder}
+          placeholder=" "
           aria-invalid={error ? true : undefined}
           aria-describedby={error || hint ? `${id}-msg` : undefined}
           {...props}
