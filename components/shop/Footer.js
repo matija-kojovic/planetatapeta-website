@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CATEGORIES } from "@/lib/catalog";
-import { phoneDigits, postalAddress } from "@/lib/site";
+import { phoneDigits } from "@/lib/site";
 
 export default function Footer({ contact }) {
   const digits = phoneDigits(contact.phone);
@@ -30,8 +30,6 @@ export default function Footer({ contact }) {
         <div>
           <h2 className="font-sans text-[0.875rem] font-semibold tracking-normal text-foot-2">Kontakt</h2>
           <address className="mt-4 not-italic leading-[1.8]">
-            {postalAddress(contact)}
-            <br />
             <a href={`tel:+${digits}`} className="no-underline underline-offset-[3px] hover:underline">
               {contact.phone}
             </a>

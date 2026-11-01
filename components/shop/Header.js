@@ -48,7 +48,7 @@ export default function Header({ announcement, contact }) {
       {/* Masthead: search, centred wordmark, cart */}
       <div className="page grid min-h-[4.125rem] grid-cols-[3.25rem_minmax(0,1fr)_3.25rem] items-center lg:min-h-24 lg:grid-cols-[1fr_auto_1fr]">
         <div className="flex items-center gap-5">
-          <MobileMenu items={nav} phone={contact.phone} address={`${contact.address}, ${contact.city}`} />
+          <MobileMenu items={nav} phone={contact.phone} />
           <SearchDialog index={searchIndex()} />
         </div>
         <Link href="/" className="text-center leading-none no-underline" aria-label="PLANETATAPETA, početna strana">

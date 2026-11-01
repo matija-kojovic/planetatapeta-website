@@ -58,8 +58,8 @@ export function CartLink() {
   );
 }
 
-/** Phone menu: a sheet with the categories in the display face, search and contact. */
-export function MobileMenu({ items, phone, address }) {
+/** Phone menu: a sheet with the categories in the display face, search and the phone number. */
+export function MobileMenu({ items, phone }) {
   const dialogRef = useRef(null);
   const pathname = usePathname();
 
@@ -122,8 +122,7 @@ export function MobileMenu({ items, phone, address }) {
           <p className="px-5 pb-6 pt-5 text-[0.875rem] text-ink-2">
             <a href={`tel:+${phoneDigits(phone)}`} className="text-ink">
               {phone}
-            </a>{" "}
-            · {address}
+            </a>
           </p>
         </div>
       </dialog>

@@ -1,7 +1,7 @@
 import ContactForm from "@/components/shop/ContactForm";
 import PageHeader from "@/components/shop/PageHeader";
 import { getContent } from "@/lib/db";
-import { instagramHandle, phoneDigits, postalAddress } from "@/lib/site";
+import { instagramHandle, phoneDigits } from "@/lib/site";
 
 export const metadata = {
   title: "Kontakt",
@@ -13,7 +13,6 @@ export default function ContactPage() {
   const { contact } = getContent();
   const digits = phoneDigits(contact.phone);
   const rows = [
-    { label: "Adresa", value: postalAddress(contact) },
     { label: "Telefon, Viber i WhatsApp", value: contact.phone, href: `tel:+${digits}` },
     { label: "E-adresa", value: contact.email, href: `mailto:${contact.email}` },
     ...(contact.instagram ? [{ label: "Instagram", value: instagramHandle(contact.instagram), href: contact.instagram, external: true }] : []),

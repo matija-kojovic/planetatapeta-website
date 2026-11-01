@@ -391,7 +391,7 @@ The original code had no rule for these, so conservative values were chosen. The
 - **Trademark / personality rights**: `zidni-stikeri` designs include the Real Madrid crest, a Messi/FC Barcelona shirt, a Cristiano Ronaldo portrait and Lamborghini cars (`stikeri/decije/stikerDeca10`–`stikerDeca15`). Only the first 8 images of each sticker set were reviewed; check the rest too. These need a legal decision (remove, or license separately).
 - **Product photography** missing for plexiglass and sticker printing (line-drawing placeholders in use).
 - **Legal texts**: privacy policy (ZZPL) and terms of sale (Zakon o zaštiti potrošača; distance-selling information, withdrawal rules for made-to-measure goods, complaints). The pages show structure only, are `noindex`, and checkout currently has no consent checkbox.
-- **Business rules to confirm**: §6 assumptions; delivery pricing; payment method (the FAQ says "putem interneta"); whether "Hitna izrada" and design help cost extra; contact e-mail (`djoletodorovic20@gmail.com` is published as the business contact) vs the order inbox (`planetatapeta20@gmail.com`).
+- **Business rules to confirm**: §6 assumptions; delivery pricing; payment method (the FAQ says "putem interneta"); whether "Hitna izrada" and design help cost extra; contact e-mail (resolved: the site now publishes `planetatapeta20@gmail.com`, the same inbox that receives orders, and no street address).
 - **Domain** for `NEXT_PUBLIC_SITE_URL` (canonical URLs, sitemap, JSON-LD).
 - **Customer file upload** (needs object storage; see decision 7).
 - **Licence/ownership** of the original source (no LICENSE file).

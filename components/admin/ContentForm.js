@@ -22,11 +22,9 @@ const FIELDS = {
   },
   contact: {
     legend: "Kontakt podaci",
-    hint: "Prikazuju se u podnožju, na stranici Kontakt i u podacima za pretraživače.",
+    hint: "Telefon, e-adresa i Instagram prikazuju se u podnožju i na stranici Kontakt.",
     fields: {
-      address: { label: "Ulica i broj", max: 120, autoComplete: "street-address" },
-      city: { label: "Grad", max: 60 },
-      zip: { label: "Poštanski broj", max: 10, optional: true, inputMode: "numeric" },
+      city: { label: "Grad", max: 60, hint: "Samo za pretraživače" },
       phone: { label: "Telefon", max: 25, type: "tel" },
       email: { label: "E-adresa", max: 254, type: "email", inputMode: "email" },
       instagram: { label: "Instagram", max: 200, optional: true, type: "url", hint: "Pun link profila" },

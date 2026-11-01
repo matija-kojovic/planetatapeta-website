@@ -55,8 +55,6 @@ export default function HomePage() {
           telephone: contact.phone,
           address: {
             "@type": "PostalAddress",
-            streetAddress: contact.address,
-            ...(contact.zip ? { postalCode: contact.zip } : {}),
             addressLocality: contact.city,
             addressCountry: "RS",
           },
