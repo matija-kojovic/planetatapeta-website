@@ -6,7 +6,7 @@ import { FIXED_PRODUCT, useCart } from "@/components/CartProvider";
 import { formatRSD } from "@/lib/format";
 import { validateCustomer } from "@/lib/validation";
 import { CartSkeleton, EmptyCart } from "./CartView";
-import FormField, { ErrorSummary, Honeypot } from "./FormField";
+import FormField, { ErrorSummary, Honeypot, RequiredNote } from "./FormField";
 
 const LABELS = {
   ime_prezime: "Ime i prezime",
@@ -192,23 +192,25 @@ export default function Checkout({ contactEmail }) {
         <form className="grid content-start gap-10 lg:col-span-7" onSubmit={handleSubmit} noValidate>
           {submitted && !validation.ok ? <ErrorSummary errors={validation.errors} labels={LABELS} summaryRef={summaryRef} /> : null}
 
-          <fieldset className="grid gap-5">
+          <RequiredNote />
+
+        <fieldset className="grid gap-5">
             <legend className="display t-title mb-5">Kontakt</legend>
-            <FormField {...fieldProps("ime_prezime")} autoComplete="name" required />
+            <FormField {...fieldProps("ime_prezime")} autoComplete="name" placeholder="Ana Petrović" required />
             <div className="grid gap-5 sm:grid-cols-2">
-              <FormField {...fieldProps("email")} type="email" autoComplete="email" inputMode="email" required />
-              <FormField {...fieldProps("telefon")} type="tel" autoComplete="tel" required hint="Za potvrdu porudžbine." />
+              <FormField {...fieldProps("email")} type="email" autoComplete="email" inputMode="email" placeholder="ime@primer.rs" required />
+              <FormField {...fieldProps("telefon")} type="tel" autoComplete="tel" placeholder="060 123 4567" required hint="Za potvrdu porudžbine." />
             </div>
           </fieldset>
 
           <fieldset className="grid gap-5">
             <legend className="display t-title mb-5">Adresa za dostavu</legend>
-            <FormField {...fieldProps("adresa")} autoComplete="street-address" required />
-            <div className="grid gap-5 sm:grid-cols-[10rem_1fr]">
-              <FormField {...fieldProps("postanski_broj")} autoComplete="postal-code" inputMode="numeric" maxLength={5} optional />
-              <FormField {...fieldProps("grad")} autoComplete="address-level2" required />
+            <FormField {...fieldProps("adresa")} autoComplete="street-address" placeholder="Ulica i kućni broj, stan" required />
+            <div className="grid gap-5 sm:grid-cols-[12rem_1fr]">
+              <FormField {...fieldProps("postanski_broj")} autoComplete="postal-code" inputMode="numeric" maxLength={5} placeholder="11000" />
+              <FormField {...fieldProps("grad")} autoComplete="address-level2" placeholder="Beograd" required />
             </div>
-            <FormField {...fieldProps("napomena")} as="textarea" rows={4} optional hint="Na primer: sprat, interfon ili željeni termin ugradnje." />
+            <FormField {...fieldProps("napomena")} as="textarea" rows={4} placeholder="Sprat, interfon ili željeni termin ugradnje" />
           </fieldset>
 
           <Honeypot value={honeypot} onChange={setHoneypot} />

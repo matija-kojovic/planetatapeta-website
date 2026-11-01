@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { validateContactMessage } from "@/lib/validation";
-import FormField, { ErrorSummary, Honeypot } from "./FormField";
+import FormField, { ErrorSummary, Honeypot, RequiredNote } from "./FormField";
 
 const LABELS = { ime: "Ime", prezime: "Prezime", email: "E-adresa", telefon: "Telefon", poruka: "Poruka" };
 const EMPTY = { ime: "", prezime: "", email: "", telefon: "", poruka: "" };
@@ -73,15 +73,16 @@ export default function ContactForm({ email }) {
   return (
     <form className="grid gap-5" onSubmit={handleSubmit} noValidate>
       {submitted && !validation.ok ? <ErrorSummary errors={validation.errors} labels={LABELS} summaryRef={summaryRef} /> : null}
+      <RequiredNote />
       <div className="grid gap-5 sm:grid-cols-2">
-        <FormField {...fieldProps("ime")} autoComplete="given-name" />
-        <FormField {...fieldProps("prezime")} autoComplete="family-name" />
+        <FormField {...fieldProps("ime")} autoComplete="given-name" placeholder="Ana" />
+        <FormField {...fieldProps("prezime")} autoComplete="family-name" placeholder="Petrović" />
       </div>
       <div className="grid gap-5 sm:grid-cols-2">
-        <FormField {...fieldProps("email")} type="email" inputMode="email" autoComplete="email" />
-        <FormField {...fieldProps("telefon")} type="tel" autoComplete="tel" />
+        <FormField {...fieldProps("email")} type="email" inputMode="email" autoComplete="email" placeholder="ime@primer.rs" />
+        <FormField {...fieldProps("telefon")} type="tel" autoComplete="tel" placeholder="060 123 4567" />
       </div>
-      <FormField {...fieldProps("poruka")} as="textarea" rows={6} hint="Opišite šta želite da odštampamo, dimenzije i rok, ako ih znate." />
+      <FormField {...fieldProps("poruka")} as="textarea" rows={6} placeholder="Šta želite da odštampamo, dimenzije i rok, ako ih znate" />
       <Honeypot value={honeypot} onChange={setHoneypot} />
       {state.status === "error" ? (
         <p className="notice notice-error" role="alert">

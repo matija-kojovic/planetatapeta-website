@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRef, useState } from "react";
-import FormField, { ErrorSummary } from "@/components/shop/FormField";
+import FormField, { ErrorSummary, RequiredMark } from "@/components/shop/FormField";
 import { formatRSD } from "@/lib/format";
 import { validateProduct } from "@/lib/validation";
 
@@ -161,6 +161,7 @@ export default function ProductsManager({ initialProducts, categories }) {
               <div className="field-head">
                 <label htmlFor="category" className="label">
                   {LABELS.category}
+                  <RequiredMark />
                 </label>
                 {errorFor("category") ? (
                   <p id="category-error" className="error-text">
@@ -190,6 +191,7 @@ export default function ProductsManager({ initialProducts, categories }) {
               <div className="field-head">
                 <label htmlFor="price" className="label">
                   {LABELS.price}
+                  <RequiredMark />
                 </label>
                 {errorFor("price") ? (
                   <p id="price-error" className="error-text">
@@ -219,11 +221,11 @@ export default function ProductsManager({ initialProducts, categories }) {
               </p>
             </div>
           </div>
-          <FormField {...fieldProps("description")} as="textarea" rows={4} maxLength={1000} optional hint="Prikazuje se na stranici proizvoda. Do 1000 znakova." />
+          <FormField {...fieldProps("description")} as="textarea" rows={4} maxLength={1000} hint="Prikazuje se na stranici proizvoda. Do 1000 znakova." />
 
           <fieldset className="grid gap-3 border-0 p-0" aria-describedby="image-hint">
             <legend className="label mb-2">
-              {LABELS.image} <span className="optional">(nije obavezno)</span>
+              {LABELS.image}
             </legend>
             <div className="flex flex-wrap items-center gap-4">
               <div className="board w-28 shrink-0 !p-2">

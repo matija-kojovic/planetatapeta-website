@@ -53,11 +53,11 @@ export function Toggle({ label, hint, detail, checked, onChange }) {
 }
 
 /** Whole-centimetre input with a "cm" suffix and a range hint. */
-/** Short message for the hint line, so an error never changes the field's height. */
-function shortDimensionError(value, { min, max }) {
-  if (String(value).trim() === "") return "Unesite meru u cm.";
-  if (!Number.isInteger(Number(value))) return "Samo celi centimetri.";
-  return `Dozvoljeno ${min}–${max} cm.`;
+/** Error for the hint line, so it never changes the field's height. Out of range, the range hint itself turns red. */
+function dimensionError(value, { min, max }) {
+  if (String(value).trim() === "") return "Obavezno polje";
+  if (!Number.isInteger(Number(value))) return "Samo celi centimetri";
+  return `Od ${min} do ${max} cm`;
 }
 
 export function CentimetreInput({ id, label, value, onChange, onBlur, limits, error, showError }) {
@@ -87,7 +87,7 @@ export function CentimetreInput({ id, label, value, onChange, onBlur, limits, er
       </div>
       {invalid ? (
         <p id={hintId} className="error-text">
-          {shortDimensionError(value, limits)}
+          {dimensionError(value, limits)}
         </p>
       ) : (
         <p id={hintId} className="hint">

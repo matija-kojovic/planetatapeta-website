@@ -1,5 +1,5 @@
 /** Labelled input/textarea with hint and inline error wired to aria-describedby. */
-export default function FormField({ id, label, optional, hint, error, as = "input", className = "", ...props }) {
+export default function FormField({ id, label, hint, error, as = "input", className = "", ...props }) {
   const Control = as;
   const describedBy = [error ? `${id}-error` : null, hint ? `${id}-hint` : null].filter(Boolean).join(" ") || undefined;
   return (
@@ -7,7 +7,8 @@ export default function FormField({ id, label, optional, hint, error, as = "inpu
       {/* The error shares the label's row, so showing it never pushes the form down. */}
       <div className="field-head">
         <label htmlFor={id} className="label">
-          {label} {optional ? <span className="optional">(nije obavezno)</span> : null}
+          {label}
+          {props.required ? <RequiredMark /> : null}
         </label>
         {error ? (
           <p id={`${id}-error`} className="error-text">
@@ -23,6 +24,20 @@ export default function FormField({ id, label, optional, hint, error, as = "inpu
       ) : null}
     </div>
   );
+}
+
+/** Marks a required field; the input's own `required` attribute is what assistive technology announces. */
+export function RequiredMark() {
+  return (
+    <span className="required-mark" aria-hidden="true">
+      *
+    </span>
+  );
+}
+
+/** One-line note explaining the asterisk, placed at the top of a form. */
+export function RequiredNote() {
+  return <p className="t-micro text-ink-2">Polja označena zvezdicom (*) su obavezna.</p>;
 }
 
 /** Focusable error summary shown after a failed submit; each entry links to its field. */

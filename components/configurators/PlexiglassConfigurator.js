@@ -38,7 +38,7 @@ export default function PlexiglassConfigurator({ email }) {
 
       <div className="field">
         <label htmlFor="plexi-note" className="label">
-          Motiv <span className="optional">(nije obavezno)</span>
+          Motiv
         </label>
         <textarea
           id="plexi-note"

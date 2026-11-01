@@ -112,7 +112,7 @@ export default function StickerPrintConfigurator({ email }) {
 
       <div className="field">
         <label htmlFor="sticker-note" className="label">
-          Napomena <span className="optional">(nije obavezno)</span>
+          Napomena
         </label>
         <textarea id="sticker-note" className="input" rows={3} maxLength={NOTE_MAX_LENGTH} value={note} onChange={(event) => setNote(event.target.value)} />
       </div>
