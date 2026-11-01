@@ -48,6 +48,7 @@ The shop works without any environment variables. The admin stays locked until `
 | `npm run lint` | ESLint (`eslint-config-next`). |
 | `npm run build` | Production build. Category, collection and design pages are statically generated. |
 | `npm start` | Serves the production build (run `npm run build` first). |
+| `npm run seed:orders` | Adds clearly fake test orders to the git-ignored `data/database/orders.json`, so the admin can be tried with data (`-- 20` for more). Refuses to run in production. |
 | `npm run catalog` | Regenerates `data/designs.json` from the image folders in `public/` (uses `sharp`, installed with Next.js). Run it after adding or removing design images, and commit the result. |
 
 ## How the code is organised
