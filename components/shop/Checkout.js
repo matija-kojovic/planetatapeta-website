@@ -130,7 +130,8 @@ export default function Checkout({ contactEmail }) {
   }, [ready, cartSignature]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const validation = validateCustomer(values);
-  const errorFor = (field) => ((submitted || touched[field]) && validation.errors[field]) || undefined;
+  // An empty field left by tabbing past is not an error yet; it becomes one on submit.
+  const errorFor = (field) => ((submitted || (touched[field] && values[field].trim())) && validation.errors[field]) || undefined;
   const update = (field) => (event) => setValues((v) => ({ ...v, [field]: event.target.value }));
   const blur = (field) => () => setTouched((t) => ({ ...t, [field]: true }));
 
@@ -228,7 +229,7 @@ export default function Checkout({ contactEmail }) {
         </form>
 
         <aside aria-labelledby="vasa-porudzbina" className="order-first lg:order-none lg:col-span-5">
-          <div className="bg-board p-6 lg:sticky lg:top-[calc(var(--header-h)+1.5rem)]">
+          <div className="panel p-6 lg:sticky lg:top-[calc(var(--header-h)+1.5rem)]">
             <div className="mb-4 flex items-baseline justify-between gap-4">
               <h2 id="vasa-porudzbina" className="font-sans text-[0.875rem] font-semibold">
                 Vaša porudžbina

@@ -21,6 +21,18 @@ export function DimensionV({ children, className = "" }) {
 }
 
 /**
+ * An elevation that always occupies the same frame (5:4, like the full-design view):
+ * the wall is scaled to fit inside it, so a tall or wide size never grows the page.
+ */
+export function FittedElevation({ ratio, className = "", ...props }) {
+  return (
+    <div className={`elevation-frame ${className}`} style={{ "--ratio": ratio }}>
+      <Elevation {...props} ratio={ratio} className="elevation-fit" />
+    </div>
+  );
+}
+
+/**
  * A wall drawn as an elevation: content inside a frame with the given
  * proportions, width marked above and height on the right.
  */

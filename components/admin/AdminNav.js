@@ -38,7 +38,7 @@ export default function AdminNav() {
                   <Link
                     href={item.href}
                     aria-current={current ? "page" : undefined}
-                    className="flex min-h-11 items-center whitespace-nowrap rounded-[3px] px-3 text-[0.9375rem] no-underline hover:bg-paper aria-[current=page]:bg-paper aria-[current=page]:font-semibold"
+                    className="flex min-h-11 items-center whitespace-nowrap rounded-[var(--radius-control)] px-3 text-[0.9375rem] text-ink-2 no-underline hover:bg-paper hover:text-ink aria-[current=page]:bg-paper aria-[current=page]:text-ink"
                   >
                     {item.label}
                   </Link>

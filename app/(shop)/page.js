@@ -107,9 +107,9 @@ export default function HomePage() {
             <li key={category.slug} className="border-b border-line">
               <Link
                 href={`/${category.slug}`}
-                className="group grid grid-cols-[4.5rem_minmax(0,1fr)] items-center gap-x-5 gap-y-1 py-5 no-underline sm:grid-cols-[7rem_minmax(0,1fr)_auto] sm:gap-x-8"
+                className="group -mx-3 grid grid-cols-[4.5rem_minmax(0,1fr)] items-center gap-x-5 gap-y-1 rounded-[var(--radius-card)] px-3 py-5 no-underline transition-colors duration-200 hover:bg-[color-mix(in_srgb,var(--color-board)_55%,transparent)] sm:grid-cols-[7rem_minmax(0,1fr)_auto] sm:gap-x-8 lg:grid-cols-[9rem_minmax(0,1fr)_auto]"
               >
-                <div className="row-span-2 grid aspect-square place-items-center bg-board p-2 sm:row-span-1 sm:p-3">
+                <div className="row-span-2 grid aspect-square place-items-center overflow-hidden rounded-[var(--radius-control)] bg-board p-2 transition-transform duration-500 group-hover:scale-[1.03] sm:row-span-1 sm:p-3">
                   <CategoryThumb slug={category.slug} />
                 </div>
                 <div>

@@ -16,7 +16,8 @@ export default function ContactForm({ email }) {
   const summaryRef = useRef(null);
 
   const validation = validateContactMessage(values);
-  const errorFor = (field) => ((submitted || touched[field]) && validation.errors[field]) || undefined;
+  // An empty field left by tabbing past is not an error yet; it becomes one on submit.
+  const errorFor = (field) => ((submitted || (touched[field] && values[field].trim())) && validation.errors[field]) || undefined;
   const fieldProps = (field) => ({
     id: field,
     label: LABELS[field],

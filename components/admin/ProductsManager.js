@@ -43,7 +43,8 @@ export default function ProductsManager({ initialProducts, categories }) {
   const validation = validateProduct(values, slugs);
   // Server errors are cleared per field by setting them to undefined, so only defined ones may override.
   const errors = { ...validation.errors, ...Object.fromEntries(Object.entries(serverErrors).filter(([, message]) => message)) };
-  const errorFor = (field) => ((submitted || touched[field]) && errors[field]) || undefined;
+  // An empty field left by tabbing past is not an error yet; it becomes one on submit.
+  const errorFor = (field) => ((submitted || (touched[field] && String(values[field]).trim())) && errors[field]) || undefined;
 
   const openForm = (product) => {
     setEditing(product ? product.id : "new");
@@ -157,9 +158,16 @@ export default function ProductsManager({ initialProducts, categories }) {
           <FormField {...fieldProps("title")} maxLength={120} required />
           <div className="grid gap-5 sm:grid-cols-2">
             <div className="field">
-              <label htmlFor="category" className="label">
-                {LABELS.category}
-              </label>
+              <div className="field-head">
+                <label htmlFor="category" className="label">
+                  {LABELS.category}
+                </label>
+                {errorFor("category") ? (
+                  <p id="category-error" className="error-text">
+                    {errorFor("category")}
+                  </p>
+                ) : null}
+              </div>
               <select
                 id="category"
                 className="input"
@@ -177,16 +185,18 @@ export default function ProductsManager({ initialProducts, categories }) {
                   </option>
                 ))}
               </select>
-              {errorFor("category") ? (
-                <p id="category-error" className="error-text">
-                  {errorFor("category")}
-                </p>
-              ) : null}
             </div>
             <div className="field">
-              <label htmlFor="price" className="label">
-                {LABELS.price}
-              </label>
+              <div className="field-head">
+                <label htmlFor="price" className="label">
+                  {LABELS.price}
+                </label>
+                {errorFor("price") ? (
+                  <p id="price-error" className="error-text">
+                    {errorFor("price")}
+                  </p>
+                ) : null}
+              </div>
               <div className="unit-input">
                 <input
                   id="price"
@@ -204,11 +214,6 @@ export default function ProductsManager({ initialProducts, categories }) {
                 />
                 <span aria-hidden="true">RSD</span>
               </div>
-              {errorFor("price") ? (
-                <p id="price-error" className="error-text">
-                  {errorFor("price")}
-                </p>
-              ) : null}
               <p id="price-hint" className="hint">
                 Ceo iznos u dinarima, kako ga kupac plaća.
               </p>

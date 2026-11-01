@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRef, useState } from "react";
-import { Elevation } from "@/components/shop/Dimension";
+import { FittedElevation } from "@/components/shop/Dimension";
 import { CloseIcon, ExpandIcon } from "@/components/icons";
 
 const clampRatio = (w, h) => {
@@ -32,7 +32,7 @@ export default function DesignStage({ design, width, height, previewLabel, rende
   return (
     <div>
       <div className="mb-4 flex items-center justify-between gap-3">
-        <div className="flex gap-1" role="group" aria-label="Prikaz">
+        <div className="segmented" role="group" aria-label="Prikaz">
           {[
             ["design", "Ceo dizajn"],
             ["preview", previewLabel],
@@ -45,7 +45,7 @@ export default function DesignStage({ design, width, height, previewLabel, rende
                 setView(key);
                 setViewChosen(true);
               }}
-              className="btn btn-quiet relative min-h-11 px-3 text-[0.875rem] text-ink-2 aria-pressed:text-ink aria-pressed:after:absolute aria-pressed:after:inset-x-3 aria-pressed:after:bottom-1.5 aria-pressed:after:h-px aria-pressed:after:bg-gold"
+              className="segmented-item"
             >
               {label}
             </button>
@@ -71,14 +71,9 @@ export default function DesignStage({ design, width, height, previewLabel, rende
         </div>
       ) : (
         <div>
-          <Elevation
-            widthLabel={hasSize ? `${width} cm` : "—"}
-            heightLabel={hasSize ? `${height} cm` : "—"}
-            ratio={String(clampRatio(width, height))}
-            className="mx-auto max-h-[70vh]"
-          >
+          <FittedElevation widthLabel={hasSize ? `${width} cm` : "—"} heightLabel={hasSize ? `${height} cm` : "—"} ratio={String(clampRatio(width, height))}>
             {renderPreview(design)}
-          </Elevation>
+          </FittedElevation>
           <p className="t-micro mt-3 text-ink-2">Približan prikaz u izabranim proporcijama.</p>
         </div>
       )}

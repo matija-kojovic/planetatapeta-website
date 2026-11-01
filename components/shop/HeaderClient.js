@@ -22,7 +22,7 @@ export function DesktopNav({ items }) {
                 href={item.href}
                 aria-current={current ? "page" : undefined}
                 className={`relative inline-flex min-h-11 items-center whitespace-nowrap px-2 text-[0.9375rem] no-underline transition-colors hover:text-teal xl:px-3 ${
-                  current ? "font-semibold text-ink after:absolute after:inset-x-2 after:bottom-1.5 after:h-px after:bg-gold xl:after:inset-x-3" : "text-ink-2"
+                  current ? "text-ink after:absolute after:inset-x-2 after:bottom-1.5 after:h-px after:bg-gold xl:after:inset-x-3" : "text-ink-2"
                 }`}
               >
                 {item.navLabel}
@@ -56,16 +56,22 @@ export function CartLink() {
     <Link
       href="/cart"
       aria-current={current ? "page" : undefined}
-      className={`btn btn-quiet relative gap-2 px-3 ${current ? "after:absolute after:inset-x-3 after:bottom-1.5 after:h-px after:bg-gold" : ""}`}
+      className={`btn btn-quiet relative gap-3 px-3 ${current ? "after:absolute after:inset-x-3 after:bottom-1.5 after:h-px after:bg-gold" : ""}`}
       aria-label={label}
     >
-      <BagIcon size={22} />
+      {/* The count sits on the icon, so it appears without shifting the header. */}
+      <span className="relative">
+        <BagIcon size={22} />
+        {ready && count > 0 ? (
+          <span
+            className="tabular absolute -right-1.5 -top-2 grid h-[1.125rem] min-w-[1.125rem] place-items-center rounded-full bg-teal px-1 text-[0.6875rem] font-semibold leading-none text-white ring-2 ring-paper"
+            aria-hidden="true"
+          >
+            {count > 99 ? "99+" : count}
+          </span>
+        ) : null}
+      </span>
       <span className="hidden sm:inline">Korpa</span>
-      {ready && count > 0 ? (
-        <span className="tabular grid min-w-5 place-items-center rounded-full bg-teal px-1.5 text-[0.75rem] font-semibold leading-5 text-white" aria-hidden="true">
-          {count}
-        </span>
-      ) : null}
     </Link>
   );
 }

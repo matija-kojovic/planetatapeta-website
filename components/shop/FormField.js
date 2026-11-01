@@ -4,15 +4,18 @@ export default function FormField({ id, label, optional, hint, error, as = "inpu
   const describedBy = [error ? `${id}-error` : null, hint ? `${id}-hint` : null].filter(Boolean).join(" ") || undefined;
   return (
     <div className={`field ${className}`}>
-      <label htmlFor={id} className="label">
-        {label} {optional ? <span className="optional">(nije obavezno)</span> : null}
-      </label>
+      {/* The error shares the label's row, so showing it never pushes the form down. */}
+      <div className="field-head">
+        <label htmlFor={id} className="label">
+          {label} {optional ? <span className="optional">(nije obavezno)</span> : null}
+        </label>
+        {error ? (
+          <p id={`${id}-error`} className="error-text">
+            {error}
+          </p>
+        ) : null}
+      </div>
       <Control id={id} name={id} className="input" aria-invalid={error ? true : undefined} aria-describedby={describedBy} {...props} />
-      {error ? (
-        <p id={`${id}-error`} className="error-text">
-          {error}
-        </p>
-      ) : null}
       {hint ? (
         <p id={`${id}-hint`} className="hint">
           {hint}

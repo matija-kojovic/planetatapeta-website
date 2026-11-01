@@ -24,7 +24,8 @@
   --font-display: var(--font-garamond), "Iowan Old Style", Georgia, serif;
   --font-sans: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
 
-  --radius-control: 3px;
+  --radius-control: 8px;   /* buttons, inputs, option rows */
+  --radius-card: 14px;     /* boards, panels, frames */
 
   --breakpoint-xs: 26rem;
 }
@@ -125,8 +126,9 @@
     text-decoration: none;
     cursor: pointer;
     touch-action: manipulation;
-    transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out), color 160ms var(--ease-out);
+    transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out), color 160ms var(--ease-out), transform 120ms var(--ease-out);
   }
+  .btn:not(:disabled):active { transform: translateY(1px); }
   .btn:disabled, .btn[aria-disabled="true"] { opacity: 0.5; cursor: not-allowed; }
 
   .btn-primary { background: var(--color-teal); color: #fff; }
@@ -152,6 +154,9 @@
 
   .field { display: grid; gap: 0.4rem; align-content: start; }
 
+  .field-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.15rem 0.75rem; }
+  .field-head .error-text { margin-left: auto; text-align: right; }
+
   .label { font-size: 0.875rem; font-weight: 600; color: var(--color-ink); }
   .label .optional { font-weight: 400; color: var(--color-ink-2); }
 
@@ -173,9 +178,9 @@
   }
   .input::placeholder { color: var(--color-ink-2); opacity: 0.75; }
   .input:hover { border-color: var(--color-ink-2); }
-  .input:focus-visible { outline: none; border-color: var(--color-teal); box-shadow: 0 0 0 2px var(--color-teal); }
-  .input[aria-invalid="true"] { border-color: var(--color-error); }
-  .input[aria-invalid="true"]:focus-visible { box-shadow: 0 0 0 2px var(--color-error); }
+  .input:focus-visible { outline: none; border-color: var(--color-teal); box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-teal) 28%, transparent); }
+  .input[aria-invalid="true"] { border-color: var(--color-error); background: color-mix(in srgb, var(--color-error-bg) 45%, var(--color-field)); }
+  .input[aria-invalid="true"]:focus-visible { box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-error) 25%, transparent); }
   textarea.input { min-height: 7rem; resize: vertical; line-height: 1.5; }
   select.input {
     appearance: none;
@@ -208,15 +213,15 @@
     gap: 1rem;
     min-height: 3.25rem;
     padding: 0.7rem 0.95rem;
-    border: 1px solid var(--color-edge);
+    border: 1px solid color-mix(in srgb, var(--color-edge) 55%, var(--color-line));
     border-radius: var(--radius-control);
-    background: transparent;
+    background: color-mix(in srgb, var(--color-field) 55%, transparent);
     cursor: pointer;
-    transition: border-color 140ms var(--ease-out), background-color 140ms var(--ease-out);
+    transition: border-color 140ms var(--ease-out), background-color 140ms var(--ease-out), box-shadow 140ms var(--ease-out);
   }
-  .choice:hover { border-color: var(--color-ink); }
+  .choice:hover { border-color: var(--color-ink-2); background: var(--color-field); }
   .choice > input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
-  .choice:has(input:checked) { border-color: var(--color-teal); background: var(--color-field); box-shadow: inset 0 0 0 1px var(--color-teal); }
+  .choice:has(input:checked) { border-color: var(--color-teal); background: color-mix(in srgb, var(--color-teal) 7%, var(--color-field)); box-shadow: inset 0 0 0 1px var(--color-teal); }
   .choice:has(input:focus-visible) { outline: 2px solid var(--color-ink); outline-offset: 2px; }
   .choice .choice-mark {
     flex: none; width: 1.125rem; height: 1.125rem; border-radius: 999px;
@@ -270,6 +275,7 @@
     place-items: center;
     aspect-ratio: 1;
     padding: 6%;
+    border-radius: var(--radius-card);
     background: var(--color-board);
     overflow: hidden;
   }
@@ -278,12 +284,35 @@
 
   .card-link { text-decoration: none; }
   .card-link .board { transition: background-color 200ms var(--ease-out); }
+  .card-link .board img { transition: transform 500ms var(--ease-out); }
   .card-link:hover .board { background: #e7d9c5; }
+  .card-link:hover .board img { transform: scale(1.04); }
   .card-link:hover .card-title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
 
   /* ── Notices ──────────────────────────────────────────────────────────── */
 
-  .notice { padding: 0.9rem 1rem; border-radius: var(--radius-control); font-size: 0.9375rem; }
+  .notice { padding: 0.9rem 1.1rem; border-radius: var(--radius-control); font-size: 0.9375rem; }
+
+  /* Quiet panels (order summaries) */
+  .panel { border-radius: var(--radius-card); background: var(--color-board); }
+
+  /* Segmented switch (design / preview) */
+  .segmented { display: inline-flex; gap: 0.25rem; padding: 0.25rem; border-radius: calc(var(--radius-control) + 0.25rem); background: var(--color-board); }
+  .segmented-item {
+    min-height: 2.5rem; padding: 0 0.9rem; border-radius: var(--radius-control);
+    font-size: 0.875rem; font-weight: 600; color: var(--color-ink-2); cursor: pointer;
+    transition: background-color 160ms var(--ease-out), color 160ms var(--ease-out);
+  }
+  .segmented-item:hover { color: var(--color-ink); }
+  .segmented-item[aria-pressed="true"] { background: var(--color-field); color: var(--color-ink); box-shadow: 0 1px 2px rgb(28 52 54 / 0.12); }
+
+  /* Preview frame: fixed 5:4 board; the elevation inside is fitted to its proportions.
+     2.25rem is the room the dimension lines take above and beside the wall. */
+  .elevation-frame {
+    display: grid; place-items: center; aspect-ratio: 5 / 4; padding: 6%;
+    border-radius: var(--radius-card); background: var(--color-board); container-type: size;
+  }
+  .elevation-fit { width: calc(min(100cqw - 2.25rem, (100cqh - 2.25rem) * var(--ratio)) + 2.25rem); }
   .notice-error { background: var(--color-error-bg); color: var(--color-error); }
   .notice-ok { background: var(--color-ok-bg); color: var(--color-teal-deep); }
   .notice-quiet { background: var(--color-board); color: var(--color-ink); }

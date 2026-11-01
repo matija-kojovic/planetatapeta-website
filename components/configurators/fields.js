@@ -53,9 +53,15 @@ export function Toggle({ label, hint, detail, checked, onChange }) {
 }
 
 /** Whole-centimetre input with a "cm" suffix and a range hint. */
+/** Short message for the hint line, so an error never changes the field's height. */
+function shortDimensionError(value, { min, max }) {
+  if (String(value).trim() === "") return "Unesite meru u cm.";
+  if (!Number.isInteger(Number(value))) return "Samo celi centimetri.";
+  return `Dozvoljeno ${min}–${max} cm.`;
+}
+
 export function CentimetreInput({ id, label, value, onChange, onBlur, limits, error, showError }) {
   const hintId = `${id}-hint`;
-  const errorId = `${id}-error`;
   const invalid = Boolean(error && showError);
   return (
     <div className="field">
@@ -75,18 +81,19 @@ export function CentimetreInput({ id, label, value, onChange, onBlur, limits, er
           onChange={(event) => onChange(event.target.value)}
           onBlur={onBlur}
           aria-invalid={invalid || undefined}
-          aria-describedby={invalid ? `${errorId} ${hintId}` : hintId}
+          aria-describedby={hintId}
         />
         <span aria-hidden="true">cm</span>
       </div>
       {invalid ? (
-        <p id={errorId} className="error-text">
-          {error}
+        <p id={hintId} className="error-text">
+          {shortDimensionError(value, limits)}
         </p>
-      ) : null}
-      <p id={hintId} className="hint">
-        Od {limits.min} do {limits.max} cm
-      </p>
+      ) : (
+        <p id={hintId} className="hint">
+          Od {limits.min} do {limits.max} cm
+        </p>
+      )}
     </div>
   );
 }
@@ -174,20 +181,20 @@ export function QuantityStepper({ id, label, value, onChange, min = 1, max = 99 
         {label}
       </label>
       <div className="flex w-fit items-stretch">
-        <button type="button" className="btn btn-secondary w-12 rounded-r-none px-0" onClick={() => set(value - 1)} disabled={value <= min} aria-label="Smanji količinu">
+        <button type="button" className="btn btn-secondary w-11 rounded-r-none px-0" onClick={() => set(value - 1)} disabled={value <= min} aria-label="Smanji količinu">
           −
         </button>
         <input
           id={id}
-          className="input tabular w-16 rounded-none border-x-0 text-center"
-          type="number"
+          className="input tabular w-14 rounded-none border-x-0 px-1 text-center"
+          type="text"
           inputMode="numeric"
-          min={min}
-          max={max}
+          pattern="[0-9]*"
+          autoComplete="off"
           value={value}
-          onChange={(event) => set(Number(event.target.value) || min)}
+          onChange={(event) => set(Number(event.target.value.replace(/\D/g, "")) || min)}
         />
-        <button type="button" className="btn btn-secondary w-12 rounded-l-none px-0" onClick={() => set(value + 1)} disabled={value >= max} aria-label="Povećaj količinu">
+        <button type="button" className="btn btn-secondary w-11 rounded-l-none px-0" onClick={() => set(value + 1)} disabled={value >= max} aria-label="Povećaj količinu">
           +
         </button>
       </div>

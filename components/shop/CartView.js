@@ -148,7 +148,7 @@ export default function CartView() {
 
       {items.length ? (
         <aside aria-labelledby="pregled" className="lg:col-span-4">
-          <div className="bg-board p-6 lg:sticky lg:top-[calc(var(--header-h)+1.5rem)]">
+          <div className="panel p-6 lg:sticky lg:top-[calc(var(--header-h)+1.5rem)]">
             <h2 id="pregled" className="font-sans text-[0.875rem] font-semibold">
               Pregled
             </h2>
