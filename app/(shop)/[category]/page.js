@@ -1,18 +1,18 @@
-import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import PlexiglassConfigurator from "@/components/configurators/PlexiglassConfigurator";
 import StickerPrintConfigurator from "@/components/configurators/StickerPrintConfigurator";
+import Breadcrumbs from "@/components/shop/Breadcrumbs";
+import CollectionChips from "@/components/shop/CollectionChips";
 import DesignCard from "@/components/shop/DesignCard";
 import FixedProducts from "@/components/shop/FixedProducts";
 import JsonLd from "@/components/shop/JsonLd";
 import PageHeader from "@/components/shop/PageHeader";
-import { PlexiglassGlyph, StickerSheetGlyph } from "@/components/shop/ProductGlyph";
+import { ProductIntro, ProductSpec, SPEC } from "@/components/shop/ProductParts";
 import RateTable from "@/components/shop/RateTable";
-import { CATEGORIES, CATEGORY_COVERS, collectionCover, collectionHref, getCategory, getCollections, getDesign, getDesigns } from "@/lib/catalog";
+import { CATEGORIES, CATEGORY_COVERS, getCategory, getCollection, getDesign, getDesigns } from "@/lib/catalog";
 import { getContent } from "@/lib/db";
 import { syncPricing } from "@/lib/prices";
-import { PRICING, priceTeaser } from "@/lib/pricing";
+import { priceTeaser } from "@/lib/pricing";
 import { absoluteUrl } from "@/lib/site";
 
 // Unknown slugs get notFound() below. Not `dynamicParams = false`: with it, the
@@ -34,50 +34,14 @@ export async function generateMetadata({ params }) {
   };
 }
 
-function CollectionIndex({ category }) {
-  const collections = getCollections(category.slug);
+/** Every design in the category (A), each with its collection and starting price. */
+function DesignGrid({ designs, meta, price }) {
   return (
-    <section aria-labelledby="kolekcije" className="page">
-      <h2 id="kolekcije" className="sr-only">
-        Kolekcije
-      </h2>
-      <ul className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-        {collections.map((collection, index) => {
-          const cover = collectionCover(category.slug, collection.slug);
-          return (
-            <li key={collection.slug}>
-              <Link href={collectionHref(category.slug, collection.slug)} className="card-link block">
-                <div className="board !aspect-[4/3]">
-                  {cover ? (
-                    <Image src={cover.src} alt="" width={cover.width} height={cover.height} priority={index < 3} sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 92vw" />
-                  ) : null}
-                </div>
-                <div className="mt-4 flex items-baseline justify-between gap-4">
-                  <h3 className="card-title t-title">{collection.label}</h3>
-                  <span className="t-micro tabular shrink-0 text-ink-2">{collection.count} dizajna</span>
-                </div>
-                {collection.description ? <p className="mt-1 text-ink-2">{collection.description}</p> : null}
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-    </section>
-  );
-}
-
-function CanvasIndex() {
-  const designs = getDesigns("slike-na-platnu");
-  return (
-    <section aria-labelledby="motivi" className="page">
-      <h2 id="motivi" className="sr-only">
-        Motivi
-      </h2>
-      <p className="t-small mb-6 text-ink-2">{designs.length} motiva</p>
-      <ul className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-10">
+    <section aria-label="Dizajni" className="page pt-9">
+      <ul className="grid grid-cols-2 gap-x-3.5 gap-y-7 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-10">
         {designs.map((design, index) => (
           <li key={design.id}>
-            <DesignCard design={design} priority={index < 4} />
+            <DesignCard design={design} meta={meta(design)} price={price} priority={index < 4} headingLevel="h2" />
           </li>
         ))}
       </ul>
@@ -85,38 +49,18 @@ function CanvasIndex() {
   );
 }
 
-function ConfiguratorSection({ category, email }) {
+/** Plexiglass and sticker printing have no designs: the category page is their product page (A). */
+function ProductSection({ category, email }) {
   const isPlexi = category.slug === "slike-na-pleksiglasu";
+  const intro = <ProductIntro kicker="Štampa po meri" title={category.label} price={priceTeaser(category.slug)} intro={category.intro} />;
+  const aside = <ProductSpec items={SPEC[category.slug]} />;
   return (
-    <section className="page grid gap-10 lg:grid-cols-12 lg:gap-14">
-      {/* On phones the form comes first; the sketch and notes follow it. */}
-      <div className="order-last lg:order-none lg:col-span-6">
-        <div className="lg:sticky lg:top-[calc(var(--header-h)+1.5rem)]">
-          <div className="grid aspect-[5/4] place-items-center bg-board p-[10%]">
-            {isPlexi ? <PlexiglassGlyph className="h-full w-auto" /> : <StickerSheetGlyph className="h-full w-auto" />}
-          </div>
-          <p className="t-micro mt-3 text-ink-2">Skica proizvoda</p>
-          <div className="mt-8 grid gap-3 text-ink-2">
-            {isPlexi ? (
-              <>
-                <p>Motiv štampamo na akrilnom staklu (pleksiglasu). U napomeni opišite šta želite da odštampamo.</p>
-                <p>Posle slanja porudžbine dobićete broj porudžbine. Fotografiju ili pripremu pošaljite e-poštom uz taj broj.</p>
-              </>
-            ) : (
-              <>
-                <p>
-                  Cena se računa po površini: {String(PRICING["izrada-nalepnica"].pricePerCm2).replace(".", ",")} RSD po kvadratnom centimetru, pomnoženo sa brojem komada.
-                </p>
-                <p>Materijal, sečenje i rok izrade ne menjaju cenu. Pojedinačno pakovanje se doplaćuje po komadu.</p>
-              </>
-            )}
-          </div>
-        </div>
+    <div className="page">
+      <Breadcrumbs items={[{ label: category.label, href: `/${category.slug}` }]} />
+      <div className="pt-5">
+        {isPlexi ? <PlexiglassConfigurator email={email} intro={intro} aside={aside} /> : <StickerPrintConfigurator email={email} intro={intro} aside={aside} />}
       </div>
-      <div className="lg:col-span-6">
-        {isPlexi ? <PlexiglassConfigurator email={email} /> : <StickerPrintConfigurator email={email} />}
-      </div>
-    </section>
+    </div>
   );
 }
 
@@ -125,7 +69,6 @@ export default async function CategoryPage({ params }) {
   const category = getCategory((await params).category);
   if (!category) notFound();
   const { contact } = getContent();
-  const withRates = category.slug === "tapete" || category.slug === "zidni-stikeri";
 
   return (
     <>
@@ -138,16 +81,28 @@ export default async function CategoryPage({ params }) {
           url: absoluteUrl(`/${category.slug}`),
         }}
       />
-      <PageHeader
-        crumbs={[{ label: category.label, href: `/${category.slug}` }]}
-        title={category.label}
-        intro={category.intro}
-        aside={withRates ? <RateTable category={category.slug} /> : <p className="tabular font-display text-[1.75rem] lg:text-right">{priceTeaser(category.slug)}</p>}
-      />
-
-      {category.hasDesigns && category.slug !== "slike-na-platnu" ? <CollectionIndex category={category} /> : null}
-      {category.slug === "slike-na-platnu" ? <CanvasIndex /> : null}
-      {!category.hasDesigns ? <ConfiguratorSection category={category} email={contact.email} /> : null}
+      {category.hasDesigns ? (
+        <>
+          <PageHeader
+            crumbs={[{ label: category.label, href: `/${category.slug}` }]}
+            title={category.label}
+            intro={category.intro}
+            aside={<RateTable category={category.slug} />}
+            asideClassName="hidden lg:block"
+          >
+            {/* On phones the price list would push the designs down; one line stands in for it. */}
+            <p className="tabular mt-4 text-[0.875rem] text-ink-2 lg:hidden">Cena {priceTeaser(category.slug)}.</p>
+          </PageHeader>
+          {category.slug === "slike-na-platnu" ? null : <CollectionChips category={category.slug} />}
+          <DesignGrid
+            designs={getDesigns(category.slug)}
+            meta={(d) => (category.slug === "slike-na-platnu" ? "Slike na platnu" : getCollection(category.slug, d.collection)?.label)}
+            price={priceTeaser(category.slug)}
+          />
+        </>
+      ) : (
+        <ProductSection category={category} email={contact.email} />
+      )}
 
       <FixedProducts category={category.slug} />
     </>

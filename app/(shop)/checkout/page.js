@@ -1,3 +1,4 @@
+import Breadcrumbs from "@/components/shop/Breadcrumbs";
 import Checkout from "@/components/shop/Checkout";
 import { getContent } from "@/lib/db";
 
@@ -9,7 +10,13 @@ export const metadata = {
 export default function CheckoutPage() {
   const { contact } = getContent();
   return (
-    <div className="page pb-8 pt-8 lg:pt-12">
+    <div className="page">
+      <Breadcrumbs
+        items={[
+          { label: "Korpa", href: "/cart" },
+          { label: "Porudžbina", href: "/checkout" },
+        ]}
+      />
       <Checkout contactEmail={contact.email} />
     </div>
   );

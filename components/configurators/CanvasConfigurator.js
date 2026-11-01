@@ -6,10 +6,11 @@ import { useCart } from "@/components/CartProvider";
 import { formatRSD } from "@/lib/format";
 import { PRICING, calculatePrice, canvasDimensions, validateOptions } from "@/lib/pricing";
 import DesignStage from "./DesignStage";
-import { AddToCartBar, CentimetreInput, ChoiceGroup, PriceBreakdown, useTouched } from "./fields";
+import { AddToCartBar, CentimetreInput, ChoiceGroup, ConfiguratorLayout, PriceBreakdown, Step, useTouched } from "./fields";
 
 const rules = PRICING["slike-na-platnu"];
 const STAGGER = { 5: [72, 86, 100, 86, 72] };
+const PARTS = { 1: "1 deo", 3: "3 dela", 5: "5 delova" };
 
 /** Splits one image into panels by drawing the gaps (and staggered edges) over it. */
 export function PanelOverlay({ panels, gap = 1.8, color = "var(--color-board)" }) {
@@ -33,18 +34,7 @@ export function PanelOverlay({ panels, gap = 1.8, color = "var(--color-board)" }
   );
 }
 
-function LayoutGlyph({ panels }) {
-  const heights = STAGGER[panels] || Array(panels).fill(100);
-  return (
-    <span className="flex h-6 w-10 items-center justify-center gap-[2px]" aria-hidden="true">
-      {heights.map((h, i) => (
-        <span key={i} className="block bg-ink" style={{ width: panels === 1 ? "100%" : `${100 / panels}%`, height: `${h}%` }} />
-      ))}
-    </span>
-  );
-}
-
-export default function CanvasConfigurator({ design, href }) {
+export default function CanvasConfigurator({ design, href, intro, aside }) {
   const { addItem } = useCart();
   const touched = useTouched();
   const [layout, setLayout] = useState(rules.defaults.layout);
@@ -75,91 +65,82 @@ export default function CanvasConfigurator({ design, href }) {
   };
 
   return (
-    <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
-      <div className="lg:col-span-7">
-        <div className="lg:sticky lg:top-[calc(var(--header-h)+1.5rem)]">
-          <DesignStage
-            design={design}
-            width={dims.width}
-            height={dims.height}
-            previewLabel="Raspored"
-            renderPreview={(d) => (
-              <>
-                <Image src={d.src} alt="" fill sizes="(min-width: 1024px) 54vw, 92vw" className="object-cover" />
-                <PanelOverlay panels={currentLayout.panels} />
-              </>
-            )}
-          />
-        </div>
-      </div>
-
-      <form className="grid content-start gap-8 lg:col-span-5" onSubmit={(event) => event.preventDefault()} noValidate>
-        <fieldset className="choice-group">
-          <legend className="label">Raspored</legend>
-          <div className="grid grid-cols-3 gap-2">
-            {rules.layouts.map((l) => (
-              <label key={l.id} className="choice flex-col items-start justify-start gap-2 py-3">
-                <input type="radio" name="canvas-layout" value={l.id} checked={layout === l.id} onChange={() => changeLayout(l.id)} />
-                <LayoutGlyph panels={l.panels} />
-                <span className="text-[0.875rem] font-medium leading-tight">{l.label}</span>
-              </label>
-            ))}
-          </div>
-        </fieldset>
-
-        <div className="grid gap-3">
-          <ChoiceGroup
-            legend="Ukupne dimenzije kompleta"
-            name="canvas-size"
-            value={size}
-            onChange={setSize}
-            options={[
-              ...currentLayout.presets.map((p) => ({ value: p.id, label: `${p.width} × ${p.height} cm`, detail: formatRSD(p.price) })),
-              { value: "custom", label: "Po meri", detail: "cena po m²" },
-            ]}
-          />
-          {size === "custom" ? (
-            <div className="grid grid-cols-2 gap-3 border-l border-gold pl-4">
-              <CentimetreInput
-                id="canvas-width"
-                label="Širina"
-                value={width}
-                onChange={setWidth}
-                onBlur={touched.touch("width")}
-                limits={rules.customLimits.width}
-                error={errors.width}
-                showError={touched.show("width")}
-              />
-              <CentimetreInput
-                id="canvas-height"
-                label="Visina"
-                value={height}
-                onChange={setHeight}
-                onBlur={touched.touch("height")}
-                limits={rules.customLimits.height}
-                error={errors.height}
-                showError={touched.show("height")}
-              />
-            </div>
-          ) : null}
-        </div>
-
-        <ChoiceGroup
-          legend="Ivica platna"
-          name="canvas-edge"
-          value={edge}
-          onChange={setEdge}
-          options={rules.edges.map((e) => ({ value: e.id, label: e.label, hint: e.hint }))}
+    <ConfiguratorLayout
+      intro={intro}
+      aside={aside}
+      media={
+        <DesignStage
+          design={design}
+          width={dims.width}
+          height={dims.height}
+          caption="Raspored platna u izabranoj dimenziji."
+          renderPreview={(d) => (
+            <>
+              <Image src={d.src} alt="" fill sizes="(min-width: 1024px) 54vw, 92vw" className="object-cover" />
+              <PanelOverlay panels={currentLayout.panels} />
+            </>
+          )}
         />
+      }
+    >
+      <ChoiceGroup
+        step={1}
+        legend="Raspored"
+        name="canvas-layout"
+        value={layout}
+        onChange={changeLayout}
+        options={rules.layouts.map((l) => ({ value: l.id, label: l.label, detail: PARTS[l.panels] }))}
+      />
 
-        <p className="hint -mt-4">{rules.frame}. Bočne strane rama dobijaju izabranu ivicu.</p>
+      <Step n={2} legend="Dimenzija">
+        <ChoiceGroup
+          legend="Ukupne dimenzije kompleta"
+          name="canvas-size"
+          value={size}
+          onChange={setSize}
+          options={[
+            ...currentLayout.presets.map((p) => ({ value: p.id, label: `${p.width} × ${p.height} cm`, detail: formatRSD(p.price) })),
+            { value: "custom", label: "Po meri", detail: "cena po m²" },
+          ]}
+        />
+        {size === "custom" ? (
+          <div className="mt-3 grid grid-cols-2 gap-3.5 border-l border-gold pl-4">
+            <CentimetreInput
+              id="canvas-width"
+              label="Širina"
+              value={width}
+              onChange={setWidth}
+              onBlur={touched.touch("width")}
+              limits={rules.customLimits.width}
+              error={errors.width}
+              showError={touched.show("width")}
+            />
+            <CentimetreInput
+              id="canvas-height"
+              label="Visina"
+              value={height}
+              onChange={setHeight}
+              onBlur={touched.touch("height")}
+              limits={rules.customLimits.height}
+              error={errors.height}
+              showError={touched.show("height")}
+            />
+          </div>
+        ) : null}
+      </Step>
 
-        <div className="grid gap-4">
-          <h2 className="font-sans text-[0.875rem] font-semibold">Obračun</h2>
-          <PriceBreakdown price={price} />
-          <AddToCartBar price={price} onAdd={handleAdd} />
-        </div>
-      </form>
-    </div>
+      <ChoiceGroup
+        step={3}
+        legend="Ivica"
+        name="canvas-edge"
+        value={edge}
+        onChange={setEdge}
+        options={rules.edges.map((e) => ({ value: e.id, label: e.label, hint: e.hint }))}
+        hint={`${rules.frame}. Bočne strane rama dobijaju izabranu ivicu.`}
+      />
+
+      <PriceBreakdown price={price} />
+      <AddToCartBar price={price} onAdd={handleAdd} />
+    </ConfiguratorLayout>
   );
 }

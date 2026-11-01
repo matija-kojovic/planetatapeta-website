@@ -1,17 +1,24 @@
 import Breadcrumbs from "./Breadcrumbs";
 
-/** Page opening: breadcrumbs, H1, short intro, optional aside (e.g. a price table). */
-export default function PageHeader({ crumbs, title, intro, aside, asideClassName = "", children }) {
+/**
+ * Page opening (A): breadcrumbs, the title, a short intro and an optional aside
+ * (the price list). `size="page"` is the large catalogue heading over a rule;
+ * `size="section"` is the smaller heading used on contact and similar pages.
+ */
+export default function PageHeader({ crumbs, title, intro, aside, asideClassName = "", size = "page", children }) {
+  const large = size === "page";
   return (
-    <header className="page pb-10 pt-8 lg:pb-14 lg:pt-12">
+    <header className="page">
       {crumbs ? <Breadcrumbs items={crumbs} /> : null}
-      <div className={`mt-6 grid gap-8 ${aside ? "lg:grid-cols-12 lg:items-end" : ""}`}>
-        <div className={aside ? "lg:col-span-7" : ""}>
-          <h1 className="t-page">{title}</h1>
-          {intro ? <p className="t-lead measure mt-5 text-ink-2">{intro}</p> : null}
+      <div
+        className={`grid gap-6 pt-5 ${large ? "border-b border-ink pb-9" : "pb-8"} ${aside ? "lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-end lg:gap-14" : ""}`}
+      >
+        <div>
+          <h1 className={large ? "t-page" : "t-section"}>{title}</h1>
+          {intro ? <p className="mt-5 max-w-[54ch] text-[1.0625rem]">{intro}</p> : null}
           {children}
         </div>
-        {aside ? <div className={`lg:col-span-5 ${asideClassName}`}>{aside}</div> : null}
+        {aside ? <div className={asideClassName}>{aside}</div> : null}
       </div>
     </header>
   );

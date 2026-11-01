@@ -3,7 +3,9 @@ import CanvasConfigurator from "@/components/configurators/CanvasConfigurator";
 import WallConfigurator from "@/components/configurators/WallConfigurator";
 import { collectionHref, designHref, getCategory, getCollection, getDesigns } from "@/lib/catalog";
 import { syncPricing } from "@/lib/prices";
-import { PRICING } from "@/lib/pricing";
+import { ProductIntro, ProductSpec, SPEC } from "./ProductParts";
+import SectionHead from "./SectionHead";
+import { PRICING, priceTeaser } from "@/lib/pricing";
 import { absoluteUrl } from "@/lib/site";
 import Breadcrumbs from "./Breadcrumbs";
 import DesignCard from "./DesignCard";
@@ -54,6 +56,11 @@ export default function DesignPage({ design }) {
   const index = siblings.findIndex((d) => d.id === design.id);
   const more = [1, 2, 3, 4].map((offset) => siblings[(index + offset) % siblings.length]).filter((d) => d.id !== design.id);
 
+  const intro = (
+    <ProductIntro kicker={isCanvas ? "Slike na platnu" : collection.label} title={design.name} price={priceTeaser(category.slug)} intro={category.intro} />
+  );
+  const aside = <ProductSpec items={SPEC[category.slug]} />;
+
   const crumbs = isCanvas
     ? [{ label: category.label, href: `/${category.slug}` }, { label: design.name, href }]
     : [
@@ -76,34 +83,28 @@ export default function DesignPage({ design }) {
           offers: { ...offerFor(category.slug), url: absoluteUrl(href) },
         }}
       />
-      <div className="page pb-8 pt-8 lg:pt-12">
-        <Breadcrumbs items={crumbs} />
-        {/* The collection is already linked from the breadcrumbs and from "Cela kolekcija" below. */}
-        <h1 className="t-page mt-6">{design.name}</h1>
-      </div>
-
       <div className="page">
-        {isCanvas ? (
-          <CanvasConfigurator design={design} href={href} />
-        ) : (
-          <WallConfigurator category={category.slug} design={design} href={href} />
-        )}
+        <Breadcrumbs items={crumbs} />
+        <div className="pt-5">
+          {isCanvas ? (
+            <CanvasConfigurator design={design} href={href} intro={intro} aside={aside} />
+          ) : (
+            <WallConfigurator category={category.slug} design={design} href={href} intro={intro} aside={aside} />
+          )}
+        </div>
       </div>
 
       {more.length ? (
-        <section aria-labelledby="jos" className="page mt-20 lg:mt-28">
-          <div className="flex flex-wrap items-end justify-between gap-4 border-b border-line pb-4">
-            <h2 id="jos" className="t-section">
-              {isCanvas ? "Još motiva" : `Još iz kolekcije ${collection.label}`}
-            </h2>
+        <section aria-labelledby="jos" className="page mt-[4.5rem] lg:mt-28">
+          <SectionHead id="jos" title={isCanvas ? "Još motiva" : `Još iz kolekcije ${collection.label}`}>
             <Link href={isCanvas ? `/${category.slug}` : collectionHref(category.slug, collection.slug)} className="link">
               {isCanvas ? "Svi motivi" : "Cela kolekcija"}
             </Link>
-          </div>
-          <ul className="mt-8 grid grid-cols-2 gap-x-4 gap-y-8 lg:grid-cols-4 lg:gap-x-6">
+          </SectionHead>
+          <ul className="grid grid-cols-2 gap-x-3.5 gap-y-7 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-10">
             {more.map((d) => (
               <li key={d.id}>
-                <DesignCard design={d} />
+                <DesignCard design={d} meta={isCanvas ? "Slike na platnu" : collection.label} price={priceTeaser(category.slug)} />
               </li>
             ))}
           </ul>

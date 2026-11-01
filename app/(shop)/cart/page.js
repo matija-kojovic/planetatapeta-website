@@ -1,3 +1,4 @@
+import Breadcrumbs from "@/components/shop/Breadcrumbs";
 import CartView from "@/components/shop/CartView";
 
 export const metadata = {
@@ -7,8 +8,9 @@ export const metadata = {
 
 export default function CartPage() {
   return (
-    <div className="page pb-8 pt-8 lg:pt-12">
-      <h1 className="t-page mb-8 lg:mb-12">Korpa</h1>
+    <div className="page">
+      <Breadcrumbs items={[{ label: "Korpa", href: "/cart" }]} />
+      <h1 className="t-section mb-8 mt-3">Korpa</h1>
       <CartView />
     </div>
   );

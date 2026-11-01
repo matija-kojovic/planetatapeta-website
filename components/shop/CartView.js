@@ -9,30 +9,32 @@ import { formatRSD } from "@/lib/format";
 import { describeOptions, validateOptions } from "@/lib/pricing";
 import CartThumb from "./CartThumb";
 
-const CATEGORY_LINKS = [
-  ["/tapete", "Tapete"],
-  ["/zidni-stikeri", "Zidni stikeri"],
-  ["/slike-na-platnu", "Slike na platnu"],
-];
+const CATEGORY_LABELS = {
+  tapete: "Tapete",
+  "zidni-stikeri": "Zidni stikeri",
+  "slike-na-platnu": "Slike na platnu",
+  "slike-na-pleksiglasu": "Slike na pleksiglasu",
+  "izrada-nalepnica": "Izrada nalepnica",
+  [FIXED_PRODUCT]: "Proizvod",
+};
 
-function details(item) {
-  if (item.category === FIXED_PRODUCT) return [];
+/** One line describing the configuration: "Klasik · 300 × 240 cm · 7,20 m² · Ugradnja: ne". */
+function summary(item) {
+  if (item.category === FIXED_PRODUCT) return "";
   const { ok, options } = validateOptions(item.category, item.options);
-  return ok ? describeOptions(item.category, options) : [];
+  if (!ok) return "";
+  return describeOptions(item.category, options)
+    .map(([label, value]) => (value === "Da" || value === "Ne" ? `${label}: ${value.toLowerCase()}` : value))
+    .join(" · ");
 }
 
 export function EmptyCart() {
   return (
-    <div className="max-w-xl border-t border-ink pt-8">
-      <h2 className="t-title">Korpa je prazna</h2>
-      <p className="mt-3 text-ink-2">Izaberite dizajn, unesite mere i dodajte proizvod u korpu. Cenu vidite pre nego što ga dodate.</p>
-      <div className="mt-6 flex flex-wrap gap-3">
-        {CATEGORY_LINKS.map(([href, label], i) => (
-          <Link key={href} href={href} className={`btn ${i === 0 ? "btn-primary" : "btn-secondary"}`}>
-            {label}
-          </Link>
-        ))}
-      </div>
+    <div className="border-t border-ink pt-10">
+      <p className="mb-6 text-[1.0625rem]">Korpa je prazna.</p>
+      <Link href="/tapete" className="btn btn-primary">
+        Pogledajte tapete
+      </Link>
     </div>
   );
 }
@@ -68,8 +70,8 @@ export default function CartView() {
   };
 
   return (
-    <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
-      <div className="lg:col-span-8">
+    <div className="grid gap-7 lg:grid-cols-[minmax(0,8fr)_minmax(0,4fr)] lg:items-start lg:gap-12">
+      <div>
         <div role="status">
           {removed ? (
             <p className="notice notice-quiet mb-6 flex flex-wrap items-center justify-between gap-3">
@@ -95,87 +97,75 @@ export default function CartView() {
             <ul className="border-t border-ink">
               {items.map((item) => {
                 const unit = linePrice(item);
-                const lines = details(item);
+                const line = summary(item);
                 return (
-                  <li key={item.key} className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-4 border-b border-line py-6 sm:gap-x-6">
+                  <li key={item.key} className="grid grid-cols-[5rem_minmax(0,1fr)] gap-x-4 gap-y-2.5 border-b border-line py-6 md:grid-cols-[7rem_minmax(0,1fr)_auto_8.125rem] md:gap-6">
                     <CartThumb item={item} />
                     <div className="min-w-0">
-                      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-                        <h2 className="text-[1.0625rem] font-semibold leading-snug">
-                          {item.href ? (
-                            <Link href={item.href} className="no-underline hover:underline">
-                              {item.name}
-                            </Link>
-                          ) : (
-                            item.name
-                          )}
-                        </h2>
-                        <p className="tabular font-semibold">{unit !== null ? formatRSD(unit * item.quantity) : "—"}</p>
-                      </div>
-                      {lines.length ? (
-                        <dl className="t-small mt-2 grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-0.5 text-ink-2">
-                          {lines.map(([label, value]) => (
-                            <div key={label} className="contents">
-                              <dt>{label}</dt>
-                              <dd className="text-ink [overflow-wrap:anywhere]">{value}</dd>
-                            </div>
-                          ))}
-                        </dl>
-                      ) : null}
+                      <h2 className="font-sans text-[1.0625rem] font-semibold leading-snug tracking-normal">
+                        {item.href ? (
+                          <Link href={item.href} className="no-underline hover:underline">
+                            {item.name}
+                          </Link>
+                        ) : (
+                          item.name
+                        )}
+                      </h2>
+                      <p className="mt-0.5 text-[0.84375rem] text-ink-2">{CATEGORY_LABELS[item.category]}</p>
+                      {line ? <p className="mt-2 text-[0.875rem] [overflow-wrap:anywhere]">{line}</p> : null}
                       {unit === null ? (
                         <p className="notice notice-error mt-3">Ova stavka više nije dostupna u izabranoj konfiguraciji. Uklonite je i podesite proizvod ponovo.</p>
                       ) : null}
+                      <button type="button" className="-ml-1 mt-1.5 inline-flex min-h-9 items-center gap-1.5 px-1 text-[0.84375rem] font-medium text-error hover:bg-error-bg" onClick={() => remove(item)}>
+                        <TrashIcon size={16} />
+                        Ukloni
+                      </button>
                     </div>
-                    <div className="col-span-2 flex flex-wrap items-end justify-between gap-4 sm:col-start-2 sm:col-span-1">
-                      <QuantityStepper id={`qty-${item.key}`} label="Količina" value={item.quantity} onChange={(n) => setQuantity(item.key, n)} />
-                      <div className="flex items-center gap-4">
-                        {unit !== null && item.quantity > 1 ? <span className="t-micro tabular text-ink-2">{formatRSD(unit)} po komadu</span> : null}
-                        <button type="button" className="btn btn-quiet gap-1.5 px-3 text-[0.875rem] text-error hover:!bg-error-bg" onClick={() => remove(item)}>
-                          <TrashIcon size={18} />
-                          Ukloni
-                        </button>
-                      </div>
+                    <div className="col-start-2 md:col-start-auto">
+                      <QuantityStepper id={`qty-${item.key}`} label={`Količina: ${item.name}`} hideLabel value={item.quantity} onChange={(n) => setQuantity(item.key, n)} />
                     </div>
+                    <p className="tabular col-start-2 md:col-start-auto md:text-right">
+                      <b className="block font-semibold">{unit !== null ? formatRSD(unit * item.quantity) : "—"}</b>
+                      {unit !== null ? <small className="block text-[0.78125rem] text-ink-2">{formatRSD(unit)} po komadu</small> : null}
+                    </p>
                   </li>
                 );
               })}
             </ul>
 
-            <Link href="/tapete" className="link mt-6 inline-block">
-              Nastavite kupovinu
-            </Link>
           </>
         )}
       </div>
 
       {items.length ? (
-        <aside aria-labelledby="pregled" className="lg:col-span-4">
-          <div className="panel p-6 lg:sticky lg:top-[calc(var(--header-h)+1.5rem)]">
-            <h2 id="pregled" className="font-sans text-[0.875rem] font-semibold">
+        <aside aria-labelledby="pregled">
+          <div className="panel p-7 lg:sticky lg:top-6">
+            <h2 id="pregled" className="text-[1.625rem] leading-tight">
               Pregled
             </h2>
-            <dl className="tabular mt-4 grid gap-2">
-              <div className="flex justify-between gap-4 text-ink-2">
-                <dt>Proizvodi</dt>
-                <dd>{items.reduce((n, i) => n + i.quantity, 0)} kom</dd>
+            <dl className="tabular mt-3.5">
+              <div className="flex justify-between gap-4 py-1 text-[0.875rem] text-ink-2">
+                <dt>Broj proizvoda</dt>
+                <dd className="text-ink">{items.reduce((n, i) => n + i.quantity, 0)}</dd>
               </div>
-              <div className="flex items-baseline justify-between gap-4 border-t border-ink pt-3">
-                <dt className="font-semibold">Ukupno</dt>
-                <dd className="font-display text-[1.75rem] leading-none">{formatRSD(total)}</dd>
+              <div className="mt-3 flex items-baseline justify-between gap-4 border-t border-line pt-3.5">
+                <dt className="t-label">Ukupno</dt>
+                <dd className="font-display text-[1.875rem] leading-none lg:text-[2.25rem]">{formatRSD(total)}</dd>
               </div>
             </dl>
-            <p className="t-small mt-4 text-ink-2">Na sajtu se ne plaća karticom. Posle slanja porudžbine javljamo vam se radi potvrde i dogovora oko dostave.</p>
-            {invalid.length ? (
-              <p className="notice notice-error mt-4">Uklonite stavke koje nisu dostupne da biste nastavili.</p>
-            ) : null}
+            {invalid.length ? <p className="notice notice-error mt-4">Uklonite stavke koje nisu dostupne da biste nastavili.</p> : null}
             <Link
               href="/checkout"
-              className="btn btn-primary btn-block mt-6"
+              className="btn btn-primary btn-block mt-[1.375rem]"
               aria-disabled={invalid.length ? true : undefined}
               onClick={(event) => invalid.length && event.preventDefault()}
             >
-              Nastavite na podatke za dostavu
+              Nastavite na porudžbinu
             </Link>
+            <Link href="/tapete" className="link mx-auto mt-4 block w-fit">
+              Nastavite kupovinu
+            </Link>
+            <p className="mt-3.5 text-center text-[0.84375rem] text-ink-2">Plaćanje nije online. Posle porudžbine javljamo vam se da potvrdimo detalje.</p>
           </div>
         </aside>
       ) : null}

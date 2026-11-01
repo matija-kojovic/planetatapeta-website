@@ -22,7 +22,7 @@ export default function AdminProductsPage() {
   }));
   return (
     <div className="max-w-5xl">
-      <h1 className="t-page">Proizvodi i cene</h1>
+      <h1 className="t-section">Proizvodi i cene</h1>
       <ProductsManager initialProducts={getProducts()} categories={categories} />
       <PriceEditor fields={fields} />
       <PriceList />

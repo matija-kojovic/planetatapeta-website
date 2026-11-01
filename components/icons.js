@@ -109,3 +109,16 @@ export const TrashIcon = (p) => (
     <path d="M6 7l1 12.5h10L18 7M9 7V4.5h6V7" />
   </Svg>
 );
+
+export const SearchIcon = (p) => (
+  <Svg {...p}>
+    <circle cx="11" cy="11" r="7" />
+    <path d="m20 20-3.6-3.6" />
+  </Svg>
+);
+
+export const ArrowIcon = (p) => (
+  <Svg {...p}>
+    <path d="M5 12h14M13 6l6 6-6 6" />
+  </Svg>
+);

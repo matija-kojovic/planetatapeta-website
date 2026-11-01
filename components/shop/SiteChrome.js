@@ -11,7 +11,7 @@ export default function SiteChrome({ children }) {
       <a href="#main" className="skip-link">
         Preskoči na sadržaj
       </a>
-      <Header announcement={header.announcement} phone={contact.phone} />
+      <Header announcement={header.announcement} contact={contact} />
       <main id="main" tabIndex={-1} className="outline-none">
         {children}
       </main>

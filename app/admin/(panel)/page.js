@@ -18,7 +18,7 @@ export default function AdminDashboard() {
 
   return (
     <div className="max-w-5xl">
-      <h1 className="t-page">Pregled</h1>
+      <h1 className="t-section">Pregled</h1>
       <dl className="mt-8 grid grid-cols-2 gap-px border-y border-line bg-line lg:grid-cols-4">
         {stats.map(([label, value]) => (
           <div key={label} className="bg-paper py-5 pr-4">

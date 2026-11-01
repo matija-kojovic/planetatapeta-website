@@ -1,37 +1,38 @@
 import { formatRSD } from "@/lib/format";
 import { PRICING } from "@/lib/pricing";
 
-/** Per-m² price list for wallpaper and wall stickers, straight from the pricing rules. */
-export default function RateTable({ category }) {
+/** Price list beside a catalogue heading (A), straight from the pricing rules. */
+export function rateRows(category) {
   const rules = PRICING[category];
+  switch (category) {
+    case "tapete":
+      return [
+        ...rules.materials.map((m) => [m.label, `${formatRSD(m.pricePerM2)}/m²`]),
+        ["Ugradnja", `${formatRSD(rules.installation.pricePerM2)}/m²`],
+        [`Izlazak na teren, ispod ${rules.installation.smallJobBelowM2} m²`, formatRSD(rules.installation.smallJobFee)],
+      ];
+    case "zidni-stikeri":
+      return [
+        ...rules.materials.map((m) => [m.label, `${formatRSD(m.pricePerM2)}/m²`]),
+        ["Konturno sečenje", `${formatRSD(rules.contourCut.pricePerM2)}/m²`],
+        ["Minimalna cena", formatRSD(rules.minimumPrice)],
+      ];
+    case "slike-na-platnu":
+      return [...rules.layouts.map((l) => [l.label, `od ${formatRSD(Math.min(...l.presets.map((p) => p.price)))}`]), ["Ram", rules.frame]];
+    default:
+      return [];
+  }
+}
+
+export default function RateTable({ category }) {
   return (
-    <table className="tabular w-full text-[0.9375rem]">
-      <caption className="label mb-2 text-left">Cena po kvadratnom metru</caption>
-      <tbody>
-        {rules.materials.map((m) => (
-          <tr key={m.id} className="border-t border-line">
-            <th scope="row" className="py-2.5 text-left font-normal">
-              {m.label}
-            </th>
-            <td className="py-2.5 text-right">{formatRSD(m.pricePerM2)}</td>
-          </tr>
-        ))}
-        {category === "tapete" ? (
-          <tr className="border-t border-line text-ink-2">
-            <th scope="row" className="py-2.5 text-left font-normal">
-              Ugradnja
-            </th>
-            <td className="py-2.5 text-right">{formatRSD(rules.installation.pricePerM2)}</td>
-          </tr>
-        ) : (
-          <tr className="border-t border-line text-ink-2">
-            <th scope="row" className="py-2.5 text-left font-normal">
-              Konturno sečenje
-            </th>
-            <td className="py-2.5 text-right">+{formatRSD(rules.contourCut.pricePerM2)}</td>
-          </tr>
-        )}
-      </tbody>
-    </table>
+    <dl className="tabular border-t border-line">
+      {rateRows(category).map(([label, value]) => (
+        <div key={label} className="flex justify-between gap-4 border-b border-line py-2.5 text-[0.90625rem]">
+          <dt className="text-ink-2">{label}</dt>
+          <dd className="text-right font-medium">{value}</dd>
+        </div>
+      ))}
+    </dl>
   );
 }

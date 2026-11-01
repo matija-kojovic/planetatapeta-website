@@ -7,7 +7,7 @@ export default function Breadcrumbs({ items, className = "" }) {
   const trail = [{ label: "Početna", href: "/" }, ...items];
   return (
     <>
-      <nav aria-label="Putanja" className={`t-small text-ink-2 ${className}`}>
+      <nav aria-label="Putanja" className={`pb-2 pt-6 text-[0.8125rem] text-ink-2 ${className}`}>
         <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
           {trail.map((item, index) => {
             const last = index === trail.length - 1;
@@ -19,10 +19,10 @@ export default function Breadcrumbs({ items, className = "" }) {
                   </span>
                 ) : (
                   <>
-                    <Link href={item.href} className="underline decoration-line underline-offset-4 hover:decoration-ink">
+                    <Link href={item.href} className="underline underline-offset-[3px] hover:text-ink">
                       {item.label}
                     </Link>
-                    <span aria-hidden="true" className="text-edge">
+                    <span aria-hidden="true">
                       /
                     </span>
                   </>

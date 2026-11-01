@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import CartThumb from "./CartThumb";
 import { EditIcon } from "@/components/icons";
 import { useEffect, useRef, useState } from "react";
 import { FIXED_PRODUCT, useCart } from "@/components/CartProvider";
@@ -29,7 +30,7 @@ const toPayload = (items) =>
       : { category: item.category, designId: item.designId, options: item.options, quantity: item.quantity }
   );
 
-function OrderSummary({ quote }) {
+function OrderSummary({ quote, items }) {
   if (quote.status === "loading") {
     return (
       <div className="grid gap-3" aria-busy="true">
@@ -51,47 +52,54 @@ function OrderSummary({ quote }) {
   }
   return (
     <>
-      <ul className="grid gap-4">
+      <ul>
         {quote.items.map((item, i) => (
-          <li key={i} className="t-small grid gap-1 border-b border-line pb-4">
-            <div className="flex justify-between gap-4">
-              <span className="font-semibold">
-                {item.name}
-                {item.quantity > 1 ? <span className="font-normal text-ink-2"> × {item.quantity}</span> : null}
-              </span>
-              <span className="tabular shrink-0">{formatRSD(item.lineTotal)}</span>
-            </div>
-            <p className="text-ink-2">{item.details.map(([k, v]) => `${k}: ${v}`).join("; ") || item.categoryLabel}</p>
+          <li key={i} className="grid grid-cols-[3.5rem_minmax(0,1fr)_auto] items-center gap-3.5 border-b border-line py-3 text-[0.875rem]">
+            {items[i] ? <CartThumb item={items[i]} className="!p-1.5" /> : <span />}
+            <span className="min-w-0">
+              <b className="block font-semibold">{item.name}</b>
+              <small className="block text-[0.8125rem] text-ink-2">
+                {item.details.map(([, v]) => v).join(" · ") || item.categoryLabel} · {item.quantity} kom
+              </small>
+            </span>
+            <span className="tabular whitespace-nowrap">{formatRSD(item.lineTotal)}</span>
           </li>
         ))}
       </ul>
-      <div className="mt-4 flex items-baseline justify-between gap-4">
-        <span className="font-semibold">Ukupno</span>
-        <span className="tabular font-display text-[1.75rem] leading-none">{formatRSD(quote.total)}</span>
+      <div className="mt-3 flex items-baseline justify-between gap-4 border-t border-line pt-3.5">
+        <span className="t-label">Ukupno</span>
+        <span className="tabular font-display text-[1.875rem] leading-none lg:text-[2.25rem]">{formatRSD(quote.total)}</span>
       </div>
-      <p className="t-micro mt-2 text-ink-2">Cene su izračunate na serveru za izabrane mere.</p>
+      <p className="mt-2.5 text-[0.8125rem] text-ink-2">Cene su izračunate na serveru za izabrane mere.</p>
     </>
   );
 }
 
-function Success({ order, email }) {
+function Success({ order, email, phone }) {
   return (
-    <div className="max-w-2xl border-t border-ink pt-8" role="status">
-      <p className="text-ink-2">Broj porudžbine</p>
-      <p className="tabular font-display text-[2.5rem] leading-tight">{order.id}</p>
-      <p className="mt-6 text-ink-2">
-        Ukupan iznos je {formatRSD(order.total)}. Javićemo vam se telefonom ili e-poštom radi potvrde porudžbine i dogovora oko dostave.
-      </p>
-      <p className="mt-3 text-ink-2">
+    <div className="max-w-[42.5rem] pb-6" role="status">
+      <p className="t-lead">Javićemo vam se na broj {phone} da potvrdimo detalje porudžbine, dostavu i ugradnju, ako ste je izabrali.</p>
+      <dl className="mt-8 grid gap-1 border-t border-ink pt-5">
+        <dt className="t-label">Broj porudžbine</dt>
+        <dd className="tabular font-display text-[2.25rem] leading-tight">{order.id}</dd>
+        <dt className="t-label mt-3">Ukupno</dt>
+        <dd className="tabular text-[1.0625rem] font-medium">{formatRSD(order.total)}</dd>
+      </dl>
+      <p className="mt-5 text-ink-2">
         Ako šaljete svoju fotografiju ili pripremu za štampu, pošaljite je na{" "}
         <a className="link" href={`mailto:${email}?subject=${encodeURIComponent(`Porudžbina ${order.id}`)}`}>
           {email}
         </a>{" "}
         i navedite broj porudžbine.
       </p>
-      <Link href="/" className="btn btn-secondary mt-8">
-        Nazad na početnu
-      </Link>
+      <div className="mt-8 flex flex-wrap gap-3">
+        <Link href="/" className="btn btn-primary">
+          Nazad na početnu
+        </Link>
+        <Link href="/tapete" className="btn btn-secondary">
+          Pogledajte tapete
+        </Link>
+      </div>
     </div>
   );
 }
@@ -137,19 +145,24 @@ export default function Checkout({ contactEmail }) {
   const blur = (field) => () => setTouched((t) => ({ ...t, [field]: true }));
 
   // The page heading follows the state, so the confirmation is not titled "Podaci za dostavu".
-  const heading = (text) => <h1 className="t-page mb-8 lg:mb-12">{text}</h1>;
+  const heading = (text, label) => (
+    <div className="mb-8 mt-3">
+      {label ? <p className="t-label mb-2.5">{label}</p> : null}
+      <h1 className="t-section">{text}</h1>
+    </div>
+  );
   if (state.status === "success") {
     return (
       <>
-        {heading("Porudžbina je primljena")}
-        <Success order={state.order} email={contactEmail} />
+        {heading(`Hvala, ${values.ime_prezime.trim().split(/\s+/)[0]}.`, "Porudžbina je poslata")}
+        <Success order={state.order} email={contactEmail} phone={values.telefon} />
       </>
     );
   }
   if (!ready || items.length === 0) {
     return (
       <>
-        {heading("Podaci za dostavu")}
+        {heading("Porudžbina")}
         {ready ? <EmptyCart /> : <CartSkeleton />}
       </>
     );
@@ -188,53 +201,74 @@ export default function Checkout({ contactEmail }) {
 
   return (
     <>
-      {heading("Podaci za dostavu")}
-      <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
-        <form className="grid content-start gap-10 lg:col-span-7" onSubmit={handleSubmit} noValidate>
-          {submitted && !validation.ok ? <ErrorSummary errors={validation.errors} labels={LABELS} summaryRef={summaryRef} /> : null}
+      {heading("Porudžbina")}
+      <div className="grid gap-7 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-start lg:gap-14">
+        <form className="grid content-start" onSubmit={handleSubmit} noValidate>
+          {submitted && !validation.ok ? (
+            <div className="mb-5">
+              <ErrorSummary errors={validation.errors} labels={LABELS} summaryRef={summaryRef} />
+            </div>
+          ) : null}
 
-          <RequiredNote />
-
-        <fieldset className="grid gap-5">
-            <legend className="display t-title mb-5">Kontakt</legend>
-            <FormField {...fieldProps("ime_prezime")} autoComplete="name" required />
-            <div className="grid gap-5 sm:grid-cols-2">
-              <FormField {...fieldProps("email")} type="email" autoComplete="email" inputMode="email" required />
-              <FormField {...fieldProps("telefon")} type="tel" autoComplete="tel" required hint="Za potvrdu porudžbine." />
+          <fieldset className="form-step">
+            <legend>
+              <span className="step-n">1</span>Kontakt
+            </legend>
+            <div className="grid gap-1">
+              <div className="mb-3">
+                <RequiredNote />
+              </div>
+              <FormField {...fieldProps("ime_prezime")} autoComplete="name" required />
+              <div className="grid gap-x-4 gap-y-1 sm:grid-cols-2">
+                <FormField {...fieldProps("email")} type="email" autoComplete="email" inputMode="email" required />
+                <FormField {...fieldProps("telefon")} type="tel" autoComplete="tel" required hint="Za potvrdu porudžbine." />
+              </div>
             </div>
           </fieldset>
 
-          <fieldset className="grid gap-5">
-            <legend className="display t-title mb-5">Adresa za dostavu</legend>
-            <FormField {...fieldProps("adresa")} autoComplete="street-address" required />
-            <div className="grid gap-5 sm:grid-cols-[12rem_1fr]">
-              <FormField {...fieldProps("postanski_broj")} autoComplete="postal-code" inputMode="numeric" maxLength={5} />
-              <FormField {...fieldProps("grad")} autoComplete="address-level2" required />
+          <fieldset className="form-step">
+            <legend>
+              <span className="step-n">2</span>Adresa za dostavu
+            </legend>
+            <div className="grid gap-1">
+              <FormField {...fieldProps("adresa")} autoComplete="street-address" required />
+              <div className="grid gap-x-4 gap-y-1 sm:grid-cols-[12rem_1fr]">
+                <FormField {...fieldProps("postanski_broj")} autoComplete="postal-code" inputMode="numeric" maxLength={5} />
+                <FormField {...fieldProps("grad")} autoComplete="address-level2" required />
+              </div>
             </div>
-            <FormField {...fieldProps("napomena")} as="textarea" rows={4} />
+          </fieldset>
+
+          <fieldset className="form-step">
+            <legend>
+              <span className="step-n">3</span>Napomena
+            </legend>
+            <div>
+              <FormField {...fieldProps("napomena")} as="textarea" rows={4} />
+            </div>
           </fieldset>
 
           <Honeypot value={honeypot} onChange={setHoneypot} />
 
-          <div className="grid gap-4 border-t border-ink pt-6">
+          <div className="grid gap-3.5 border-t border-ink pt-5">
             {state.status === "error" ? (
               <p className="notice notice-error" role="alert">
                 {state.message}
               </p>
             ) : null}
-            <p className="t-small text-ink-2">
-              Slanjem porudžbine šaljete nam podatke potrebne za njenu obradu i dostavu. Na sajtu se ne plaća karticom.
-            </p>
-            <button type="submit" className="btn btn-primary w-full sm:w-auto sm:justify-self-start" disabled={state.status === "submitting" || quote.status !== "ready"}>
+            <button type="submit" className="btn btn-primary w-full" disabled={state.status === "submitting" || quote.status !== "ready"}>
               {state.status === "submitting" ? "Šaljemo porudžbinu…" : "Pošaljite porudžbinu"}
             </button>
+            <p className="text-center text-[0.84375rem] text-ink-2">
+              Plaćanje nije online. Slanjem porudžbine šaljete nam podatke potrebne za njenu obradu i dostavu; javljamo vam se da potvrdimo detalje.
+            </p>
           </div>
         </form>
 
-        <aside aria-labelledby="vasa-porudzbina" className="order-first lg:order-none lg:col-span-5">
-          <div className="panel p-6 lg:sticky lg:top-[calc(var(--header-h)+1.5rem)]">
-            <div className="mb-4 flex items-baseline justify-between gap-4">
-              <h2 id="vasa-porudzbina" className="font-sans text-[0.875rem] font-semibold">
+        <aside aria-labelledby="vasa-porudzbina" className="order-first lg:order-none">
+          <div className="panel p-7 lg:sticky lg:top-6">
+            <div className="mb-2 flex flex-wrap items-center justify-between gap-3">
+              <h2 id="vasa-porudzbina" className="text-[1.625rem] leading-tight">
                 Vaša porudžbina
               </h2>
               <Link href="/cart" className="btn btn-secondary min-h-10 gap-2 px-3.5 text-[0.875rem]">
@@ -242,7 +276,7 @@ export default function Checkout({ contactEmail }) {
                 Izmeni korpu
               </Link>
             </div>
-            <OrderSummary quote={quote} />
+            <OrderSummary quote={quote} items={items} />
           </div>
         </aside>
       </div>

@@ -8,7 +8,7 @@ import PageHeader from "./PageHeader";
 export default function LegalPlaceholder({ title, href, sections, contact }) {
   return (
     <>
-      <PageHeader crumbs={[{ label: title, href }]} title={title} />
+      <PageHeader crumbs={[{ label: title, href }]} title={title} size="section" />
       <div className="page">
         <div className="measure grid gap-8">
           <p className="notice notice-quiet">

@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import DesignCard from "@/components/shop/DesignCard";
+import CollectionChips from "@/components/shop/CollectionChips";
 import DesignPage, { designMetadata } from "@/components/shop/DesignPage";
 import PageHeader from "@/components/shop/PageHeader";
 import RateTable from "@/components/shop/RateTable";
@@ -68,16 +69,17 @@ export default async function CollectionPage({ params }) {
         asideClassName="hidden lg:block"
       >
         {/* On small screens the rate table would push the designs below the fold; a one-line price stands in for it. */}
-        <p className="t-small tabular mt-4 text-ink-2">
+        <p className="tabular mt-4 text-[0.875rem] text-ink-2">
           {designs.length} dizajna<span className="lg:hidden">, cena {priceTeaser(category.slug)}</span>. Izaberite dizajn da biste uneli mere i videli cenu.
         </p>
       </PageHeader>
 
-      <section aria-label="Dizajni" className="page">
-        <ul className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-10">
+      <CollectionChips category={category.slug} active={collection.slug} />
+      <section aria-label="Dizajni" className="page pt-9">
+        <ul className="grid grid-cols-2 gap-x-3.5 gap-y-7 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-10">
           {designs.map((design, index) => (
             <li key={design.id}>
-              <DesignCard design={design} priority={index < 4} headingLevel="h2" />
+              <DesignCard design={design} meta={collection.label} price={priceTeaser(category.slug)} priority={index < 4} headingLevel="h2" />
             </li>
           ))}
         </ul>

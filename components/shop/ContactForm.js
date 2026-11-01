@@ -71,14 +71,16 @@ export default function ContactForm({ email }) {
   };
 
   return (
-    <form className="grid gap-5" onSubmit={handleSubmit} noValidate>
+    <form className="grid gap-1" onSubmit={handleSubmit} noValidate>
       {submitted && !validation.ok ? <ErrorSummary errors={validation.errors} labels={LABELS} summaryRef={summaryRef} /> : null}
-      <RequiredNote />
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="mb-3">
+        <RequiredNote />
+      </div>
+      <div className="grid gap-x-4 gap-y-1 sm:grid-cols-2">
         <FormField {...fieldProps("ime")} autoComplete="given-name" />
         <FormField {...fieldProps("prezime")} autoComplete="family-name" />
       </div>
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid gap-x-4 gap-y-1 sm:grid-cols-2">
         <FormField {...fieldProps("email")} type="email" inputMode="email" autoComplete="email" />
         <FormField {...fieldProps("telefon")} type="tel" autoComplete="tel" />
       </div>
@@ -93,7 +95,7 @@ export default function ContactForm({ email }) {
           .
         </p>
       ) : null}
-      <button type="submit" className="btn btn-primary justify-self-start" disabled={state.status === "sending"}>
+      <button type="submit" className="btn btn-primary mt-4 justify-self-start" disabled={state.status === "sending"}>
         {state.status === "sending" ? "Šaljemo…" : "Pošaljite poruku"}
       </button>
     </form>

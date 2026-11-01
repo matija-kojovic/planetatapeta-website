@@ -1,5 +1,4 @@
 import ContactForm from "@/components/shop/ContactForm";
-import { ChatIcon, InstagramIcon, MailIcon, PhoneIcon, PinIcon } from "@/components/icons";
 import PageHeader from "@/components/shop/PageHeader";
 import { getContent } from "@/lib/db";
 import { instagramHandle, phoneDigits, postalAddress } from "@/lib/site";
@@ -14,44 +13,48 @@ export default function ContactPage() {
   const { contact } = getContent();
   const digits = phoneDigits(contact.phone);
   const rows = [
-    { icon: PhoneIcon, label: "Telefon", value: contact.phone, href: `tel:+${digits}` },
-    { icon: MailIcon, label: "E-adresa", value: contact.email, href: `mailto:${contact.email}` },
-    { icon: ChatIcon, label: "WhatsApp", value: contact.phone, href: `https://wa.me/${digits}`, external: true },
-    { icon: ChatIcon, label: "Viber", value: contact.phone, href: `viber://chat?number=%2B${digits}` },
-    { icon: PinIcon, label: "Adresa", value: postalAddress(contact) },
-    ...(contact.instagram ? [{ icon: InstagramIcon, label: "Instagram", value: instagramHandle(contact.instagram), href: contact.instagram, external: true }] : []),
+    { label: "Adresa", value: postalAddress(contact) },
+    { label: "Telefon, Viber i WhatsApp", value: contact.phone, href: `tel:+${digits}` },
+    { label: "E-adresa", value: contact.email, href: `mailto:${contact.email}` },
+    ...(contact.instagram ? [{ label: "Instagram", value: instagramHandle(contact.instagram), href: contact.instagram, external: true }] : []),
   ];
 
   return (
     <>
-      <PageHeader crumbs={[{ label: "Kontakt", href: "/contact" }]} title="Kontakt" intro="Pitanja o meri, materijalu ili sopstvenom dizajnu? Pišite nam ili pozovite." />
-      <div className="page grid gap-14 lg:grid-cols-12">
-        <section aria-labelledby="podaci" className="lg:col-span-5">
+      <PageHeader crumbs={[{ label: "Kontakt", href: "/contact" }]} title="Kontakt" size="section" />
+      <div className="page grid gap-7 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start lg:gap-14">
+        <section aria-labelledby="podaci">
           <h2 id="podaci" className="sr-only">
             Kontakt podaci
           </h2>
           <ul className="border-t border-ink">
-            {rows.map(({ icon: Icon, label, value, href, external }) => (
-              <li key={label} className="flex gap-4 border-b border-line py-4">
-                <Icon className="mt-0.5 shrink-0 text-gold" />
-                <div className="min-w-0">
-                  <p className="t-micro text-ink-2">{label}</p>
-                  {href ? (
-                    <a href={href} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="break-words font-semibold no-underline hover:underline">
-                      {value}
-                    </a>
-                  ) : (
-                    <p className="font-semibold">{value}</p>
-                  )}
-                </div>
+            {rows.map(({ label, value, href, external }) => (
+              <li key={label} className="border-b border-line py-[1.125rem] text-[1.0625rem]">
+                <span className="t-label mb-1 block">{label}</span>
+                {href ? (
+                  <a href={href} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="link break-words">
+                    {value}
+                  </a>
+                ) : (
+                  value
+                )}
               </li>
             ))}
+            <li className="flex flex-wrap gap-x-5 gap-y-1 border-b border-line py-[1.125rem] text-[0.9375rem]">
+              <a href={`https://wa.me/${digits}`} target="_blank" rel="noopener noreferrer" className="link">
+                Pišite na WhatsApp
+              </a>
+              <a href={`viber://chat?number=%2B${digits}`} className="link">
+                Pišite na Viber
+              </a>
+            </li>
           </ul>
         </section>
-        <section aria-labelledby="poruka-naslov" className="lg:col-span-7">
-          <h2 id="poruka-naslov" className="t-title mb-6">
+        <section aria-labelledby="poruka-naslov">
+          <h2 id="poruka-naslov" className="sr-only">
             Pošaljite poruku
           </h2>
+          <p className="t-lead mb-6">Opišite šta vam je potrebno, a mi ćemo vam poslati ponudu.</p>
           <ContactForm email={contact.email} />
         </section>
       </div>

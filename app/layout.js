@@ -1,14 +1,14 @@
-import { EB_Garamond, Schibsted_Grotesk } from "next/font/google";
+import { Newsreader, Schibsted_Grotesk } from "next/font/google";
 import { getContent } from "@/lib/db";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import PricingSync from "@/components/PricingSync";
 import { syncPricing } from "@/lib/prices";
 import "./globals.css";
 
-const garamond = EB_Garamond({
+const newsreader = Newsreader({
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500"],
-  variable: "--font-garamond",
+  axes: ["opsz"],
+  variable: "--font-newsreader",
   display: "swap",
 });
 
@@ -32,7 +32,7 @@ export function generateMetadata() {
 }
 
 export const viewport = {
-  themeColor: "#f9f0e5",
+  themeColor: "#f7f3ec",
   width: "device-width",
   initialScale: 1,
 };
@@ -40,7 +40,7 @@ export const viewport = {
 export default function RootLayout({ children }) {
   const prices = syncPricing();
   return (
-    <html lang="sr-Latn" className={`${garamond.variable} ${grotesk.variable}`}>
+    <html lang="sr-Latn" className={`${newsreader.variable} ${grotesk.variable}`}>
       <body>
         <PricingSync overrides={prices}>{children}</PricingSync>
       </body>

@@ -43,6 +43,7 @@ export default async function ProductPage({ params, searchParams }) {
   return (
     <>
       <PageHeader
+        size="section"
         crumbs={[
           ...(category ? [{ label: category.label, href: `/${category.slug}` }] : []),
           { label: product.title, href: `/product/${product.id}` },

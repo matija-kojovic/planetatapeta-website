@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { FittedElevation } from "@/components/shop/Dimension";
 import { CloseIcon, ExpandIcon } from "@/components/icons";
 
@@ -11,72 +11,26 @@ const clampRatio = (w, h) => {
 };
 
 /**
- * Shows a design two ways: the full design as supplied (never cropped), and a
- * dimensioned preview of how it sits on the configured surface.
- * `renderPreview(design)` draws the inside of the preview frame.
+ * The configured surface drawn as an elevation in the entered proportions (A),
+ * with the full, uncropped design one click away in a lightbox.
+ * `renderPreview(design)` draws the inside of the wall.
  */
-export default function DesignStage({ design, width, height, previewLabel, renderPreview }) {
-  const [view, setView] = useState("design");
-  const [viewChosen, setViewChosen] = useState(false);
-  const [shownSize, setShownSize] = useState(`${width}x${height}`);
+export default function DesignStage({ design, width, height, caption, renderPreview }) {
   const dialogRef = useRef(null);
   const hasSize = width > 0 && height > 0;
 
-  // The page opens on the full, uncropped design. Once the customer changes the size,
-  // the dimensioned preview shows what that size means, unless they picked a view themselves.
-  if (shownSize !== `${width}x${height}`) {
-    setShownSize(`${width}x${height}`);
-    if (!viewChosen && hasSize) setView("preview");
-  }
-
   return (
     <div>
-      <div className="mb-4 flex items-center justify-between gap-3">
-        <div className="segmented" role="group" aria-label="Prikaz">
-          {[
-            ["design", "Ceo dizajn"],
-            ["preview", previewLabel],
-          ].map(([key, label]) => (
-            <button
-              key={key}
-              type="button"
-              aria-pressed={view === key}
-              onClick={() => {
-                setView(key);
-                setViewChosen(true);
-              }}
-              className="segmented-item"
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-        <button type="button" className="btn btn-quiet min-h-11 px-3 text-[0.875rem]" onClick={() => dialogRef.current?.showModal()}>
-          <ExpandIcon size={18} />
-          Uvećaj
+      <FittedElevation widthLabel={hasSize ? `${width} cm` : "—"} heightLabel={hasSize ? `${height} cm` : "—"} ratio={String(clampRatio(width, height))}>
+        {renderPreview(design)}
+      </FittedElevation>
+      <p className="mt-3.5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-center text-[0.84375rem] text-ink-2">
+        {caption}
+        <button type="button" className="inline-flex min-h-11 items-center gap-1.5 font-medium text-teal underline underline-offset-4 hover:decoration-2" onClick={() => dialogRef.current?.showModal()}>
+          <ExpandIcon size={16} />
+          Ceo dizajn
         </button>
-      </div>
-
-      {view === "design" ? (
-        <div className="board !aspect-[5/4] !p-[6%]">
-          <Image
-            src={design.src}
-            alt={`${design.name}, ceo dizajn`}
-            width={design.width}
-            height={design.height}
-            priority
-            sizes="(min-width: 1024px) 54vw, 92vw"
-            style={{ backgroundColor: design.color }}
-          />
-        </div>
-      ) : (
-        <div>
-          <FittedElevation widthLabel={hasSize ? `${width} cm` : "—"} heightLabel={hasSize ? `${height} cm` : "—"} ratio={String(clampRatio(width, height))}>
-            {renderPreview(design)}
-          </FittedElevation>
-          <p className="t-micro mt-3 text-ink-2">Približan prikaz u izabranim proporcijama.</p>
-        </div>
-      )}
+      </p>
 
       <dialog
         ref={dialogRef}
