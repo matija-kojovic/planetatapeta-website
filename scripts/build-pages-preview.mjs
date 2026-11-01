@@ -75,19 +75,80 @@ for (const file of [...sources(path.join(DIR, "app")), ...sources(path.join(DIR,
   if (text.includes('from "next/image"')) fs.writeFileSync(file, text.replaceAll('from "next/image"', 'from "@/pages-image"'));
 }
 
-// 3. Keep the preview out of search engines and say what does not work.
+// 3. There is no server on Pages: answer the checkout and contact calls in the
+//    browser with the same pricing rules. Nothing is sent anywhere.
+fs.writeFileSync(
+  path.join(DIR, "preview-api.js"),
+  `"use client";
+
+import { getCategory, getDesign } from "@/lib/catalog";
+import { CART_QUANTITY, calculatePrice, describeOptions, validateOptions } from "@/lib/pricing";
+
+function quote(items) {
+  const out = [];
+  const errors = [];
+  (Array.isArray(items) ? items : []).forEach((raw, index) => {
+    const category = getCategory(raw?.category);
+    const design = raw?.designId ? getDesign(raw.designId) : null;
+    const quantity = Number(raw?.quantity);
+    const { ok, options } = category ? validateOptions(category.slug, raw.options) : { ok: false };
+    if (!ok || (category.hasDesigns && !design) || !Number.isInteger(quantity) || quantity < CART_QUANTITY.min || quantity > CART_QUANTITY.max) {
+      errors.push({ index, message: "Neispravna stavka." });
+      return;
+    }
+    const unitPrice = calculatePrice(category.slug, options).total;
+    out.push({ name: design ? design.name : category.label, categoryLabel: category.label, details: describeOptions(category.slug, options), unitPrice, quantity, lineTotal: unitPrice * quantity });
+  });
+  if (!out.length && !errors.length) errors.push({ index: -1, message: "Korpa je prazna." });
+  return { ok: errors.length === 0, total: out.reduce((sum, i) => sum + i.lineTotal, 0), errors, items: out };
+}
+
+const json = (body, status = 200) => new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } });
+
+if (typeof window !== "undefined" && !window.__previewApi) {
+  window.__previewApi = true;
+  const realFetch = window.fetch.bind(window);
+  window.fetch = async (input, init = {}) => {
+    const url = new URL(typeof input === "string" ? input : input.url, location.href).pathname;
+    const body = () => {
+      try {
+        return JSON.parse(init.body || "{}");
+      } catch {
+        return {};
+      }
+    };
+    if (url.endsWith("/api/orders/quote")) return json(quote(body().items));
+    if (url.endsWith("/api/orders")) {
+      const q = quote(body().items);
+      if (!q.ok) return json({ error: q.errors[0].message }, 400);
+      return json({ order: { id: "PREGLED-" + Math.floor(100000 + Math.random() * 900000), total: q.total, createdAt: new Date().toISOString() } }, 201);
+    }
+    if (url.endsWith("/api/contact")) return json({ ok: true });
+    return realFetch(input, init);
+  };
+}
+
+export default function PreviewApi() {
+  return null;
+}
+`,
+);
+edit("app/layout.js", 'import "./globals.css";', 'import PreviewApi from "@/preview-api";\nimport "./globals.css";');
+edit("app/layout.js", "<body>", "<body>\n        <PreviewApi />");
+
+// 4. Keep the preview out of search engines and say what does not work.
 edit("app/layout.js", "formatDetection: { telephone: false },", "formatDetection: { telephone: false },\n    robots: { index: false, follow: false },");
 const contentFile = path.join(DIR, "data/database/content.json");
 const content = JSON.parse(fs.readFileSync(contentFile, "utf-8"));
 content.header = { ...content.header, announcement: "Pregled dizajna: porudžbine i poruke se odavde ne šalju." };
 fs.writeFileSync(contentFile, JSON.stringify(content, null, 2));
 
-// 4. Build.
+// 5. Build.
 run("npx", ["next", "build"], { cwd: DIR, env: { ...process.env, NEXT_PUBLIC_SITE_URL: SITE } });
 fs.writeFileSync(path.join(OUT, ".nojekyll"), "");
 console.log(`\nStatic preview written to ${path.relative(ROOT, OUT)}/ (${SITE}/)`);
 
-// 5. Publish: a new commit on top of gh-pages (a normal push, never a force-push).
+// 6. Publish: a new commit on top of gh-pages (a normal push, never a force-push).
 if (publish) {
   const source = execFileSync("git", ["rev-parse", "--short", "HEAD"], { cwd: ROOT, encoding: "utf-8" }).trim();
   const git = (...args) => run("git", args, { cwd: OUT });
