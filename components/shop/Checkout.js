@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { EditIcon } from "@/components/icons";
 import { useEffect, useRef, useState } from "react";
 import { FIXED_PRODUCT, useCart } from "@/components/CartProvider";
 import { formatRSD } from "@/lib/format";
@@ -236,7 +237,8 @@ export default function Checkout({ contactEmail }) {
               <h2 id="vasa-porudzbina" className="font-sans text-[0.875rem] font-semibold">
                 Vaša porudžbina
               </h2>
-              <Link href="/cart" className="link text-[0.875rem]">
+              <Link href="/cart" className="btn btn-secondary min-h-10 gap-2 px-3.5 text-[0.875rem]">
+                <EditIcon size={16} />
                 Izmeni korpu
               </Link>
             </div>

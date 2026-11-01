@@ -78,19 +78,8 @@ export default function DesignPage({ design }) {
       />
       <div className="page pb-8 pt-8 lg:pt-12">
         <Breadcrumbs items={crumbs} />
-        <div className="mt-6 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
-          <h1 className="t-page">{design.name}</h1>
-          <p className="text-ink-2">
-            {isCanvas ? "Slika na platnu" : (
-              <>
-                Kolekcija{" "}
-                <Link href={collectionHref(category.slug, collection.slug)} className="link">
-                  {collection.label}
-                </Link>
-              </>
-            )}
-          </p>
-        </div>
+        {/* The collection is already linked from the breadcrumbs and from "Cela kolekcija" below. */}
+        <h1 className="t-page mt-6">{design.name}</h1>
       </div>
 
       <div className="page">

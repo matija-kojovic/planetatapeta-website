@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { TrashIcon } from "@/components/icons";
 import { useState } from "react";
 import { FIXED_PRODUCT, linePrice, useCart } from "@/components/CartProvider";
 import { QuantityStepper } from "@/components/configurators/fields";
@@ -129,7 +130,8 @@ export default function CartView() {
                       <QuantityStepper id={`qty-${item.key}`} label="Količina" value={item.quantity} onChange={(n) => setQuantity(item.key, n)} />
                       <div className="flex items-center gap-4">
                         {unit !== null && item.quantity > 1 ? <span className="t-micro tabular text-ink-2">{formatRSD(unit)} po komadu</span> : null}
-                        <button type="button" className="btn btn-quiet px-3 text-[0.875rem] text-ink-2 hover:text-error" onClick={() => remove(item)}>
+                        <button type="button" className="btn btn-quiet gap-1.5 px-3 text-[0.875rem] text-error hover:!bg-error-bg" onClick={() => remove(item)}>
+                          <TrashIcon size={18} />
                           Ukloni
                         </button>
                       </div>
