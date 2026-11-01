@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRef, useState } from "react";
-import FormField, { ErrorSummary, RequiredMark } from "@/components/shop/FormField";
+import FormField, { ErrorSummary, FieldMessage, FloatingLabel } from "@/components/shop/FormField";
 import { formatRSD } from "@/lib/format";
 import { validateProduct } from "@/lib/validation";
 
@@ -158,67 +158,52 @@ export default function ProductsManager({ initialProducts, categories }) {
           <FormField {...fieldProps("title")} maxLength={120} required />
           <div className="grid gap-5 sm:grid-cols-2">
             <div className="field">
-              <div className="field-head">
-                <label htmlFor="category" className="label">
+              <div className="float-field is-select">
+                <select
+                  id="category"
+                  className="input float-input"
+                  value={values.category}
+                  onChange={fieldProps("category").onChange}
+                  onBlur={fieldProps("category").onBlur}
+                  aria-invalid={errorFor("category") ? true : undefined}
+                  aria-describedby={errorFor("category") ? "category-msg" : undefined}
+                  required
+                >
+                  <option value="">Izaberite kategoriju</option>
+                  {categories.map((c) => (
+                    <option key={c.slug} value={c.slug}>
+                      {c.label}
+                    </option>
+                  ))}
+                </select>
+                <FloatingLabel htmlFor="category" required>
                   {LABELS.category}
-                  <RequiredMark />
-                </label>
-                {errorFor("category") ? (
-                  <p id="category-error" className="error-text">
-                    {errorFor("category")}
-                  </p>
-                ) : null}
+                </FloatingLabel>
               </div>
-              <select
-                id="category"
-                className="input"
-                value={values.category}
-                onChange={fieldProps("category").onChange}
-                onBlur={fieldProps("category").onBlur}
-                aria-invalid={errorFor("category") ? true : undefined}
-                aria-describedby={errorFor("category") ? "category-error" : undefined}
-                required
-              >
-                <option value="">Izaberite kategoriju</option>
-                {categories.map((c) => (
-                  <option key={c.slug} value={c.slug}>
-                    {c.label}
-                  </option>
-                ))}
-              </select>
+              <FieldMessage id="category-msg" error={errorFor("category")} />
             </div>
             <div className="field">
-              <div className="field-head">
-                <label htmlFor="price" className="label">
-                  {LABELS.price}
-                  <RequiredMark />
-                </label>
-                {errorFor("price") ? (
-                  <p id="price-error" className="error-text">
-                    {errorFor("price")}
-                  </p>
-                ) : null}
-              </div>
-              <div className="unit-input">
+              <div className="float-field unit-input">
                 <input
                   id="price"
-                  className="input"
-                  type="number"
+                  className="input float-input"
+                  type="text"
                   inputMode="numeric"
-                  min="1"
-                  step="1"
+                  placeholder="4500"
+                  autoComplete="off"
                   value={values.price}
                   onChange={fieldProps("price").onChange}
                   onBlur={fieldProps("price").onBlur}
                   aria-invalid={errorFor("price") ? true : undefined}
-                  aria-describedby={errorFor("price") ? "price-error price-hint" : "price-hint"}
+                  aria-describedby="price-msg"
                   required
                 />
+                <FloatingLabel htmlFor="price" required>
+                  {LABELS.price}
+                </FloatingLabel>
                 <span aria-hidden="true">RSD</span>
               </div>
-              <p id="price-hint" className="hint">
-                Ceo iznos u dinarima, kako ga kupac plaća.
-              </p>
+              <FieldMessage id="price-msg" error={errorFor("price")} hint="Ceo iznos u dinarima, kako ga kupac plaća." />
             </div>
           </div>
           <FormField {...fieldProps("description")} as="textarea" rows={4} maxLength={1000} hint="Prikazuje se na stranici proizvoda. Do 1000 znakova." />

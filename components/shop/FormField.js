@@ -1,28 +1,48 @@
-/** Labelled input/textarea with hint and inline error wired to aria-describedby. */
-export default function FormField({ id, label, hint, error, as = "input", className = "", ...props }) {
+/**
+ * Input or textarea with a floating label: the label sits inside the empty field
+ * and moves onto the top border on focus or once there is a value. The example
+ * `placeholder` (e.g. "ime@primer.rs") shows only while the field has focus.
+ * The error or hint below has a reserved line, so an error never pushes the form.
+ */
+export default function FormField({ id, label, hint, error, as = "input", className = "", placeholder = " ", ...props }) {
   const Control = as;
-  const describedBy = [error ? `${id}-error` : null, hint ? `${id}-hint` : null].filter(Boolean).join(" ") || undefined;
   return (
     <div className={`field ${className}`}>
-      {/* The error shares the label's row, so showing it never pushes the form down. */}
-      <div className="field-head">
-        <label htmlFor={id} className="label">
+      <div className={`float-field${as === "textarea" ? " is-textarea" : ""}`}>
+        <Control
+          id={id}
+          name={id}
+          className="input float-input"
+          placeholder={placeholder}
+          aria-invalid={error ? true : undefined}
+          aria-describedby={error || hint ? `${id}-msg` : undefined}
+          {...props}
+        />
+        <FloatingLabel htmlFor={id} required={props.required}>
           {label}
-          {props.required ? <RequiredMark /> : null}
-        </label>
-        {error ? (
-          <p id={`${id}-error`} className="error-text">
-            {error}
-          </p>
-        ) : null}
+        </FloatingLabel>
       </div>
-      <Control id={id} name={id} className="input" aria-invalid={error ? true : undefined} aria-describedby={describedBy} {...props} />
-      {hint ? (
-        <p id={`${id}-hint`} className="hint">
-          {hint}
-        </p>
-      ) : null}
+      <FieldMessage id={`${id}-msg`} error={error} hint={hint} />
     </div>
+  );
+}
+
+/** The label of a floating field; it must directly follow its control. */
+export function FloatingLabel({ htmlFor, required, children }) {
+  return (
+    <label htmlFor={htmlFor} className="float-label">
+      {children}
+      {required ? <RequiredMark /> : null}
+    </label>
+  );
+}
+
+/** The reserved line under a field: the error when there is one, otherwise the hint. */
+export function FieldMessage({ id, error, hint }) {
+  return (
+    <p id={id} className={`field-msg ${error ? "error-text" : "hint"}`}>
+      {error || hint}
+    </p>
   );
 }
 
