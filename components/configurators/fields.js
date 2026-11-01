@@ -11,7 +11,7 @@ export function ChoiceGroup({ legend, name, value, onChange, options, columns = 
   return (
     <fieldset className="choice-group" aria-describedby={hint ? hintId : undefined}>
       <legend className="label">{legend}</legend>
-      <div className={`grid gap-2 ${columns === 3 ? "grid-cols-1 xs:grid-cols-3" : columns === 2 ? "grid-cols-1 xs:grid-cols-2" : ""}`}>
+      <div className={`grid gap-2 ${columns === 3 ? (options.length % 2 === 0 ? "grid-cols-2 xs:grid-cols-3" : "grid-cols-1 xs:grid-cols-3") : columns === 2 ? "grid-cols-1 xs:grid-cols-2" : ""}`}>
         {options.map((option) => (
           <label key={option.value} className="choice">
             <input type="radio" name={name} value={option.value} checked={value === option.value} onChange={() => onChange(option.value)} />

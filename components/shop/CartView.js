@@ -87,59 +87,63 @@ export default function CartView() {
           ) : null}
         </div>
 
-        {items.length === 0 ? <EmptyCart /> : null}
+        {items.length === 0 ? (
+          <EmptyCart />
+        ) : (
+          <>
+            <ul className="border-t border-ink">
+              {items.map((item) => {
+                const unit = linePrice(item);
+                const lines = details(item);
+                return (
+                  <li key={item.key} className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-4 border-b border-line py-6 sm:gap-x-6">
+                    <CartThumb item={item} />
+                    <div className="min-w-0">
+                      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                        <h2 className="text-[1.0625rem] font-semibold leading-snug">
+                          {item.href ? (
+                            <Link href={item.href} className="no-underline hover:underline">
+                              {item.name}
+                            </Link>
+                          ) : (
+                            item.name
+                          )}
+                        </h2>
+                        <p className="tabular font-semibold">{unit !== null ? formatRSD(unit * item.quantity) : "—"}</p>
+                      </div>
+                      {lines.length ? (
+                        <dl className="t-small mt-2 grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-0.5 text-ink-2">
+                          {lines.map(([label, value]) => (
+                            <div key={label} className="contents">
+                              <dt>{label}</dt>
+                              <dd className="text-ink [overflow-wrap:anywhere]">{value}</dd>
+                            </div>
+                          ))}
+                        </dl>
+                      ) : null}
+                      {unit === null ? (
+                        <p className="notice notice-error mt-3">Ova stavka više nije dostupna u izabranoj konfiguraciji. Uklonite je i podesite proizvod ponovo.</p>
+                      ) : null}
+                    </div>
+                    <div className="col-span-2 flex flex-wrap items-end justify-between gap-4 sm:col-start-2 sm:col-span-1">
+                      <QuantityStepper id={`qty-${item.key}`} label="Količina" value={item.quantity} onChange={(n) => setQuantity(item.key, n)} />
+                      <div className="flex items-center gap-4">
+                        {unit !== null && item.quantity > 1 ? <span className="t-micro tabular text-ink-2">{formatRSD(unit)} po komadu</span> : null}
+                        <button type="button" className="btn btn-quiet px-3 text-[0.875rem] text-ink-2 hover:text-error" onClick={() => remove(item)}>
+                          Ukloni
+                        </button>
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
 
-        <ul className="border-t border-ink">
-          {items.map((item) => {
-            const unit = linePrice(item);
-            const lines = details(item);
-            return (
-              <li key={item.key} className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-4 border-b border-line py-6 sm:gap-x-6">
-                <CartThumb item={item} />
-                <div className="min-w-0">
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-                    <h2 className="text-[1.0625rem] font-semibold leading-snug">
-                      {item.href ? (
-                        <Link href={item.href} className="no-underline hover:underline">
-                          {item.name}
-                        </Link>
-                      ) : (
-                        item.name
-                      )}
-                    </h2>
-                    <p className="tabular font-semibold">{unit !== null ? formatRSD(unit * item.quantity) : "—"}</p>
-                  </div>
-                  {lines.length ? (
-                    <dl className="t-small mt-2 grid gap-x-4 gap-y-0.5 text-ink-2 sm:grid-cols-[auto_1fr]">
-                      {lines.map(([label, value]) => (
-                        <div key={label} className="contents">
-                          <dt>{label}</dt>
-                          <dd className="text-ink [overflow-wrap:anywhere]">{value}</dd>
-                        </div>
-                      ))}
-                    </dl>
-                  ) : null}
-                  {unit === null ? (
-                    <p className="notice notice-error mt-3">Ova stavka više nije dostupna u izabranoj konfiguraciji. Uklonite je i podesite proizvod ponovo.</p>
-                  ) : null}
-                </div>
-                <div className="col-span-2 flex flex-wrap items-end justify-between gap-4 sm:col-start-2 sm:col-span-1">
-                  <QuantityStepper id={`qty-${item.key}`} label="Količina" value={item.quantity} onChange={(n) => setQuantity(item.key, n)} />
-                  <div className="flex items-center gap-4">
-                    {unit !== null && item.quantity > 1 ? <span className="t-micro tabular text-ink-2">{formatRSD(unit)} po komadu</span> : null}
-                    <button type="button" className="btn btn-quiet px-3 text-[0.875rem] text-ink-2 hover:text-error" onClick={() => remove(item)}>
-                      Ukloni
-                    </button>
-                  </div>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-
-        <Link href="/tapete" className="link mt-6 inline-block">
-          Nastavite kupovinu
-        </Link>
+            <Link href="/tapete" className="link mt-6 inline-block">
+              Nastavite kupovinu
+            </Link>
+          </>
+        )}
       </div>
 
       {items.length ? (

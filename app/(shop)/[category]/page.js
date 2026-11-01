@@ -9,7 +9,7 @@ import JsonLd from "@/components/shop/JsonLd";
 import PageHeader from "@/components/shop/PageHeader";
 import { PlexiglassGlyph, StickerSheetGlyph } from "@/components/shop/ProductGlyph";
 import RateTable from "@/components/shop/RateTable";
-import { CATEGORIES, collectionCover, collectionHref, getCategory, getCollections, getDesigns } from "@/lib/catalog";
+import { CATEGORIES, CATEGORY_COVERS, collectionCover, collectionHref, getCategory, getCollections, getDesign, getDesigns } from "@/lib/catalog";
 import { getContent } from "@/lib/db";
 import { PRICING, priceTeaser } from "@/lib/pricing";
 import { absoluteUrl } from "@/lib/site";
@@ -19,6 +19,8 @@ import { absoluteUrl } from "@/lib/site";
 // every prerendered page of this route into a 404 until the next deploy.
 export const generateStaticParams = () => CATEGORIES.map((c) => ({ category: c.slug }));
 
+const ogImage = (design) => (design ? { url: design.src, width: design.width, height: design.height } : { url: "/opengraph-image.jpg" });
+
 export async function generateMetadata({ params }) {
   const category = getCategory((await params).category);
   if (!category) return {};
@@ -26,7 +28,8 @@ export async function generateMetadata({ params }) {
     title: `${category.label} po meri`,
     description: `${category.summary} ${category.intro}`.slice(0, 160),
     alternates: { canonical: `/${category.slug}` },
-    openGraph: { title: `${category.label} | PLANETATAPETA`, url: `/${category.slug}` },
+    // A page-level openGraph replaces the root one, so the image is set here too.
+    openGraph: { title: `${category.label} | PLANETATAPETA`, url: `/${category.slug}`, images: [ogImage(getDesign(CATEGORY_COVERS[category.slug]))] },
   };
 }
 
@@ -73,7 +76,7 @@ function CanvasIndex() {
       <ul className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-10">
         {designs.map((design, index) => (
           <li key={design.id}>
-            <DesignCard design={design} meta="1, 3 ili 5 delova" priority={index < 4} />
+            <DesignCard design={design} priority={index < 4} />
           </li>
         ))}
       </ul>
@@ -85,7 +88,8 @@ function ConfiguratorSection({ category, email }) {
   const isPlexi = category.slug === "slike-na-pleksiglasu";
   return (
     <section className="page grid gap-10 lg:grid-cols-12 lg:gap-14">
-      <div className="lg:col-span-6">
+      {/* On phones the form comes first; the sketch and notes follow it. */}
+      <div className="order-last lg:order-none lg:col-span-6">
         <div className="lg:sticky lg:top-[calc(var(--header-h)+1.5rem)]">
           <div className="grid aspect-[5/4] place-items-center bg-board p-[10%]">
             {isPlexi ? <PlexiglassGlyph className="h-full w-auto" /> : <StickerSheetGlyph className="h-full w-auto" />}
@@ -136,7 +140,7 @@ export default async function CategoryPage({ params }) {
         crumbs={[{ label: category.label, href: `/${category.slug}` }]}
         title={category.label}
         intro={category.intro}
-        aside={withRates ? <RateTable category={category.slug} /> : <p className="tabular text-right font-display text-[1.75rem]">{priceTeaser(category.slug)}</p>}
+        aside={withRates ? <RateTable category={category.slug} /> : <p className="tabular font-display text-[1.75rem] lg:text-right">{priceTeaser(category.slug)}</p>}
       />
 
       {category.hasDesigns && category.slug !== "slike-na-platnu" ? <CollectionIndex category={category} /> : null}

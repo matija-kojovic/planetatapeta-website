@@ -78,8 +78,7 @@ function Success({ order, email }) {
     <div className="max-w-2xl border-t border-ink pt-8" role="status">
       <p className="text-ink-2">Broj porudžbine</p>
       <p className="tabular font-display text-[2.5rem] leading-tight">{order.id}</p>
-      <h2 className="t-title mt-6">Porudžbina je primljena</h2>
-      <p className="mt-3 text-ink-2">
+      <p className="mt-6 text-ink-2">
         Ukupan iznos je {formatRSD(order.total)}. Javićemo vam se telefonom ili e-poštom radi potvrde porudžbine i dogovora oko dostave.
       </p>
       <p className="mt-3 text-ink-2">
@@ -103,14 +102,16 @@ export default function Checkout({ contactEmail }) {
   const [submitted, setSubmitted] = useState(false);
   const [honeypot, setHoneypot] = useState("");
   const [state, setState] = useState({ status: "idle" });
-  const [quote, setQuote] = useState({ status: "loading" });
+  const [quoteResult, setQuoteResult] = useState(null);
   const summaryRef = useRef(null);
   const cartSignature = JSON.stringify(toPayload(items));
+  // A quote belongs to the cart it was requested for; while the cart changes, it is loading.
+  const quote = quoteResult?.signature === cartSignature ? quoteResult : { status: "loading" };
 
   useEffect(() => {
     if (!ready || items.length === 0) return;
     const controller = new AbortController();
-    setQuote({ status: "loading" });
+    const setQuote = (result) => setQuoteResult({ ...result, signature: cartSignature });
     fetch("/api/orders/quote", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -133,9 +134,24 @@ export default function Checkout({ contactEmail }) {
   const update = (field) => (event) => setValues((v) => ({ ...v, [field]: event.target.value }));
   const blur = (field) => () => setTouched((t) => ({ ...t, [field]: true }));
 
-  if (state.status === "success") return <Success order={state.order} email={contactEmail} />;
-  if (!ready) return <CartSkeleton />;
-  if (items.length === 0) return <EmptyCart />;
+  // The page heading follows the state, so the confirmation is not titled "Podaci za dostavu".
+  const heading = (text) => <h1 className="t-page mb-8 lg:mb-12">{text}</h1>;
+  if (state.status === "success") {
+    return (
+      <>
+        {heading("Porudžbina je primljena")}
+        <Success order={state.order} email={contactEmail} />
+      </>
+    );
+  }
+  if (!ready || items.length === 0) {
+    return (
+      <>
+        {heading("Podaci za dostavu")}
+        {ready ? <EmptyCart /> : <CartSkeleton />}
+      </>
+    );
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -169,59 +185,62 @@ export default function Checkout({ contactEmail }) {
   const fieldProps = (field) => ({ id: field, label: LABELS[field], value: values[field], onChange: update(field), onBlur: blur(field), error: errorFor(field) });
 
   return (
-    <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
-      <form className="grid content-start gap-10 lg:col-span-7" onSubmit={handleSubmit} noValidate>
-        {submitted && !validation.ok ? <ErrorSummary errors={validation.errors} labels={LABELS} summaryRef={summaryRef} /> : null}
+    <>
+      {heading("Podaci za dostavu")}
+      <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
+        <form className="grid content-start gap-10 lg:col-span-7" onSubmit={handleSubmit} noValidate>
+          {submitted && !validation.ok ? <ErrorSummary errors={validation.errors} labels={LABELS} summaryRef={summaryRef} /> : null}
 
-        <fieldset className="grid gap-5">
-          <legend className="t-title mb-5">Kontakt</legend>
-          <FormField {...fieldProps("ime_prezime")} autoComplete="name" required />
-          <div className="grid gap-5 sm:grid-cols-2">
-            <FormField {...fieldProps("email")} type="email" autoComplete="email" inputMode="email" required />
-            <FormField {...fieldProps("telefon")} type="tel" autoComplete="tel" required hint="Za potvrdu porudžbine." />
-          </div>
-        </fieldset>
+          <fieldset className="grid gap-5">
+            <legend className="display t-title mb-5">Kontakt</legend>
+            <FormField {...fieldProps("ime_prezime")} autoComplete="name" required />
+            <div className="grid gap-5 sm:grid-cols-2">
+              <FormField {...fieldProps("email")} type="email" autoComplete="email" inputMode="email" required />
+              <FormField {...fieldProps("telefon")} type="tel" autoComplete="tel" required hint="Za potvrdu porudžbine." />
+            </div>
+          </fieldset>
 
-        <fieldset className="grid gap-5">
-          <legend className="t-title mb-5">Adresa za dostavu</legend>
-          <FormField {...fieldProps("adresa")} autoComplete="street-address" required />
-          <div className="grid gap-5 sm:grid-cols-[10rem_1fr]">
-            <FormField {...fieldProps("postanski_broj")} autoComplete="postal-code" inputMode="numeric" maxLength={5} optional />
-            <FormField {...fieldProps("grad")} autoComplete="address-level2" required />
-          </div>
-          <FormField {...fieldProps("napomena")} as="textarea" rows={4} optional hint="Na primer: sprat, interfon ili željeni termin ugradnje." />
-        </fieldset>
+          <fieldset className="grid gap-5">
+            <legend className="display t-title mb-5">Adresa za dostavu</legend>
+            <FormField {...fieldProps("adresa")} autoComplete="street-address" required />
+            <div className="grid gap-5 sm:grid-cols-[10rem_1fr]">
+              <FormField {...fieldProps("postanski_broj")} autoComplete="postal-code" inputMode="numeric" maxLength={5} optional />
+              <FormField {...fieldProps("grad")} autoComplete="address-level2" required />
+            </div>
+            <FormField {...fieldProps("napomena")} as="textarea" rows={4} optional hint="Na primer: sprat, interfon ili željeni termin ugradnje." />
+          </fieldset>
 
-        <Honeypot value={honeypot} onChange={setHoneypot} />
+          <Honeypot value={honeypot} onChange={setHoneypot} />
 
-        <div className="grid gap-4 border-t border-ink pt-6">
-          {state.status === "error" ? (
-            <p className="notice notice-error" role="alert">
-              {state.message}
+          <div className="grid gap-4 border-t border-ink pt-6">
+            {state.status === "error" ? (
+              <p className="notice notice-error" role="alert">
+                {state.message}
+              </p>
+            ) : null}
+            <p className="t-small text-ink-2">
+              Slanjem porudžbine šaljete nam podatke potrebne za njenu obradu i dostavu. Na sajtu se ne plaća karticom.
             </p>
-          ) : null}
-          <p className="t-small text-ink-2">
-            Slanjem porudžbine šaljete nam podatke potrebne za njenu obradu i dostavu. Na sajtu se ne plaća karticom.
-          </p>
-          <button type="submit" className="btn btn-primary w-full sm:w-auto sm:justify-self-start" disabled={state.status === "submitting" || quote.status !== "ready"}>
-            {state.status === "submitting" ? "Šaljemo porudžbinu…" : "Pošaljite porudžbinu"}
-          </button>
-        </div>
-      </form>
-
-      <aside aria-labelledby="vasa-porudzbina" className="order-first lg:order-none lg:col-span-5">
-        <div className="bg-board p-6 lg:sticky lg:top-[calc(var(--header-h)+1.5rem)]">
-          <div className="mb-4 flex items-baseline justify-between gap-4">
-            <h2 id="vasa-porudzbina" className="font-sans text-[0.875rem] font-semibold">
-              Vaša porudžbina
-            </h2>
-            <Link href="/cart" className="link text-[0.875rem]">
-              Izmeni korpu
-            </Link>
+            <button type="submit" className="btn btn-primary w-full sm:w-auto sm:justify-self-start" disabled={state.status === "submitting" || quote.status !== "ready"}>
+              {state.status === "submitting" ? "Šaljemo porudžbinu…" : "Pošaljite porudžbinu"}
+            </button>
           </div>
-          <OrderSummary quote={quote} />
-        </div>
-      </aside>
-    </div>
+        </form>
+
+        <aside aria-labelledby="vasa-porudzbina" className="order-first lg:order-none lg:col-span-5">
+          <div className="bg-board p-6 lg:sticky lg:top-[calc(var(--header-h)+1.5rem)]">
+            <div className="mb-4 flex items-baseline justify-between gap-4">
+              <h2 id="vasa-porudzbina" className="font-sans text-[0.875rem] font-semibold">
+                Vaša porudžbina
+              </h2>
+              <Link href="/cart" className="link text-[0.875rem]">
+                Izmeni korpu
+              </Link>
+            </div>
+            <OrderSummary quote={quote} />
+          </div>
+        </aside>
+      </div>
+    </>
   );
 }

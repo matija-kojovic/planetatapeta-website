@@ -37,6 +37,8 @@ export function CartProvider({ children }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    // localStorage only exists in the browser, so the stored cart is loaded after hydration.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setItems(readStoredCart());
     setReady(true);
     const onStorage = (event) => event.key === STORAGE_KEY && setItems(readStoredCart());

@@ -17,8 +17,17 @@ const clampRatio = (w, h) => {
  */
 export default function DesignStage({ design, width, height, previewLabel, renderPreview }) {
   const [view, setView] = useState("design");
+  const [viewChosen, setViewChosen] = useState(false);
+  const [shownSize, setShownSize] = useState(`${width}x${height}`);
   const dialogRef = useRef(null);
   const hasSize = width > 0 && height > 0;
+
+  // The page opens on the full, uncropped design. Once the customer changes the size,
+  // the dimensioned preview shows what that size means, unless they picked a view themselves.
+  if (shownSize !== `${width}x${height}`) {
+    setShownSize(`${width}x${height}`);
+    if (!viewChosen && hasSize) setView("preview");
+  }
 
   return (
     <div>
@@ -32,8 +41,11 @@ export default function DesignStage({ design, width, height, previewLabel, rende
               key={key}
               type="button"
               aria-pressed={view === key}
-              onClick={() => setView(key)}
-              className="btn btn-quiet min-h-11 px-3 text-[0.875rem] text-ink-2 aria-pressed:bg-board aria-pressed:text-ink"
+              onClick={() => {
+                setView(key);
+                setViewChosen(true);
+              }}
+              className="btn btn-quiet relative min-h-11 px-3 text-[0.875rem] text-ink-2 aria-pressed:text-ink aria-pressed:after:absolute aria-pressed:after:inset-x-3 aria-pressed:after:bottom-1.5 aria-pressed:after:h-px aria-pressed:after:bg-gold"
             >
               {label}
             </button>

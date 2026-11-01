@@ -21,8 +21,8 @@ export function DesktopNav({ items }) {
               <Link
                 href={item.href}
                 aria-current={current ? "page" : undefined}
-                className={`relative inline-flex min-h-11 items-center px-3 text-[0.9375rem] no-underline transition-colors hover:text-teal ${
-                  current ? "font-semibold text-ink after:absolute after:inset-x-3 after:bottom-1.5 after:h-px after:bg-gold" : "text-ink-2"
+                className={`relative inline-flex min-h-11 items-center whitespace-nowrap px-2 text-[0.9375rem] no-underline transition-colors hover:text-teal xl:px-3 ${
+                  current ? "font-semibold text-ink after:absolute after:inset-x-2 after:bottom-1.5 after:h-px after:bg-gold xl:after:inset-x-3" : "text-ink-2"
                 }`}
               >
                 {item.navLabel}
@@ -35,11 +35,30 @@ export function DesktopNav({ items }) {
   );
 }
 
+export function ContactLink() {
+  const current = usePathname() === "/contact";
+  return (
+    <Link
+      href="/contact"
+      aria-current={current ? "page" : undefined}
+      className={`btn btn-quiet relative hidden lg:inline-flex ${current ? "after:absolute after:inset-x-3 after:bottom-1.5 after:h-px after:bg-gold" : ""}`}
+    >
+      Kontakt
+    </Link>
+  );
+}
+
 export function CartLink() {
   const { count, ready } = useCart();
+  const current = usePathname() === "/cart";
   const label = ready && count > 0 ? `Korpa, ${count} ${count === 1 ? "proizvod" : "proizvoda"}` : "Korpa";
   return (
-    <Link href="/cart" className="btn btn-quiet relative gap-2 px-3" aria-label={label}>
+    <Link
+      href="/cart"
+      aria-current={current ? "page" : undefined}
+      className={`btn btn-quiet relative gap-2 px-3 ${current ? "after:absolute after:inset-x-3 after:bottom-1.5 after:h-px after:bg-gold" : ""}`}
+      aria-label={label}
+    >
       <BagIcon size={22} />
       <span className="hidden sm:inline">Korpa</span>
       {ready && count > 0 ? (

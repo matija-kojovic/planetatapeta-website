@@ -78,7 +78,9 @@
 
   p { text-wrap: pretty; }
 
-  .tabular { font-variant-numeric: tabular-nums lining-nums; }
+  /* Lining figures for prices and measurements. Not tabular-nums: Schibsted Grotesk's
+     tabular set also widens "." and ",", which splits "3.360 RSD" into "3 . 360". */
+  .tabular { font-variant-numeric: lining-nums; }
 }
 
 @layer components {
@@ -230,7 +232,7 @@
     border-left: 2px solid #fff; border-bottom: 2px solid #fff; transform: translateY(-1px) rotate(-45deg);
   }
   .choice-text { display: flex; align-items: center; gap: 0.75rem; min-width: 0; }
-  .choice-price { font-size: 0.875rem; color: var(--color-ink-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .choice-price { font-size: 0.875rem; color: var(--color-ink-2); white-space: nowrap; font-variant-numeric: lining-nums; }
 
   /* ── Dimension lines: the architectural measurement device ───────────── */
 
@@ -263,12 +265,15 @@
   .board {
     position: relative;
     display: grid;
+    /* A definite track, so the image's max-height: 100% resolves and tall designs are never clipped. */
+    grid-template: minmax(0, 1fr) / minmax(0, 1fr);
     place-items: center;
     aspect-ratio: 1;
-    padding: 9%;
+    padding: 6%;
     background: var(--color-board);
     overflow: hidden;
   }
+  @media (min-width: 40rem) { .board { padding: 9%; } }
   .board img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
 
   .card-link { text-decoration: none; }
