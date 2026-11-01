@@ -21,6 +21,7 @@ function searchIndex() {
 export default function Header({ announcement, contact }) {
   syncPricing();
   const nav = [
+    { href: "/", label: "Početna", navLabel: "Početna" },
     ...CATEGORIES.map(({ slug, label, navLabel }) => ({ href: `/${slug}`, label, navLabel, teaser: priceTeaser(slug) })),
     { href: "/contact", label: "Kontakt", navLabel: "Kontakt" },
   ];
