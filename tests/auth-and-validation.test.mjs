@@ -1,7 +1,7 @@
 import { test, beforeEach } from "node:test";
 import assert from "node:assert/strict";
 import { checkPassword, createSessionToken, isAdminConfigured, verifySessionToken, requireAdmin } from "../lib/auth.js";
-import { validateCustomer, validateContent } from "../lib/validation.js";
+import { validateCustomer, validateContent, validateProduct } from "../lib/validation.js";
 import { escapeHtml } from "../lib/security.js";
 
 beforeEach(() => {
@@ -74,4 +74,17 @@ test("content validation keeps only known fields and rejects non-https links", (
 
 test("escapeHtml neutralises markup in e-mails", () => {
   assert.equal(escapeHtml('<img src=x onerror="a">'), "&lt;img src=x onerror=&quot;a&quot;&gt;");
+});
+
+test("product validation requires a known category, a whole positive price and an uploaded image path", () => {
+  const categories = ["tapete", "izrada-nalepnica"];
+  const good = validateProduct({ title: "Set nalepnica", category: "tapete", price: "1500", description: "", image: "" }, categories);
+  assert.equal(good.ok, true);
+  assert.equal(good.values.price, 1500);
+
+  const bad = validateProduct({ title: "X", category: "proizvod", price: 12.5, image: "https://evil.example/x.jpg" }, categories);
+  assert.equal(bad.ok, false);
+  assert.deepEqual(Object.keys(bad.errors).sort(), ["category", "image", "price", "title"]);
+  assert.equal(validateProduct({ title: "Ok naziv", category: "tapete", price: 0 }, categories).errors.price !== undefined, true);
+  assert.equal(validateProduct({ title: "Ok naziv", category: "tapete", price: true }, categories).ok, false);
 });

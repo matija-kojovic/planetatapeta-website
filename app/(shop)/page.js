@@ -52,7 +52,7 @@ export default function HomePage() {
           address: {
             "@type": "PostalAddress",
             streetAddress: contact.address,
-            postalCode: contact.zip,
+            ...(contact.zip ? { postalCode: contact.zip } : {}),
             addressLocality: contact.city,
             addressCountry: "RS",
           },

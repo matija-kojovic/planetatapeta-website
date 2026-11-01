@@ -2,7 +2,7 @@ import ContactForm from "@/components/shop/ContactForm";
 import { ChatIcon, InstagramIcon, MailIcon, PhoneIcon, PinIcon } from "@/components/icons";
 import PageHeader from "@/components/shop/PageHeader";
 import { getContent } from "@/lib/db";
-import { phoneDigits } from "@/lib/site";
+import { instagramHandle, phoneDigits, postalAddress } from "@/lib/site";
 
 export const metadata = {
   title: "Kontakt",
@@ -18,8 +18,8 @@ export default function ContactPage() {
     { icon: MailIcon, label: "E-adresa", value: contact.email, href: `mailto:${contact.email}` },
     { icon: ChatIcon, label: "WhatsApp", value: contact.phone, href: `https://wa.me/${digits}`, external: true },
     { icon: ChatIcon, label: "Viber", value: contact.phone, href: `viber://chat?number=%2B${digits}` },
-    { icon: PinIcon, label: "Adresa", value: `${contact.address}, ${contact.zip} ${contact.city}` },
-    ...(contact.instagram ? [{ icon: InstagramIcon, label: "Instagram", value: "@planetatapeta", href: contact.instagram, external: true }] : []),
+    { icon: PinIcon, label: "Adresa", value: postalAddress(contact) },
+    ...(contact.instagram ? [{ icon: InstagramIcon, label: "Instagram", value: instagramHandle(contact.instagram), href: contact.instagram, external: true }] : []),
   ];
 
   return (
