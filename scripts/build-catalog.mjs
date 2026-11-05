@@ -2,6 +2,7 @@
 // Run `npm run catalog` after adding or removing design images.
 // The generated file is committed so pages can be statically generated and
 // the order API can validate designs without reading the filesystem at runtime.
+import { createHash } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import sharp from "sharp";
@@ -43,13 +44,15 @@ for (const source of SOURCES) {
 
   for (const { file, number } of files) {
     const meta = await describe(path.join(dir, file));
+    // Optimized images are cached for a month by URL, so a replaced file gets a new URL.
+    const version = createHash("sha1").update(fs.readFileSync(path.join(dir, file))).digest("hex").slice(0, 8);
     designs.push({
       id: `${source.category}/${source.collection}/${source.slugBase}-${pad(number)}`,
       category: source.category,
       collection: source.collection,
       slug: `${source.slugBase}-${pad(number)}`,
       name: `${source.singular} ${pad(number)}`,
-      src: `/${source.folder}/${file}`,
+      src: `/${source.folder}/${file}?v=${version}`,
       ...meta,
     });
   }

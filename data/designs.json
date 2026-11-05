@@ -12,7 +12,7 @@
       "slug": "cvetne",
       "label": "Cvetne tapete",
       "singular": "Cvetna tapeta",
-      "count": 25
+      "count": 23
     },
     {
       "category": "tapete",
@@ -47,7 +47,7 @@
       "slug": "soba",
       "label": "Stikeri za sobu",
       "singular": "Stiker za sobu",
-      "count": 17
+      "count": 16
     },
     {
       "category": "slike-na-platnu",
@@ -64,9 +64,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-01",
       "name": "Dečija tapeta 01",
-      "src": "/tapete/decije/decijeTapete1.webp",
+      "src": "/tapete/decije/decijeTapete1.webp?v=c1c7d15d",
       "width": 600,
-      "height": 348,
+      "height": 328,
       "color": "#f8f8f8"
     },
     {
@@ -75,9 +75,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-02",
       "name": "Dečija tapeta 02",
-      "src": "/tapete/decije/decijeTapete2.webp",
+      "src": "/tapete/decije/decijeTapete2.webp?v=62ae2136",
       "width": 600,
-      "height": 348,
+      "height": 330,
       "color": "#f8f8f8"
     },
     {
@@ -86,9 +86,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-03",
       "name": "Dečija tapeta 03",
-      "src": "/tapete/decije/decijeTapete3.webp",
+      "src": "/tapete/decije/decijeTapete3.webp?v=8e67a80d",
       "width": 600,
-      "height": 348,
+      "height": 328,
       "color": "#181828"
     },
     {
@@ -97,9 +97,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-04",
       "name": "Dečija tapeta 04",
-      "src": "/tapete/decije/decijeTapete4.webp",
+      "src": "/tapete/decije/decijeTapete4.webp?v=36a1d196",
       "width": 600,
-      "height": 358,
+      "height": 338,
       "color": "#181838"
     },
     {
@@ -108,9 +108,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-05",
       "name": "Dečija tapeta 05",
-      "src": "/tapete/decije/decijeTapete5.webp",
+      "src": "/tapete/decije/decijeTapete5.webp?v=fcde4e73",
       "width": 600,
-      "height": 620,
+      "height": 600,
       "color": "#384828"
     },
     {
@@ -119,9 +119,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-06",
       "name": "Dečija tapeta 06",
-      "src": "/tapete/decije/decijeTapete6.webp",
+      "src": "/tapete/decije/decijeTapete6.webp?v=d538f87c",
       "width": 600,
-      "height": 620,
+      "height": 600,
       "color": "#284868"
     },
     {
@@ -130,9 +130,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-07",
       "name": "Dečija tapeta 07",
-      "src": "/tapete/decije/decijeTapete7.webp",
+      "src": "/tapete/decije/decijeTapete7.webp?v=4423d14c",
       "width": 600,
-      "height": 620,
+      "height": 599,
       "color": "#f8f8f8"
     },
     {
@@ -141,9 +141,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-08",
       "name": "Dečija tapeta 08",
-      "src": "/tapete/decije/decijeTapete8.webp",
+      "src": "/tapete/decije/decijeTapete8.webp?v=4908a482",
       "width": 600,
-      "height": 620,
+      "height": 600,
       "color": "#f8f8f8"
     },
     {
@@ -152,9 +152,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-09",
       "name": "Dečija tapeta 09",
-      "src": "/tapete/decije/decijeTapete9.webp",
+      "src": "/tapete/decije/decijeTapete9.webp?v=70c4710f",
       "width": 600,
-      "height": 620,
+      "height": 600,
       "color": "#3868a8"
     },
     {
@@ -163,9 +163,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-10",
       "name": "Dečija tapeta 10",
-      "src": "/tapete/decije/decijeTapete10.webp",
+      "src": "/tapete/decije/decijeTapete10.webp?v=9edd8595",
       "width": 600,
-      "height": 448,
+      "height": 428,
       "color": "#f8f8f8"
     },
     {
@@ -174,9 +174,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-11",
       "name": "Dečija tapeta 11",
-      "src": "/tapete/decije/decijeTapete11.webp",
+      "src": "/tapete/decije/decijeTapete11.webp?v=c603d052",
       "width": 600,
-      "height": 444,
+      "height": 424,
       "color": "#f8f8f8"
     },
     {
@@ -185,9 +185,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-12",
       "name": "Dečija tapeta 12",
-      "src": "/tapete/decije/decijeTapete12.webp",
+      "src": "/tapete/decije/decijeTapete12.webp?v=30401a30",
       "width": 600,
-      "height": 620,
+      "height": 600,
       "color": "#f8f8e8"
     },
     {
@@ -196,9 +196,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-13",
       "name": "Dečija tapeta 13",
-      "src": "/tapete/decije/decijeTapete13.webp",
+      "src": "/tapete/decije/decijeTapete13.webp?v=2713881e",
       "width": 600,
-      "height": 620,
+      "height": 598,
       "color": "#784818"
     },
     {
@@ -207,9 +207,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-14",
       "name": "Dečija tapeta 14",
-      "src": "/tapete/decije/decijeTapete14.webp",
+      "src": "/tapete/decije/decijeTapete14.webp?v=5a03b1ca",
       "width": 600,
-      "height": 620,
+      "height": 600,
       "color": "#f8f8f8"
     },
     {
@@ -218,9 +218,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-15",
       "name": "Dečija tapeta 15",
-      "src": "/tapete/decije/decijeTapete15.webp",
+      "src": "/tapete/decije/decijeTapete15.webp?v=9fda5a23",
       "width": 600,
-      "height": 348,
+      "height": 328,
       "color": "#f8f8f8"
     },
     {
@@ -229,9 +229,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-16",
       "name": "Dečija tapeta 16",
-      "src": "/tapete/decije/decijeTapete16.webp",
+      "src": "/tapete/decije/decijeTapete16.webp?v=0fb5fd1a",
       "width": 600,
-      "height": 620,
+      "height": 599,
       "color": "#f8e8d8"
     },
     {
@@ -240,9 +240,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-17",
       "name": "Dečija tapeta 17",
-      "src": "/tapete/decije/decijeTapete17.webp",
+      "src": "/tapete/decije/decijeTapete17.webp?v=4a5c27f0",
       "width": 600,
-      "height": 320,
+      "height": 300,
       "color": "#f8e878"
     },
     {
@@ -251,9 +251,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-18",
       "name": "Dečija tapeta 18",
-      "src": "/tapete/decije/decijeTapete18.webp",
+      "src": "/tapete/decije/decijeTapete18.webp?v=93b69ebc",
       "width": 600,
-      "height": 620,
+      "height": 599,
       "color": "#080808"
     },
     {
@@ -262,9 +262,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-19",
       "name": "Dečija tapeta 19",
-      "src": "/tapete/decije/decijeTapete19.webp",
+      "src": "/tapete/decije/decijeTapete19.webp?v=161f7205",
       "width": 600,
-      "height": 620,
+      "height": 599,
       "color": "#f8f8f8"
     },
     {
@@ -273,9 +273,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-20",
       "name": "Dečija tapeta 20",
-      "src": "/tapete/decije/decijeTapete20.webp",
+      "src": "/tapete/decije/decijeTapete20.webp?v=b9f43768",
       "width": 600,
-      "height": 620,
+      "height": 600,
       "color": "#f8f8f8"
     },
     {
@@ -284,9 +284,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-21",
       "name": "Dečija tapeta 21",
-      "src": "/tapete/decije/decijeTapete21.webp",
+      "src": "/tapete/decije/decijeTapete21.webp?v=a7d69f74",
       "width": 600,
-      "height": 620,
+      "height": 599,
       "color": "#f8f8f8"
     },
     {
@@ -295,9 +295,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-22",
       "name": "Dečija tapeta 22",
-      "src": "/tapete/decije/decijeTapete22.webp",
+      "src": "/tapete/decije/decijeTapete22.webp?v=448b104c",
       "width": 600,
-      "height": 420,
+      "height": 399,
       "color": "#f8f8f8"
     },
     {
@@ -306,9 +306,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-23",
       "name": "Dečija tapeta 23",
-      "src": "/tapete/decije/decijeTapete23.webp",
+      "src": "/tapete/decije/decijeTapete23.webp?v=171a2a29",
       "width": 600,
-      "height": 371,
+      "height": 350,
       "color": "#f8f8f8"
     },
     {
@@ -317,9 +317,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-24",
       "name": "Dečija tapeta 24",
-      "src": "/tapete/decije/decijeTapete24.webp",
+      "src": "/tapete/decije/decijeTapete24.webp?v=9ee88e7e",
       "width": 600,
-      "height": 620,
+      "height": 602,
       "color": "#f8f8e8"
     },
     {
@@ -328,9 +328,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-25",
       "name": "Dečija tapeta 25",
-      "src": "/tapete/decije/decijeTapete25.webp",
+      "src": "/tapete/decije/decijeTapete25.webp?v=c0168157",
       "width": 600,
-      "height": 620,
+      "height": 600,
       "color": "#f8f8f8"
     },
     {
@@ -339,9 +339,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-26",
       "name": "Dečija tapeta 26",
-      "src": "/tapete/decije/decijeTapete26.webp",
+      "src": "/tapete/decije/decijeTapete26.webp?v=d9badfbb",
       "width": 600,
-      "height": 620,
+      "height": 597,
       "color": "#f8f8e8"
     },
     {
@@ -350,9 +350,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-27",
       "name": "Dečija tapeta 27",
-      "src": "/tapete/decije/decijeTapete27.webp",
+      "src": "/tapete/decije/decijeTapete27.webp?v=5b111b8e",
       "width": 600,
-      "height": 620,
+      "height": 599,
       "color": "#f8f8f8"
     },
     {
@@ -361,9 +361,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-28",
       "name": "Dečija tapeta 28",
-      "src": "/tapete/decije/decijeTapete28.webp",
+      "src": "/tapete/decije/decijeTapete28.webp?v=08da5c67",
       "width": 600,
-      "height": 620,
+      "height": 599,
       "color": "#e8d8f8"
     },
     {
@@ -372,7 +372,7 @@
       "collection": "decije",
       "slug": "decija-tapeta-29",
       "name": "Dečija tapeta 29",
-      "src": "/tapete/decije/decijeTapete29.webp",
+      "src": "/tapete/decije/decijeTapete29.webp?v=dca09988",
       "width": 600,
       "height": 620,
       "color": "#f8f8f8"
@@ -383,9 +383,9 @@
       "collection": "decije",
       "slug": "decija-tapeta-30",
       "name": "Dečija tapeta 30",
-      "src": "/tapete/decije/decijeTapete30.webp",
+      "src": "/tapete/decije/decijeTapete30.webp?v=2e453f9c",
       "width": 600,
-      "height": 620,
+      "height": 600,
       "color": "#f8f8f8"
     },
     {
@@ -394,7 +394,7 @@
       "collection": "cvetne",
       "slug": "cvetna-tapeta-01",
       "name": "Cvetna tapeta 01",
-      "src": "/tapete/cvetne/cvetnaTapeta1.webp",
+      "src": "/tapete/cvetne/cvetnaTapeta1.webp?v=b5d7e5b4",
       "width": 600,
       "height": 620,
       "color": "#f8f8f8"
@@ -405,7 +405,7 @@
       "collection": "cvetne",
       "slug": "cvetna-tapeta-02",
       "name": "Cvetna tapeta 02",
-      "src": "/tapete/cvetne/cvetnaTapeta2.webp",
+      "src": "/tapete/cvetne/cvetnaTapeta2.webp?v=a27e3ef3",
       "width": 600,
       "height": 279,
       "color": "#f8f8f8"
@@ -416,9 +416,9 @@
       "collection": "cvetne",
       "slug": "cvetna-tapeta-03",
       "name": "Cvetna tapeta 03",
-      "src": "/tapete/cvetne/cvetnaTapeta3.webp",
+      "src": "/tapete/cvetne/cvetnaTapeta3.webp?v=e6cdca78",
       "width": 600,
-      "height": 273,
+      "height": 254,
       "color": "#f8f8f8"
     },
     {
@@ -427,9 +427,9 @@
       "collection": "cvetne",
       "slug": "cvetna-tapeta-04",
       "name": "Cvetna tapeta 04",
-      "src": "/tapete/cvetne/cvetnaTapeta4.webp",
+      "src": "/tapete/cvetne/cvetnaTapeta4.webp?v=03e48201",
       "width": 600,
-      "height": 274,
+      "height": 253,
       "color": "#f8f8f8"
     },
     {
@@ -438,9 +438,9 @@
       "collection": "cvetne",
       "slug": "cvetna-tapeta-05",
       "name": "Cvetna tapeta 05",
-      "src": "/tapete/cvetne/cvetnaTapeta5.webp",
+      "src": "/tapete/cvetne/cvetnaTapeta5.webp?v=b1397784",
       "width": 600,
-      "height": 260,
+      "height": 240,
       "color": "#f8f8e8"
     },
     {
@@ -449,9 +449,9 @@
       "collection": "cvetne",
       "slug": "cvetna-tapeta-06",
       "name": "Cvetna tapeta 06",
-      "src": "/tapete/cvetne/cvetnaTapeta6.webp",
+      "src": "/tapete/cvetne/cvetnaTapeta6.webp?v=02e025ed",
       "width": 600,
-      "height": 620,
+      "height": 596,
       "color": "#f8f8f8"
     },
     {
@@ -460,9 +460,9 @@
       "collection": "cvetne",
       "slug": "cvetna-tapeta-07",
       "name": "Cvetna tapeta 07",
-      "src": "/tapete/cvetne/cvetnaTapeta7.webp",
+      "src": "/tapete/cvetne/cvetnaTapeta7.webp?v=51f06271",
       "width": 600,
-      "height": 620,
+      "height": 599,
       "color": "#f8d8b8"
     },
     {
@@ -471,9 +471,9 @@
       "collection": "cvetne",
       "slug": "cvetna-tapeta-08",
       "name": "Cvetna tapeta 08",
-      "src": "/tapete/cvetne/cvetnaTapeta8.webp",
+      "src": "/tapete/cvetne/cvetnaTapeta8.webp?v=d3cc5fca",
       "width": 600,
-      "height": 620,
+      "height": 597,
       "color": "#f8f8e8"
     },
     {
@@ -482,10 +482,10 @@
       "collection": "cvetne",
       "slug": "cvetna-tapeta-09",
       "name": "Cvetna tapeta 09",
-      "src": "/tapete/cvetne/cvetnaTapeta9.webp",
+      "src": "/tapete/cvetne/cvetnaTapeta9.webp?v=ab8de711",
       "width": 600,
-      "height": 420,
-      "color": "#f8f8e8"
+      "height": 399,
+      "color": "#e8f8f8"
     },
     {
       "id": "tapete/cvetne/cvetna-tapeta-10",
@@ -493,10 +493,10 @@
       "collection": "cvetne",
       "slug": "cvetna-tapeta-10",
       "name": "Cvetna tapeta 10",
-      "src": "/tapete/cvetne/cvetnaTapeta10.webp",
+      "src": "/tapete/cvetne/cvetnaTapeta10.webp?v=e5cbbdf9",
       "width": 600,
-      "height": 420,
-      "color": "#e8f8f8"
+      "height": 298,
+      "color": "#f8f8f8"
     },
     {
       "id": "tapete/cvetne/cvetna-tapeta-11",
@@ -504,10 +504,10 @@
       "collection": "cvetne",
       "slug": "cvetna-tapeta-11",
       "name": "Cvetna tapeta 11",
-      "src": "/tapete/cvetne/cvetnaTapeta11.webp",
+      "src": "/tapete/cvetne/cvetnaTapeta11.webp?v=71daa47d",
       "width": 600,
-      "height": 320,
-      "color": "#f8f8f8"
+      "height": 597,
+      "color": "#e8e8e8"
     },
     {
       "id": "tapete/cvetne/cvetna-tapeta-12",
@@ -515,10 +515,10 @@
       "collection": "cvetne",
       "slug": "cvetna-tapeta-12",
       "name": "Cvetna tapeta 12",
-      "src": "/tapete/cvetne/cvetnaTapeta12.webp",
+      "src": "/tapete/cvetne/cvetnaTapeta12.webp?v=e1c8b70b",
       "width": 600,
-      "height": 620,
-      "color": "#d8e8e8"
+      "height": 597,
+      "color": "#d8e8d8"
     },
     {
       "id": "tapete/cvetne/cvetna-tapeta-13",
@@ -526,10 +526,10 @@
       "collection": "cvetne",
       "slug": "cvetna-tapeta-13",
       "name": "Cvetna tapeta 13",
-      "src": "/tapete/cvetne/cvetnaTapeta13.webp",
-      "width": 600,
-      "height": 620,
-      "color": "#d8e8d8"
+      "src": "/tapete/cvetne/cvetnaTapeta13.webp?v=6d4570fd",
+      "width": 497,
+      "height": 602,
+      "color": "#e8e8d8"
     },
     {
       "id": "tapete/cvetne/cvetna-tapeta-14",
@@ -537,10 +537,10 @@
       "collection": "cvetne",
       "slug": "cvetna-tapeta-14",
       "name": "Cvetna tapeta 14",
-      "src": "/tapete/cvetne/cvetnaTapeta14.webp",
-      "width": 497,
-      "height": 620,
-      "color": "#e8e8d8"
+      "src": "/tapete/cvetne/cvetnaTapeta14.webp?v=e8c230d8",
+      "width": 600,
+      "height": 600,
+      "color": "#f8f8f8"
     },
     {
       "id": "tapete/cvetne/cvetna-tapeta-15",
@@ -548,10 +548,10 @@
       "collection": "cvetne",
       "slug": "cvetna-tapeta-15",
       "name": "Cvetna tapeta 15",
-      "src": "/tapete/cvetne/cvetnaTapeta15.webp",
+      "src": "/tapete/cvetne/cvetnaTapeta15.webp?v=29339a6c",
       "width": 600,
-      "height": 620,
-      "color": "#f8f8f8"
+      "height": 337,
+      "color": "#f8f8c8"
     },
     {
       "id": "tapete/cvetne/cvetna-tapeta-16",
@@ -559,10 +559,10 @@
       "collection": "cvetne",
       "slug": "cvetna-tapeta-16",
       "name": "Cvetna tapeta 16",
-      "src": "/tapete/cvetne/cvetnaTapeta16.webp",
+      "src": "/tapete/cvetne/cvetnaTapeta16.webp?v=a617bacd",
       "width": 600,
-      "height": 357,
-      "color": "#f8f8c8"
+      "height": 328,
+      "color": "#f8f8d8"
     },
     {
       "id": "tapete/cvetne/cvetna-tapeta-17",
@@ -570,10 +570,10 @@
       "collection": "cvetne",
       "slug": "cvetna-tapeta-17",
       "name": "Cvetna tapeta 17",
-      "src": "/tapete/cvetne/cvetnaTapeta17.webp",
+      "src": "/tapete/cvetne/cvetnaTapeta17.webp?v=fcd502be",
       "width": 600,
-      "height": 348,
-      "color": "#f8f8d8"
+      "height": 597,
+      "color": "#f8f8f8"
     },
     {
       "id": "tapete/cvetne/cvetna-tapeta-18",
@@ -581,10 +581,10 @@
       "collection": "cvetne",
       "slug": "cvetna-tapeta-18",
       "name": "Cvetna tapeta 18",
-      "src": "/tapete/cvetne/cvetnaTapeta18.webp",
+      "src": "/tapete/cvetne/cvetnaTapeta18.webp?v=4a497ac8",
       "width": 600,
-      "height": 369,
-      "color": "#f8f8e8"
+      "height": 599,
+      "color": "#084858"
     },
     {
       "id": "tapete/cvetne/cvetna-tapeta-19",
@@ -592,9 +592,9 @@
       "collection": "cvetne",
       "slug": "cvetna-tapeta-19",
       "name": "Cvetna tapeta 19",
-      "src": "/tapete/cvetne/cvetnaTapeta19.webp",
+      "src": "/tapete/cvetne/cvetnaTapeta19.webp?v=b0985b3b",
       "width": 600,
-      "height": 620,
+      "height": 599,
       "color": "#f8f8f8"
     },
     {
@@ -603,10 +603,10 @@
       "collection": "cvetne",
       "slug": "cvetna-tapeta-20",
       "name": "Cvetna tapeta 20",
-      "src": "/tapete/cvetne/cvetnaTapeta20.webp",
+      "src": "/tapete/cvetne/cvetnaTapeta20.webp?v=e2977349",
       "width": 600,
-      "height": 620,
-      "color": "#084858"
+      "height": 599,
+      "color": "#f8f8f8"
     },
     {
       "id": "tapete/cvetne/cvetna-tapeta-21",
@@ -614,9 +614,9 @@
       "collection": "cvetne",
       "slug": "cvetna-tapeta-21",
       "name": "Cvetna tapeta 21",
-      "src": "/tapete/cvetne/cvetnaTapeta21.webp",
+      "src": "/tapete/cvetne/cvetnaTapeta21.webp?v=5298e762",
       "width": 600,
-      "height": 620,
+      "height": 383,
       "color": "#f8f8f8"
     },
     {
@@ -625,10 +625,10 @@
       "collection": "cvetne",
       "slug": "cvetna-tapeta-22",
       "name": "Cvetna tapeta 22",
-      "src": "/tapete/cvetne/cvetnaTapeta22.webp",
+      "src": "/tapete/cvetne/cvetnaTapeta22.webp?v=340c7e3f",
       "width": 600,
-      "height": 620,
-      "color": "#f8f8f8"
+      "height": 399,
+      "color": "#f8f8e8"
     },
     {
       "id": "tapete/cvetne/cvetna-tapeta-23",
@@ -636,32 +636,10 @@
       "collection": "cvetne",
       "slug": "cvetna-tapeta-23",
       "name": "Cvetna tapeta 23",
-      "src": "/tapete/cvetne/cvetnaTapeta23.webp",
+      "src": "/tapete/cvetne/cvetnaTapeta23.webp?v=61e7a9c5",
       "width": 600,
-      "height": 404,
-      "color": "#f8f8f8"
-    },
-    {
-      "id": "tapete/cvetne/cvetna-tapeta-24",
-      "category": "tapete",
-      "collection": "cvetne",
-      "slug": "cvetna-tapeta-24",
-      "name": "Cvetna tapeta 24",
-      "src": "/tapete/cvetne/cvetnaTapeta24.webp",
-      "width": 600,
-      "height": 420,
-      "color": "#f8f8d8"
-    },
-    {
-      "id": "tapete/cvetne/cvetna-tapeta-25",
-      "category": "tapete",
-      "collection": "cvetne",
-      "slug": "cvetna-tapeta-25",
-      "name": "Cvetna tapeta 25",
-      "src": "/tapete/cvetne/cvetnaTapeta25.webp",
-      "width": 600,
-      "height": 418,
-      "color": "#f8f8f8"
+      "height": 398,
+      "color": "#f8f8e8"
     },
     {
       "id": "tapete/3d/3d-tapeta-01",
@@ -669,9 +647,9 @@
       "collection": "3d",
       "slug": "3d-tapeta-01",
       "name": "3D tapeta 01",
-      "src": "/tapete/3d/3Dtapete1.webp",
+      "src": "/tapete/3d/3Dtapete1.webp?v=73ed1a47",
       "width": 600,
-      "height": 377,
+      "height": 356,
       "color": "#c8d8d8"
     },
     {
@@ -680,10 +658,10 @@
       "collection": "3d",
       "slug": "3d-tapeta-02",
       "name": "3D tapeta 02",
-      "src": "/tapete/3d/3Dtapete2.webp",
+      "src": "/tapete/3d/3Dtapete2.webp?v=c262c2c0",
       "width": 600,
-      "height": 416,
-      "color": "#f8f8f8"
+      "height": 395,
+      "color": "#a8a8a8"
     },
     {
       "id": "tapete/3d/3d-tapeta-03",
@@ -691,10 +669,10 @@
       "collection": "3d",
       "slug": "3d-tapeta-03",
       "name": "3D tapeta 03",
-      "src": "/tapete/3d/3Dtapete3.webp",
+      "src": "/tapete/3d/3Dtapete3.webp?v=20f19cfe",
       "width": 600,
-      "height": 260,
-      "color": "#f8f8f8"
+      "height": 240,
+      "color": "#f8e848"
     },
     {
       "id": "tapete/3d/3d-tapeta-04",
@@ -702,10 +680,10 @@
       "collection": "3d",
       "slug": "3d-tapeta-04",
       "name": "3D tapeta 04",
-      "src": "/tapete/3d/3Dtapete4.webp",
-      "width": 600,
-      "height": 358,
-      "color": "#c89868"
+      "src": "/tapete/3d/3Dtapete4.webp?v=672ffc38",
+      "width": 1328,
+      "height": 754,
+      "color": "#b89868"
     },
     {
       "id": "tapete/3d/3d-tapeta-05",
@@ -713,10 +691,10 @@
       "collection": "3d",
       "slug": "3d-tapeta-05",
       "name": "3D tapeta 05",
-      "src": "/tapete/3d/3Dtapete5.webp",
+      "src": "/tapete/3d/3Dtapete5.webp?v=5bb83d74",
       "width": 600,
       "height": 420,
-      "color": "#c8c8c8"
+      "color": "#989898"
     },
     {
       "id": "tapete/3d/3d-tapeta-06",
@@ -724,10 +702,10 @@
       "collection": "3d",
       "slug": "3d-tapeta-06",
       "name": "3D tapeta 06",
-      "src": "/tapete/3d/3Dtapete6.webp",
+      "src": "/tapete/3d/3Dtapete6.webp?v=5f4fd34c",
       "width": 600,
-      "height": 620,
-      "color": "#d8d8d8"
+      "height": 599,
+      "color": "#c8c8c8"
     },
     {
       "id": "tapete/3d/3d-tapeta-07",
@@ -735,9 +713,9 @@
       "collection": "3d",
       "slug": "3d-tapeta-07",
       "name": "3D tapeta 07",
-      "src": "/tapete/3d/3Dtapete7.webp",
+      "src": "/tapete/3d/3Dtapete7.webp?v=f1cd3f6b",
       "width": 600,
-      "height": 261,
+      "height": 244,
       "color": "#e8e8e8"
     },
     {
@@ -746,9 +724,9 @@
       "collection": "3d",
       "slug": "3d-tapeta-08",
       "name": "3D tapeta 08",
-      "src": "/tapete/3d/3Dtapete8.webp",
-      "width": 600,
-      "height": 620,
+      "src": "/tapete/3d/3Dtapete8.webp?v=8309d24c",
+      "width": 1024,
+      "height": 1004,
       "color": "#c8c8c8"
     },
     {
@@ -757,9 +735,9 @@
       "collection": "3d",
       "slug": "3d-tapeta-09",
       "name": "3D tapeta 09",
-      "src": "/tapete/3d/3Dtapete9.webp",
-      "width": 600,
-      "height": 620,
+      "src": "/tapete/3d/3Dtapete9.webp?v=4cb42cd1",
+      "width": 1024,
+      "height": 1024,
       "color": "#d8d8d8"
     },
     {
@@ -768,9 +746,9 @@
       "collection": "3d",
       "slug": "3d-tapeta-10",
       "name": "3D tapeta 10",
-      "src": "/tapete/3d/3Dtapete10.webp",
-      "width": 600,
-      "height": 620,
+      "src": "/tapete/3d/3Dtapete10.webp?v=153182f4",
+      "width": 1024,
+      "height": 1024,
       "color": "#d8d8c8"
     },
     {
@@ -779,9 +757,9 @@
       "collection": "3d",
       "slug": "3d-tapeta-11",
       "name": "3D tapeta 11",
-      "src": "/tapete/3d/3Dtapete11.webp",
-      "width": 600,
-      "height": 620,
+      "src": "/tapete/3d/3Dtapete11.webp?v=19042f59",
+      "width": 1024,
+      "height": 1024,
       "color": "#d8a8a8"
     },
     {
@@ -790,9 +768,9 @@
       "collection": "3d",
       "slug": "3d-tapeta-12",
       "name": "3D tapeta 12",
-      "src": "/tapete/3d/3Dtapete12.webp",
+      "src": "/tapete/3d/3Dtapete12.webp?v=fd2ef7c3",
       "width": 600,
-      "height": 420,
+      "height": 399,
       "color": "#f8f8e8"
     },
     {
@@ -801,9 +779,9 @@
       "collection": "3d",
       "slug": "3d-tapeta-13",
       "name": "3D tapeta 13",
-      "src": "/tapete/3d/3Dtapete13.webp",
+      "src": "/tapete/3d/3Dtapete13.webp?v=f71d914c",
       "width": 600,
-      "height": 420,
+      "height": 400,
       "color": "#f8f8f8"
     },
     {
@@ -812,9 +790,9 @@
       "collection": "3d",
       "slug": "3d-tapeta-14",
       "name": "3D tapeta 14",
-      "src": "/tapete/3d/3Dtapete14.webp",
+      "src": "/tapete/3d/3Dtapete14.webp?v=a68a184d",
       "width": 600,
-      "height": 264,
+      "height": 244,
       "color": "#080808"
     },
     {
@@ -823,9 +801,9 @@
       "collection": "3d",
       "slug": "3d-tapeta-15",
       "name": "3D tapeta 15",
-      "src": "/tapete/3d/3Dtapete15.webp",
+      "src": "/tapete/3d/3Dtapete15.webp?v=ca2f9bb1",
       "width": 600,
-      "height": 620,
+      "height": 600,
       "color": "#080808"
     },
     {
@@ -834,9 +812,9 @@
       "collection": "3d",
       "slug": "3d-tapeta-16",
       "name": "3D tapeta 16",
-      "src": "/tapete/3d/3Dtapete16.webp",
+      "src": "/tapete/3d/3Dtapete16.webp?v=ef4fbdb6",
       "width": 600,
-      "height": 277,
+      "height": 256,
       "color": "#080808"
     },
     {
@@ -845,9 +823,9 @@
       "collection": "3d",
       "slug": "3d-tapeta-17",
       "name": "3D tapeta 17",
-      "src": "/tapete/3d/3Dtapete17.webp",
+      "src": "/tapete/3d/3Dtapete17.webp?v=ef75dfc6",
       "width": 600,
-      "height": 320,
+      "height": 300,
       "color": "#f8f8f8"
     },
     {
@@ -856,9 +834,9 @@
       "collection": "3d",
       "slug": "3d-tapeta-18",
       "name": "3D tapeta 18",
-      "src": "/tapete/3d/3Dtapete18.webp",
+      "src": "/tapete/3d/3Dtapete18.webp?v=8f635b83",
       "width": 600,
-      "height": 620,
+      "height": 600,
       "color": "#d8d8d8"
     },
     {
@@ -867,9 +845,9 @@
       "collection": "3d",
       "slug": "3d-tapeta-19",
       "name": "3D tapeta 19",
-      "src": "/tapete/3d/3Dtapete19.webp",
+      "src": "/tapete/3d/3Dtapete19.webp?v=faa52596",
       "width": 600,
-      "height": 620,
+      "height": 600,
       "color": "#a8b8a8"
     },
     {
@@ -878,9 +856,9 @@
       "collection": "3d",
       "slug": "3d-tapeta-20",
       "name": "3D tapeta 20",
-      "src": "/tapete/3d/3Dtapete20.webp",
+      "src": "/tapete/3d/3Dtapete20.webp?v=70a40b42",
       "width": 600,
-      "height": 620,
+      "height": 601,
       "color": "#f8f8f8"
     },
     {
@@ -889,9 +867,9 @@
       "collection": "3d",
       "slug": "3d-tapeta-21",
       "name": "3D tapeta 21",
-      "src": "/tapete/3d/3Dtapete21.webp",
+      "src": "/tapete/3d/3Dtapete21.webp?v=119cc902",
       "width": 600,
-      "height": 620,
+      "height": 600,
       "color": "#f8f8f8"
     },
     {
@@ -900,9 +878,9 @@
       "collection": "3d",
       "slug": "3d-tapeta-22",
       "name": "3D tapeta 22",
-      "src": "/tapete/3d/3Dtapete22.webp",
+      "src": "/tapete/3d/3Dtapete22.webp?v=cf88f6c3",
       "width": 600,
-      "height": 620,
+      "height": 600,
       "color": "#c8d8c8"
     },
     {
@@ -911,9 +889,9 @@
       "collection": "3d",
       "slug": "3d-tapeta-23",
       "name": "3D tapeta 23",
-      "src": "/tapete/3d/3Dtapete23.webp",
+      "src": "/tapete/3d/3Dtapete23.webp?v=f90effcd",
       "width": 600,
-      "height": 620,
+      "height": 600,
       "color": "#f8f8f8"
     },
     {
@@ -922,9 +900,9 @@
       "collection": "grad",
       "slug": "gradska-tapeta-01",
       "name": "Gradska tapeta 01",
-      "src": "/tapete/grad/gradTapete1.webp",
+      "src": "/tapete/grad/gradTapete1.webp?v=750bba1f",
       "width": 600,
-      "height": 254,
+      "height": 233,
       "color": "#f8a868"
     },
     {
@@ -933,9 +911,9 @@
       "collection": "grad",
       "slug": "gradska-tapeta-02",
       "name": "Gradska tapeta 02",
-      "src": "/tapete/grad/gradTapete2.webp",
+      "src": "/tapete/grad/gradTapete2.webp?v=eb0a9751",
       "width": 600,
-      "height": 230,
+      "height": 209,
       "color": "#080808"
     },
     {
@@ -944,9 +922,9 @@
       "collection": "grad",
       "slug": "gradska-tapeta-03",
       "name": "Gradska tapeta 03",
-      "src": "/tapete/grad/gradTapete3.webp",
+      "src": "/tapete/grad/gradTapete3.webp?v=e132f936",
       "width": 600,
-      "height": 270,
+      "height": 253,
       "color": "#f8f8f8"
     },
     {
@@ -955,9 +933,9 @@
       "collection": "grad",
       "slug": "gradska-tapeta-04",
       "name": "Gradska tapeta 04",
-      "src": "/tapete/grad/gradTapete4.webp",
+      "src": "/tapete/grad/gradTapete4.webp?v=47ab33d0",
       "width": 600,
-      "height": 419,
+      "height": 393,
       "color": "#f8f8f8"
     },
     {
@@ -966,9 +944,9 @@
       "collection": "grad",
       "slug": "gradska-tapeta-05",
       "name": "Gradska tapeta 05",
-      "src": "/tapete/grad/gradTapete5.webp",
+      "src": "/tapete/grad/gradTapete5.webp?v=eb7b6ad4",
       "width": 600,
-      "height": 620,
+      "height": 600,
       "color": "#e8e8c8"
     },
     {
@@ -977,9 +955,9 @@
       "collection": "grad",
       "slug": "gradska-tapeta-06",
       "name": "Gradska tapeta 06",
-      "src": "/tapete/grad/gradTapete6.webp",
+      "src": "/tapete/grad/gradTapete6.webp?v=c7a73361",
       "width": 600,
-      "height": 358,
+      "height": 336,
       "color": "#081828"
     },
     {
@@ -988,10 +966,10 @@
       "collection": "grad",
       "slug": "gradska-tapeta-07",
       "name": "Gradska tapeta 07",
-      "src": "/tapete/grad/gradTapete7.webp",
+      "src": "/tapete/grad/gradTapete7.webp?v=d3f797cf",
       "width": 600,
-      "height": 357,
-      "color": "#f8f8f8"
+      "height": 336,
+      "color": "#a8e8f8"
     },
     {
       "id": "tapete/grad/gradska-tapeta-08",
@@ -999,9 +977,9 @@
       "collection": "grad",
       "slug": "gradska-tapeta-08",
       "name": "Gradska tapeta 08",
-      "src": "/tapete/grad/gradTapete8.webp",
+      "src": "/tapete/grad/gradTapete8.webp?v=dadc18d1",
       "width": 600,
-      "height": 358,
+      "height": 335,
       "color": "#98d8e8"
     },
     {
@@ -1010,9 +988,9 @@
       "collection": "grad",
       "slug": "gradska-tapeta-09",
       "name": "Gradska tapeta 09",
-      "src": "/tapete/grad/gradTapete9.webp",
+      "src": "/tapete/grad/gradTapete9.webp?v=46a8fe95",
       "width": 600,
-      "height": 372,
+      "height": 351,
       "color": "#e8d8c8"
     },
     {
@@ -1021,9 +999,9 @@
       "collection": "grad",
       "slug": "gradska-tapeta-10",
       "name": "Gradska tapeta 10",
-      "src": "/tapete/grad/gradTapete10.webp",
+      "src": "/tapete/grad/gradTapete10.webp?v=d45d7d89",
       "width": 600,
-      "height": 260,
+      "height": 242,
       "color": "#f8f8f8"
     },
     {
@@ -1032,9 +1010,9 @@
       "collection": "grad",
       "slug": "gradska-tapeta-11",
       "name": "Gradska tapeta 11",
-      "src": "/tapete/grad/gradTapete11.webp",
+      "src": "/tapete/grad/gradTapete11.webp?v=1e51baff",
       "width": 600,
-      "height": 247,
+      "height": 226,
       "color": "#181818"
     },
     {
@@ -1043,9 +1021,9 @@
       "collection": "grad",
       "slug": "gradska-tapeta-12",
       "name": "Gradska tapeta 12",
-      "src": "/tapete/grad/gradTapete12.webp",
+      "src": "/tapete/grad/gradTapete12.webp?v=90411d64",
       "width": 600,
-      "height": 620,
+      "height": 597,
       "color": "#080808"
     },
     {
@@ -1054,9 +1032,9 @@
       "collection": "grad",
       "slug": "gradska-tapeta-13",
       "name": "Gradska tapeta 13",
-      "src": "/tapete/grad/gradTapete13.webp",
+      "src": "/tapete/grad/gradTapete13.webp?v=8f1da72b",
       "width": 600,
-      "height": 316,
+      "height": 297,
       "color": "#f8f8f8"
     },
     {
@@ -1065,9 +1043,9 @@
       "collection": "grad",
       "slug": "gradska-tapeta-14",
       "name": "Gradska tapeta 14",
-      "src": "/tapete/grad/gradTapete14.webp",
+      "src": "/tapete/grad/gradTapete14.webp?v=28307e57",
       "width": 600,
-      "height": 563,
+      "height": 541,
       "color": "#e8e8e8"
     },
     {
@@ -1076,9 +1054,9 @@
       "collection": "grad",
       "slug": "gradska-tapeta-15",
       "name": "Gradska tapeta 15",
-      "src": "/tapete/grad/gradTapete15.webp",
+      "src": "/tapete/grad/gradTapete15.webp?v=ccb808ab",
       "width": 600,
-      "height": 498,
+      "height": 480,
       "color": "#f8f8f8"
     },
     {
@@ -1087,9 +1065,9 @@
       "collection": "grad",
       "slug": "gradska-tapeta-16",
       "name": "Gradska tapeta 16",
-      "src": "/tapete/grad/gradTapete16.webp",
+      "src": "/tapete/grad/gradTapete16.webp?v=baa4a636",
       "width": 600,
-      "height": 357,
+      "height": 335,
       "color": "#080808"
     },
     {
@@ -1098,9 +1076,9 @@
       "collection": "grad",
       "slug": "gradska-tapeta-17",
       "name": "Gradska tapeta 17",
-      "src": "/tapete/grad/gradTapete17.webp",
+      "src": "/tapete/grad/gradTapete17.webp?v=21223f03",
       "width": 600,
-      "height": 620,
+      "height": 600,
       "color": "#f8f8f8"
     },
     {
@@ -1109,9 +1087,9 @@
       "collection": "grad",
       "slug": "gradska-tapeta-18",
       "name": "Gradska tapeta 18",
-      "src": "/tapete/grad/gradTapete18.webp",
+      "src": "/tapete/grad/gradTapete18.webp?v=8bc7f748",
       "width": 600,
-      "height": 620,
+      "height": 596,
       "color": "#f8f8f8"
     },
     {
@@ -1120,9 +1098,9 @@
       "collection": "grad",
       "slug": "gradska-tapeta-19",
       "name": "Gradska tapeta 19",
-      "src": "/tapete/grad/gradTapete19.webp",
+      "src": "/tapete/grad/gradTapete19.webp?v=d5995071",
       "width": 600,
-      "height": 620,
+      "height": 600,
       "color": "#f8f8f8"
     },
     {
@@ -1131,9 +1109,9 @@
       "collection": "grad",
       "slug": "gradska-tapeta-20",
       "name": "Gradska tapeta 20",
-      "src": "/tapete/grad/gradTapete20.webp",
+      "src": "/tapete/grad/gradTapete20.webp?v=2b6ea8fe",
       "width": 600,
-      "height": 420,
+      "height": 395,
       "color": "#f8f8f8"
     },
     {
@@ -1142,9 +1120,9 @@
       "collection": "grad",
       "slug": "gradska-tapeta-21",
       "name": "Gradska tapeta 21",
-      "src": "/tapete/grad/gradTapete21.webp",
+      "src": "/tapete/grad/gradTapete21.webp?v=6c7173a2",
       "width": 600,
-      "height": 245,
+      "height": 223,
       "color": "#4898c8"
     },
     {
@@ -1153,9 +1131,9 @@
       "collection": "grad",
       "slug": "gradska-tapeta-22",
       "name": "Gradska tapeta 22",
-      "src": "/tapete/grad/gradTapete22.webp",
+      "src": "/tapete/grad/gradTapete22.webp?v=59606522",
       "width": 600,
-      "height": 320,
+      "height": 302,
       "color": "#f8f8f8"
     },
     {
@@ -1164,9 +1142,9 @@
       "collection": "grad",
       "slug": "gradska-tapeta-23",
       "name": "Gradska tapeta 23",
-      "src": "/tapete/grad/gradTapete23.webp",
+      "src": "/tapete/grad/gradTapete23.webp?v=9fb2da9f",
       "width": 600,
-      "height": 363,
+      "height": 342,
       "color": "#f8f8f8"
     },
     {
@@ -1175,9 +1153,9 @@
       "collection": "grad",
       "slug": "gradska-tapeta-24",
       "name": "Gradska tapeta 24",
-      "src": "/tapete/grad/gradTapete24.webp",
+      "src": "/tapete/grad/gradTapete24.webp?v=63f34ace",
       "width": 600,
-      "height": 419,
+      "height": 395,
       "color": "#f8f8f8"
     },
     {
@@ -1186,9 +1164,9 @@
       "collection": "grad",
       "slug": "gradska-tapeta-25",
       "name": "Gradska tapeta 25",
-      "src": "/tapete/grad/gradTapete25.webp",
+      "src": "/tapete/grad/gradTapete25.webp?v=5fed2de2",
       "width": 600,
-      "height": 620,
+      "height": 596,
       "color": "#e8e8e8"
     },
     {
@@ -1197,9 +1175,9 @@
       "collection": "mermer",
       "slug": "mermerna-tapeta-01",
       "name": "Mermerna tapeta 01",
-      "src": "/tapete/mermer/mermerTapete1.webp",
+      "src": "/tapete/mermer/mermerTapete1.webp?v=d696d823",
       "width": 600,
-      "height": 320,
+      "height": 301,
       "color": "#f8f8f8"
     },
     {
@@ -1208,9 +1186,9 @@
       "collection": "mermer",
       "slug": "mermerna-tapeta-02",
       "name": "Mermerna tapeta 02",
-      "src": "/tapete/mermer/mermerTapete2.webp",
+      "src": "/tapete/mermer/mermerTapete2.webp?v=a4c4ac60",
       "width": 600,
-      "height": 471,
+      "height": 450,
       "color": "#f8f8f8"
     },
     {
@@ -1219,9 +1197,9 @@
       "collection": "mermer",
       "slug": "mermerna-tapeta-03",
       "name": "Mermerna tapeta 03",
-      "src": "/tapete/mermer/mermerTapete3.webp",
+      "src": "/tapete/mermer/mermerTapete3.webp?v=450e32d0",
       "width": 600,
-      "height": 320,
+      "height": 299,
       "color": "#e8e8e8"
     },
     {
@@ -1230,9 +1208,9 @@
       "collection": "mermer",
       "slug": "mermerna-tapeta-04",
       "name": "Mermerna tapeta 04",
-      "src": "/tapete/mermer/mermerTapete4.webp",
+      "src": "/tapete/mermer/mermerTapete4.webp?v=89814226",
       "width": 600,
-      "height": 324,
+      "height": 304,
       "color": "#e8e8e8"
     },
     {
@@ -1241,9 +1219,9 @@
       "collection": "mermer",
       "slug": "mermerna-tapeta-05",
       "name": "Mermerna tapeta 05",
-      "src": "/tapete/mermer/mermerTapete5.webp",
+      "src": "/tapete/mermer/mermerTapete5.webp?v=e5fc6b9d",
       "width": 600,
-      "height": 320,
+      "height": 300,
       "color": "#d8d8d8"
     },
     {
@@ -1252,9 +1230,9 @@
       "collection": "mermer",
       "slug": "mermerna-tapeta-06",
       "name": "Mermerna tapeta 06",
-      "src": "/tapete/mermer/mermerTapete6.webp",
+      "src": "/tapete/mermer/mermerTapete6.webp?v=6316e995",
       "width": 600,
-      "height": 301,
+      "height": 279,
       "color": "#d8e8e8"
     },
     {
@@ -1263,9 +1241,9 @@
       "collection": "mermer",
       "slug": "mermerna-tapeta-07",
       "name": "Mermerna tapeta 07",
-      "src": "/tapete/mermer/mermerTapete7.webp",
+      "src": "/tapete/mermer/mermerTapete7.webp?v=340bca46",
       "width": 600,
-      "height": 420,
+      "height": 400,
       "color": "#e8e8e8"
     },
     {
@@ -1274,9 +1252,9 @@
       "collection": "mermer",
       "slug": "mermerna-tapeta-08",
       "name": "Mermerna tapeta 08",
-      "src": "/tapete/mermer/mermerTapete8.webp",
+      "src": "/tapete/mermer/mermerTapete8.webp?v=bcdb27a5",
       "width": 600,
-      "height": 320,
+      "height": 300,
       "color": "#e8e8e8"
     },
     {
@@ -1285,9 +1263,9 @@
       "collection": "mermer",
       "slug": "mermerna-tapeta-09",
       "name": "Mermerna tapeta 09",
-      "src": "/tapete/mermer/mermerTapete9.webp",
+      "src": "/tapete/mermer/mermerTapete9.webp?v=d75dd704",
       "width": 600,
-      "height": 320,
+      "height": 300,
       "color": "#f8f8f8"
     },
     {
@@ -1296,9 +1274,9 @@
       "collection": "mermer",
       "slug": "mermerna-tapeta-10",
       "name": "Mermerna tapeta 10",
-      "src": "/tapete/mermer/mermerTapete10.webp",
+      "src": "/tapete/mermer/mermerTapete10.webp?v=709ab909",
       "width": 600,
-      "height": 320,
+      "height": 299,
       "color": "#686868"
     },
     {
@@ -1307,9 +1285,9 @@
       "collection": "mermer",
       "slug": "mermerna-tapeta-11",
       "name": "Mermerna tapeta 11",
-      "src": "/tapete/mermer/mermerTapete11.webp",
+      "src": "/tapete/mermer/mermerTapete11.webp?v=a9ecf74b",
       "width": 600,
-      "height": 320,
+      "height": 300,
       "color": "#080808"
     },
     {
@@ -1318,9 +1296,9 @@
       "collection": "mermer",
       "slug": "mermerna-tapeta-12",
       "name": "Mermerna tapeta 12",
-      "src": "/tapete/mermer/mermerTapete12.webp",
+      "src": "/tapete/mermer/mermerTapete12.webp?v=265fbe62",
       "width": 600,
-      "height": 320,
+      "height": 300,
       "color": "#b8b8b8"
     },
     {
@@ -1329,9 +1307,9 @@
       "collection": "mermer",
       "slug": "mermerna-tapeta-13",
       "name": "Mermerna tapeta 13",
-      "src": "/tapete/mermer/mermerTapete13.webp",
+      "src": "/tapete/mermer/mermerTapete13.webp?v=8758b0ce",
       "width": 600,
-      "height": 220,
+      "height": 200,
       "color": "#282828"
     },
     {
@@ -1340,9 +1318,9 @@
       "collection": "mermer",
       "slug": "mermerna-tapeta-14",
       "name": "Mermerna tapeta 14",
-      "src": "/tapete/mermer/mermerTapete14.webp",
+      "src": "/tapete/mermer/mermerTapete14.webp?v=a006300d",
       "width": 600,
-      "height": 620,
+      "height": 600,
       "color": "#d8c8b8"
     },
     {
@@ -1351,9 +1329,9 @@
       "collection": "mermer",
       "slug": "mermerna-tapeta-15",
       "name": "Mermerna tapeta 15",
-      "src": "/tapete/mermer/mermerTapete15.webp",
+      "src": "/tapete/mermer/mermerTapete15.webp?v=82eaaaab",
       "width": 600,
-      "height": 309,
+      "height": 289,
       "color": "#f8f8f8"
     },
     {
@@ -1362,9 +1340,9 @@
       "collection": "mermer",
       "slug": "mermerna-tapeta-16",
       "name": "Mermerna tapeta 16",
-      "src": "/tapete/mermer/mermerTapete16.webp",
+      "src": "/tapete/mermer/mermerTapete16.webp?v=4361f800",
       "width": 600,
-      "height": 320,
+      "height": 299,
       "color": "#c8a888"
     },
     {
@@ -1373,9 +1351,9 @@
       "collection": "mermer",
       "slug": "mermerna-tapeta-17",
       "name": "Mermerna tapeta 17",
-      "src": "/tapete/mermer/mermerTapete17.webp",
+      "src": "/tapete/mermer/mermerTapete17.webp?v=1c113f05",
       "width": 600,
-      "height": 320,
+      "height": 300,
       "color": "#e8c8c8"
     },
     {
@@ -1384,9 +1362,9 @@
       "collection": "mermer",
       "slug": "mermerna-tapeta-18",
       "name": "Mermerna tapeta 18",
-      "src": "/tapete/mermer/mermerTapete18.webp",
+      "src": "/tapete/mermer/mermerTapete18.webp?v=53363418",
       "width": 600,
-      "height": 363,
+      "height": 343,
       "color": "#082848"
     },
     {
@@ -1395,10 +1373,10 @@
       "collection": "mermer",
       "slug": "mermerna-tapeta-19",
       "name": "Mermerna tapeta 19",
-      "src": "/tapete/mermer/mermerTapete19.webp",
+      "src": "/tapete/mermer/mermerTapete19.webp?v=73478bf3",
       "width": 600,
-      "height": 234,
-      "color": "#f8f8f8"
+      "height": 214,
+      "color": "#d8d8c8"
     },
     {
       "id": "tapete/mermer/mermerna-tapeta-20",
@@ -1406,9 +1384,9 @@
       "collection": "mermer",
       "slug": "mermerna-tapeta-20",
       "name": "Mermerna tapeta 20",
-      "src": "/tapete/mermer/mermerTapete20.webp",
+      "src": "/tapete/mermer/mermerTapete20.webp?v=e0230e84",
       "width": 600,
-      "height": 320,
+      "height": 300,
       "color": "#989898"
     },
     {
@@ -1417,10 +1395,10 @@
       "collection": "mermer",
       "slug": "mermerna-tapeta-21",
       "name": "Mermerna tapeta 21",
-      "src": "/tapete/mermer/mermerTapete21.webp",
+      "src": "/tapete/mermer/mermerTapete21.webp?v=0f1009f1",
       "width": 600,
-      "height": 363,
-      "color": "#f8f8f8"
+      "height": 342,
+      "color": "#d8d8c8"
     },
     {
       "id": "tapete/mermer/mermerna-tapeta-22",
@@ -1428,9 +1406,9 @@
       "collection": "mermer",
       "slug": "mermerna-tapeta-22",
       "name": "Mermerna tapeta 22",
-      "src": "/tapete/mermer/mermerTapete22.webp",
+      "src": "/tapete/mermer/mermerTapete22.webp?v=eeda408c",
       "width": 600,
-      "height": 364,
+      "height": 344,
       "color": "#e8d8c8"
     },
     {
@@ -1439,9 +1417,9 @@
       "collection": "mermer",
       "slug": "mermerna-tapeta-23",
       "name": "Mermerna tapeta 23",
-      "src": "/tapete/mermer/mermerTapete23.webp",
+      "src": "/tapete/mermer/mermerTapete23.webp?v=e36299f7",
       "width": 600,
-      "height": 320,
+      "height": 299,
       "color": "#787878"
     },
     {
@@ -1450,9 +1428,9 @@
       "collection": "mermer",
       "slug": "mermerna-tapeta-24",
       "name": "Mermerna tapeta 24",
-      "src": "/tapete/mermer/mermerTapete24.webp",
+      "src": "/tapete/mermer/mermerTapete24.webp?v=56f5a898",
       "width": 600,
-      "height": 358,
+      "height": 338,
       "color": "#e8e8e8"
     },
     {
@@ -1461,9 +1439,9 @@
       "collection": "mermer",
       "slug": "mermerna-tapeta-25",
       "name": "Mermerna tapeta 25",
-      "src": "/tapete/mermer/mermerTapete25.webp",
+      "src": "/tapete/mermer/mermerTapete25.webp?v=634e784b",
       "width": 600,
-      "height": 620,
+      "height": 599,
       "color": "#e8f8f8"
     },
     {
@@ -1472,7 +1450,7 @@
       "collection": "decije",
       "slug": "deciji-stiker-01",
       "name": "Dečiji stiker 01",
-      "src": "/stikeri/decije/stikerDeca1.webp",
+      "src": "/stikeri/decije/stikerDeca1.webp?v=22fdcd6f",
       "width": 600,
       "height": 620,
       "color": "#f8f8f8"
@@ -1483,7 +1461,7 @@
       "collection": "decije",
       "slug": "deciji-stiker-02",
       "name": "Dečiji stiker 02",
-      "src": "/stikeri/decije/stikerDeca2.webp",
+      "src": "/stikeri/decije/stikerDeca2.webp?v=50bcc620",
       "width": 445,
       "height": 620,
       "color": "#f8f8f8"
@@ -1494,7 +1472,7 @@
       "collection": "decije",
       "slug": "deciji-stiker-03",
       "name": "Dečiji stiker 03",
-      "src": "/stikeri/decije/stikerDeca3.webp",
+      "src": "/stikeri/decije/stikerDeca3.webp?v=dfabe690",
       "width": 600,
       "height": 620,
       "color": "#f8f8f8"
@@ -1505,7 +1483,7 @@
       "collection": "decije",
       "slug": "deciji-stiker-04",
       "name": "Dečiji stiker 04",
-      "src": "/stikeri/decije/stikerDeca4.webp",
+      "src": "/stikeri/decije/stikerDeca4.webp?v=68853cf6",
       "width": 600,
       "height": 620,
       "color": "#f8f8f8"
@@ -1516,7 +1494,7 @@
       "collection": "decije",
       "slug": "deciji-stiker-05",
       "name": "Dečiji stiker 05",
-      "src": "/stikeri/decije/stikerDeca5.webp",
+      "src": "/stikeri/decije/stikerDeca5.webp?v=41e26d48",
       "width": 516,
       "height": 620,
       "color": "#f8f8f8"
@@ -1527,7 +1505,7 @@
       "collection": "decije",
       "slug": "deciji-stiker-06",
       "name": "Dečiji stiker 06",
-      "src": "/stikeri/decije/stikerDeca6.webp",
+      "src": "/stikeri/decije/stikerDeca6.webp?v=a9083de6",
       "width": 484,
       "height": 620,
       "color": "#f8f8f8"
@@ -1538,7 +1516,7 @@
       "collection": "decije",
       "slug": "deciji-stiker-07",
       "name": "Dečiji stiker 07",
-      "src": "/stikeri/decije/stikerDeca7.webp",
+      "src": "/stikeri/decije/stikerDeca7.webp?v=6d4789b7",
       "width": 600,
       "height": 620,
       "color": "#f8f8f8"
@@ -1549,7 +1527,7 @@
       "collection": "decije",
       "slug": "deciji-stiker-08",
       "name": "Dečiji stiker 08",
-      "src": "/stikeri/decije/stikerDeca8.webp",
+      "src": "/stikeri/decije/stikerDeca8.webp?v=66f690b5",
       "width": 600,
       "height": 273,
       "color": "#f8f8f8"
@@ -1560,7 +1538,7 @@
       "collection": "decije",
       "slug": "deciji-stiker-09",
       "name": "Dečiji stiker 09",
-      "src": "/stikeri/decije/stikerDeca9.webp",
+      "src": "/stikeri/decije/stikerDeca9.webp?v=a9900d0b",
       "width": 600,
       "height": 308,
       "color": "#f8f8f8"
@@ -1571,9 +1549,9 @@
       "collection": "decije",
       "slug": "deciji-stiker-10",
       "name": "Dečiji stiker 10",
-      "src": "/stikeri/decije/stikerDeca10.webp",
+      "src": "/stikeri/decije/stikerDeca10.webp?v=52169a7a",
       "width": 600,
-      "height": 291,
+      "height": 275,
       "color": "#f8f8f8"
     },
     {
@@ -1582,9 +1560,9 @@
       "collection": "decije",
       "slug": "deciji-stiker-11",
       "name": "Dečiji stiker 11",
-      "src": "/stikeri/decije/stikerDeca11.webp",
+      "src": "/stikeri/decije/stikerDeca11.webp?v=5714c94b",
       "width": 600,
-      "height": 315,
+      "height": 294,
       "color": "#f8f8f8"
     },
     {
@@ -1593,9 +1571,9 @@
       "collection": "decije",
       "slug": "deciji-stiker-12",
       "name": "Dečiji stiker 12",
-      "src": "/stikeri/decije/stikerDeca12.webp",
+      "src": "/stikeri/decije/stikerDeca12.webp?v=ee060769",
       "width": 600,
-      "height": 620,
+      "height": 600,
       "color": "#d8d8d8"
     },
     {
@@ -1604,7 +1582,7 @@
       "collection": "decije",
       "slug": "deciji-stiker-13",
       "name": "Dečiji stiker 13",
-      "src": "/stikeri/decije/stikerDeca13.webp",
+      "src": "/stikeri/decije/stikerDeca13.webp?v=c9eee33b",
       "width": 600,
       "height": 620,
       "color": "#f8f8f8"
@@ -1615,9 +1593,9 @@
       "collection": "decije",
       "slug": "deciji-stiker-14",
       "name": "Dečiji stiker 14",
-      "src": "/stikeri/decije/stikerDeca14.webp",
+      "src": "/stikeri/decije/stikerDeca14.webp?v=620cc7d1",
       "width": 600,
-      "height": 620,
+      "height": 599,
       "color": "#f8f8f8"
     },
     {
@@ -1626,9 +1604,9 @@
       "collection": "decije",
       "slug": "deciji-stiker-15",
       "name": "Dečiji stiker 15",
-      "src": "/stikeri/decije/stikerDeca15.webp",
+      "src": "/stikeri/decije/stikerDeca15.webp?v=9e35d101",
       "width": 600,
-      "height": 620,
+      "height": 600,
       "color": "#281828"
     },
     {
@@ -1637,7 +1615,7 @@
       "collection": "decije",
       "slug": "deciji-stiker-16",
       "name": "Dečiji stiker 16",
-      "src": "/stikeri/decije/stikerDeca16.webp",
+      "src": "/stikeri/decije/stikerDeca16.webp?v=a9108326",
       "width": 600,
       "height": 620,
       "color": "#f8f8f8"
@@ -1648,9 +1626,9 @@
       "collection": "decije",
       "slug": "deciji-stiker-17",
       "name": "Dečiji stiker 17",
-      "src": "/stikeri/decije/stikerDeca17.webp",
+      "src": "/stikeri/decije/stikerDeca17.webp?v=7b887fb0",
       "width": 600,
-      "height": 320,
+      "height": 299,
       "color": "#086878"
     },
     {
@@ -1659,9 +1637,9 @@
       "collection": "decije",
       "slug": "deciji-stiker-18",
       "name": "Dečiji stiker 18",
-      "src": "/stikeri/decije/stikerDeca18.webp",
+      "src": "/stikeri/decije/stikerDeca18.webp?v=a6f12354",
       "width": 600,
-      "height": 420,
+      "height": 400,
       "color": "#d8d8d8"
     },
     {
@@ -1670,7 +1648,7 @@
       "collection": "decije",
       "slug": "deciji-stiker-19",
       "name": "Dečiji stiker 19",
-      "src": "/stikeri/decije/stikerDeca19.webp",
+      "src": "/stikeri/decije/stikerDeca19.webp?v=e0609d1e",
       "width": 600,
       "height": 620,
       "color": "#f8f8f8"
@@ -1681,7 +1659,7 @@
       "collection": "decije",
       "slug": "deciji-stiker-20",
       "name": "Dečiji stiker 20",
-      "src": "/stikeri/decije/stikerDeca20.webp",
+      "src": "/stikeri/decije/stikerDeca20.webp?v=f5959752",
       "width": 600,
       "height": 499,
       "color": "#f8f8f8"
@@ -1692,9 +1670,9 @@
       "collection": "decije",
       "slug": "deciji-stiker-21",
       "name": "Dečiji stiker 21",
-      "src": "/stikeri/decije/stikerDeca21.webp",
+      "src": "/stikeri/decije/stikerDeca21.webp?v=bb769d2e",
       "width": 600,
-      "height": 445,
+      "height": 428,
       "color": "#f8f8f8"
     },
     {
@@ -1703,7 +1681,7 @@
       "collection": "decije",
       "slug": "deciji-stiker-22",
       "name": "Dečiji stiker 22",
-      "src": "/stikeri/decije/stikerDeca22.webp",
+      "src": "/stikeri/decije/stikerDeca22.webp?v=b1972141",
       "width": 480,
       "height": 620,
       "color": "#f8f8f8"
@@ -1714,9 +1692,9 @@
       "collection": "decije",
       "slug": "deciji-stiker-23",
       "name": "Dečiji stiker 23",
-      "src": "/stikeri/decije/stikerDeca23.webp",
+      "src": "/stikeri/decije/stikerDeca23.webp?v=892eac88",
       "width": 600,
-      "height": 470,
+      "height": 450,
       "color": "#f8f8f8"
     },
     {
@@ -1725,9 +1703,9 @@
       "collection": "decije",
       "slug": "deciji-stiker-24",
       "name": "Dečiji stiker 24",
-      "src": "/stikeri/decije/stikerDeca24.webp",
+      "src": "/stikeri/decije/stikerDeca24.webp?v=0f2b64db",
       "width": 424,
-      "height": 620,
+      "height": 598,
       "color": "#f8f8f8"
     },
     {
@@ -1736,9 +1714,9 @@
       "collection": "decije",
       "slug": "deciji-stiker-25",
       "name": "Dečiji stiker 25",
-      "src": "/stikeri/decije/stikerDeca25.webp",
+      "src": "/stikeri/decije/stikerDeca25.webp?v=3942f05d",
       "width": 600,
-      "height": 411,
+      "height": 395,
       "color": "#f8f8f8"
     },
     {
@@ -1747,7 +1725,7 @@
       "collection": "decije",
       "slug": "deciji-stiker-26",
       "name": "Dečiji stiker 26",
-      "src": "/stikeri/decije/stikerDeca26.webp",
+      "src": "/stikeri/decije/stikerDeca26.webp?v=cf554556",
       "width": 600,
       "height": 620,
       "color": "#f8f8f8"
@@ -1758,7 +1736,7 @@
       "collection": "decije",
       "slug": "deciji-stiker-27",
       "name": "Dečiji stiker 27",
-      "src": "/stikeri/decije/stikerDeca27.webp",
+      "src": "/stikeri/decije/stikerDeca27.webp?v=6d7fba02",
       "width": 600,
       "height": 546,
       "color": "#f8f8f8"
@@ -1769,9 +1747,9 @@
       "collection": "soba",
       "slug": "stiker-za-sobu-01",
       "name": "Stiker za sobu 01",
-      "src": "/stikeri/soba/stikeriSoba1.webp",
+      "src": "/stikeri/soba/stikeriSoba1.webp?v=946e1a32",
       "width": 600,
-      "height": 430,
+      "height": 410,
       "color": "#f8f8f8"
     },
     {
@@ -1780,7 +1758,7 @@
       "collection": "soba",
       "slug": "stiker-za-sobu-02",
       "name": "Stiker za sobu 02",
-      "src": "/stikeri/soba/stikeriSoba2.webp",
+      "src": "/stikeri/soba/stikeriSoba2.webp?v=8760b600",
       "width": 600,
       "height": 420,
       "color": "#f8f8f8"
@@ -1791,9 +1769,9 @@
       "collection": "soba",
       "slug": "stiker-za-sobu-03",
       "name": "Stiker za sobu 03",
-      "src": "/stikeri/soba/stikeriSoba3.webp",
+      "src": "/stikeri/soba/stikeriSoba3.webp?v=8849c21e",
       "width": 600,
-      "height": 620,
+      "height": 540,
       "color": "#e8e8e8"
     },
     {
@@ -1802,9 +1780,9 @@
       "collection": "soba",
       "slug": "stiker-za-sobu-04",
       "name": "Stiker za sobu 04",
-      "src": "/stikeri/soba/stikeriSoba4.webp",
+      "src": "/stikeri/soba/stikeriSoba4.webp?v=244c0931",
       "width": 600,
-      "height": 444,
+      "height": 599,
       "color": "#f8f8f8"
     },
     {
@@ -1813,9 +1791,9 @@
       "collection": "soba",
       "slug": "stiker-za-sobu-05",
       "name": "Stiker za sobu 05",
-      "src": "/stikeri/soba/stikeriSoba5.webp",
-      "width": 600,
-      "height": 620,
+      "src": "/stikeri/soba/stikeriSoba5.webp?v=1f99f891",
+      "width": 574,
+      "height": 522,
       "color": "#f8f8f8"
     },
     {
@@ -1824,9 +1802,9 @@
       "collection": "soba",
       "slug": "stiker-za-sobu-06",
       "name": "Stiker za sobu 06",
-      "src": "/stikeri/soba/stikeriSoba6.webp",
-      "width": 600,
-      "height": 620,
+      "src": "/stikeri/soba/stikeriSoba6.webp?v=a7c1ad75",
+      "width": 379,
+      "height": 600,
       "color": "#f8f8f8"
     },
     {
@@ -1835,9 +1813,9 @@
       "collection": "soba",
       "slug": "stiker-za-sobu-07",
       "name": "Stiker za sobu 07",
-      "src": "/stikeri/soba/stikeriSoba7.webp",
-      "width": 379,
-      "height": 620,
+      "src": "/stikeri/soba/stikeriSoba7.webp?v=b59707e5",
+      "width": 600,
+      "height": 358,
       "color": "#f8f8f8"
     },
     {
@@ -1846,9 +1824,9 @@
       "collection": "soba",
       "slug": "stiker-za-sobu-08",
       "name": "Stiker za sobu 08",
-      "src": "/stikeri/soba/stikeriSoba8.webp",
+      "src": "/stikeri/soba/stikeriSoba8.webp?v=461e3173",
       "width": 600,
-      "height": 375,
+      "height": 410,
       "color": "#f8f8f8"
     },
     {
@@ -1857,10 +1835,10 @@
       "collection": "soba",
       "slug": "stiker-za-sobu-09",
       "name": "Stiker za sobu 09",
-      "src": "/stikeri/soba/stikeriSoba9.webp",
+      "src": "/stikeri/soba/stikeriSoba9.webp?v=c4c9ac54",
       "width": 600,
-      "height": 410,
-      "color": "#f8f8f8"
+      "height": 620,
+      "color": "#f8f8e8"
     },
     {
       "id": "zidni-stikeri/soba/stiker-za-sobu-10",
@@ -1868,10 +1846,10 @@
       "collection": "soba",
       "slug": "stiker-za-sobu-10",
       "name": "Stiker za sobu 10",
-      "src": "/stikeri/soba/stikeriSoba10.webp",
-      "width": 600,
-      "height": 620,
-      "color": "#f8f8e8"
+      "src": "/stikeri/soba/stikeriSoba10.webp?v=4c229cef",
+      "width": 1368,
+      "height": 687,
+      "color": "#f8f8f8"
     },
     {
       "id": "zidni-stikeri/soba/stiker-za-sobu-11",
@@ -1879,9 +1857,9 @@
       "collection": "soba",
       "slug": "stiker-za-sobu-11",
       "name": "Stiker za sobu 11",
-      "src": "/stikeri/soba/stikeriSoba11.webp",
-      "width": 600,
-      "height": 320,
+      "src": "/stikeri/soba/stikeriSoba11.webp?v=1e4878fe",
+      "width": 976,
+      "height": 1016,
       "color": "#f8f8f8"
     },
     {
@@ -1890,9 +1868,9 @@
       "collection": "soba",
       "slug": "stiker-za-sobu-12",
       "name": "Stiker za sobu 12",
-      "src": "/stikeri/soba/stikeriSoba12.webp",
+      "src": "/stikeri/soba/stikeriSoba12.webp?v=4e38f57c",
       "width": 600,
-      "height": 620,
+      "height": 594,
       "color": "#f8f8f8"
     },
     {
@@ -1901,10 +1879,10 @@
       "collection": "soba",
       "slug": "stiker-za-sobu-13",
       "name": "Stiker za sobu 13",
-      "src": "/stikeri/soba/stikeriSoba13.webp",
+      "src": "/stikeri/soba/stikeriSoba13.webp?v=87101707",
       "width": 600,
-      "height": 620,
-      "color": "#f8f8f8"
+      "height": 420,
+      "color": "#080808"
     },
     {
       "id": "zidni-stikeri/soba/stiker-za-sobu-14",
@@ -1912,10 +1890,10 @@
       "collection": "soba",
       "slug": "stiker-za-sobu-14",
       "name": "Stiker za sobu 14",
-      "src": "/stikeri/soba/stikeriSoba14.webp",
-      "width": 600,
-      "height": 420,
-      "color": "#080808"
+      "src": "/stikeri/soba/stikeriSoba14.webp?v=22947f82",
+      "width": 1216,
+      "height": 848,
+      "color": "#282838"
     },
     {
       "id": "zidni-stikeri/soba/stiker-za-sobu-15",
@@ -1923,10 +1901,10 @@
       "collection": "soba",
       "slug": "stiker-za-sobu-15",
       "name": "Stiker za sobu 15",
-      "src": "/stikeri/soba/stikeriSoba15.webp",
-      "width": 600,
-      "height": 420,
-      "color": "#181828"
+      "src": "/stikeri/soba/stikeriSoba15.webp?v=4fef160b",
+      "width": 1120,
+      "height": 872,
+      "color": "#181848"
     },
     {
       "id": "zidni-stikeri/soba/stiker-za-sobu-16",
@@ -1934,20 +1912,9 @@
       "collection": "soba",
       "slug": "stiker-za-sobu-16",
       "name": "Stiker za sobu 16",
-      "src": "/stikeri/soba/stikeriSoba16.webp",
+      "src": "/stikeri/soba/stikeriSoba16.webp?v=93c7885d",
       "width": 600,
-      "height": 471,
-      "color": "#181848"
-    },
-    {
-      "id": "zidni-stikeri/soba/stiker-za-sobu-17",
-      "category": "zidni-stikeri",
-      "collection": "soba",
-      "slug": "stiker-za-sobu-17",
-      "name": "Stiker za sobu 17",
-      "src": "/stikeri/soba/stikeriSoba17.webp",
-      "width": 600,
-      "height": 620,
+      "height": 569,
       "color": "#f8f8f8"
     },
     {
@@ -1956,10 +1923,10 @@
       "collection": "motivi",
       "slug": "motiv-01",
       "name": "Motiv 01",
-      "src": "/slike-na-platnu/slikePlatno1.jpg",
+      "src": "/slike-na-platnu/slikePlatno1.jpg?v=ae64a3ed",
       "width": 1500,
-      "height": 1211,
-      "color": "#282838"
+      "height": 1107,
+      "color": "#88a8c8"
     },
     {
       "id": "slike-na-platnu/motivi/motiv-02",
@@ -1967,9 +1934,9 @@
       "collection": "motivi",
       "slug": "motiv-02",
       "name": "Motiv 02",
-      "src": "/slike-na-platnu/slikePlatno2.jpg",
+      "src": "/slike-na-platnu/slikePlatno2.jpg?v=f583779c",
       "width": 1500,
-      "height": 1600,
+      "height": 1500,
       "color": "#c8b8d8"
     },
     {
@@ -1978,10 +1945,10 @@
       "collection": "motivi",
       "slug": "motiv-03",
       "name": "Motiv 03",
-      "src": "/slike-na-platnu/slikePlatno3.jpg",
+      "src": "/slike-na-platnu/slikePlatno3.jpg?v=8eb5d28e",
       "width": 1500,
-      "height": 928,
-      "color": "#282838"
+      "height": 826,
+      "color": "#080818"
     },
     {
       "id": "slike-na-platnu/motivi/motiv-04",
@@ -1989,9 +1956,9 @@
       "collection": "motivi",
       "slug": "motiv-04",
       "name": "Motiv 04",
-      "src": "/slike-na-platnu/slikePlatno4.jpg",
+      "src": "/slike-na-platnu/slikePlatno4.jpg?v=0be42322",
       "width": 1500,
-      "height": 1037,
+      "height": 935,
       "color": "#f8f8f8"
     },
     {
@@ -2000,10 +1967,10 @@
       "collection": "motivi",
       "slug": "motiv-05",
       "name": "Motiv 05",
-      "src": "/slike-na-platnu/slikePlatno5.jpg",
-      "width": 1500,
-      "height": 833,
-      "color": "#282838"
+      "src": "/slike-na-platnu/slikePlatno5.jpg?v=f9fcdea0",
+      "width": 1340,
+      "height": 655,
+      "color": "#c8e8e8"
     },
     {
       "id": "slike-na-platnu/motivi/motiv-06",
@@ -2011,9 +1978,9 @@
       "collection": "motivi",
       "slug": "motiv-06",
       "name": "Motiv 06",
-      "src": "/slike-na-platnu/slikePlatno6.jpg",
+      "src": "/slike-na-platnu/slikePlatno6.jpg?v=90670b80",
       "width": 1500,
-      "height": 1600,
+      "height": 1500,
       "color": "#f8f8f8"
     },
     {
@@ -2022,9 +1989,9 @@
       "collection": "motivi",
       "slug": "motiv-07",
       "name": "Motiv 07",
-      "src": "/slike-na-platnu/slikePlatno7.jpg",
-      "width": 1500,
-      "height": 1101,
+      "src": "/slike-na-platnu/slikePlatno7.jpg?v=a67b3cbb",
+      "width": 1160,
+      "height": 856,
       "color": "#f8f8f8"
     },
     {
@@ -2033,9 +2000,9 @@
       "collection": "motivi",
       "slug": "motiv-08",
       "name": "Motiv 08",
-      "src": "/slike-na-platnu/slikePlatno8.jpg",
-      "width": 1500,
-      "height": 907,
+      "src": "/slike-na-platnu/slikePlatno8.jpg?v=b4ddfd4b",
+      "width": 1283,
+      "height": 689,
       "color": "#f8f8f8"
     },
     {
@@ -2044,9 +2011,9 @@
       "collection": "motivi",
       "slug": "motiv-09",
       "name": "Motiv 09",
-      "src": "/slike-na-platnu/slikePlatno9.jpg",
-      "width": 1500,
-      "height": 1600,
+      "src": "/slike-na-platnu/slikePlatno9.jpg?v=9faa1f51",
+      "width": 968,
+      "height": 1032,
       "color": "#f8f8f8"
     },
     {
@@ -2055,9 +2022,9 @@
       "collection": "motivi",
       "slug": "motiv-10",
       "name": "Motiv 10",
-      "src": "/slike-na-platnu/slikePlatno10.jpg",
+      "src": "/slike-na-platnu/slikePlatno10.jpg?v=a60ddb2d",
       "width": 1500,
-      "height": 907,
+      "height": 803,
       "color": "#f8f8e8"
     },
     {
@@ -2066,10 +2033,10 @@
       "collection": "motivi",
       "slug": "motiv-11",
       "name": "Motiv 11",
-      "src": "/slike-na-platnu/slikePlatno11.jpg",
+      "src": "/slike-na-platnu/slikePlatno11.jpg?v=8fb20a45",
       "width": 1500,
-      "height": 945,
-      "color": "#282838"
+      "height": 838,
+      "color": "#f8e8d8"
     },
     {
       "id": "slike-na-platnu/motivi/motiv-12",
@@ -2077,9 +2044,9 @@
       "collection": "motivi",
       "slug": "motiv-12",
       "name": "Motiv 12",
-      "src": "/slike-na-platnu/slikePlatno12.jpg",
+      "src": "/slike-na-platnu/slikePlatno12.jpg?v=4a589d00",
       "width": 1500,
-      "height": 1052,
+      "height": 949,
       "color": "#f8f8f8"
     },
     {
@@ -2088,9 +2055,9 @@
       "collection": "motivi",
       "slug": "motiv-13",
       "name": "Motiv 13",
-      "src": "/slike-na-platnu/slikePlatno13.jpg",
-      "width": 1500,
-      "height": 907,
+      "src": "/slike-na-platnu/slikePlatno13.jpg?v=fe3269ba",
+      "width": 1280,
+      "height": 776,
       "color": "#f8f8f8"
     },
     {
@@ -2099,9 +2066,9 @@
       "collection": "motivi",
       "slug": "motiv-14",
       "name": "Motiv 14",
-      "src": "/slike-na-platnu/slikePlatno14.jpg",
+      "src": "/slike-na-platnu/slikePlatno14.jpg?v=514483eb",
       "width": 1500,
-      "height": 918,
+      "height": 812,
       "color": "#f8f8f8"
     },
     {
@@ -2110,9 +2077,9 @@
       "collection": "motivi",
       "slug": "motiv-15",
       "name": "Motiv 15",
-      "src": "/slike-na-platnu/slikePlatno15.jpg",
+      "src": "/slike-na-platnu/slikePlatno15.jpg?v=de8110ab",
       "width": 1500,
-      "height": 907,
+      "height": 803,
       "color": "#f8f8f8"
     },
     {
@@ -2121,10 +2088,10 @@
       "collection": "motivi",
       "slug": "motiv-16",
       "name": "Motiv 16",
-      "src": "/slike-na-platnu/slikePlatno16.jpg",
-      "width": 1500,
-      "height": 960,
-      "color": "#f8f8e8"
+      "src": "/slike-na-platnu/slikePlatno16.jpg?v=15711883",
+      "width": 1280,
+      "height": 731,
+      "color": "#e8e8e8"
     },
     {
       "id": "slike-na-platnu/motivi/motiv-17",
@@ -2132,9 +2099,9 @@
       "collection": "motivi",
       "slug": "motiv-17",
       "name": "Motiv 17",
-      "src": "/slike-na-platnu/slikePlatno17.jpg",
+      "src": "/slike-na-platnu/slikePlatno17.jpg?v=a4a99815",
       "width": 1500,
-      "height": 850,
+      "height": 748,
       "color": "#f8f8f8"
     },
     {
@@ -2143,9 +2110,9 @@
       "collection": "motivi",
       "slug": "motiv-18",
       "name": "Motiv 18",
-      "src": "/slike-na-platnu/slikePlatno18.jpg",
+      "src": "/slike-na-platnu/slikePlatno18.jpg?v=a7bdb109",
       "width": 1500,
-      "height": 1101,
+      "height": 996,
       "color": "#f8f8f8"
     },
     {
@@ -2154,9 +2121,9 @@
       "collection": "motivi",
       "slug": "motiv-19",
       "name": "Motiv 19",
-      "src": "/slike-na-platnu/slikePlatno19.jpg",
+      "src": "/slike-na-platnu/slikePlatno19.jpg?v=3f8239de",
       "width": 1500,
-      "height": 1101,
+      "height": 1000,
       "color": "#f8f8f8"
     },
     {
@@ -2165,9 +2132,9 @@
       "collection": "motivi",
       "slug": "motiv-20",
       "name": "Motiv 20",
-      "src": "/slike-na-platnu/slikePlatno20.jpg",
+      "src": "/slike-na-platnu/slikePlatno20.jpg?v=9521cc62",
       "width": 1500,
-      "height": 850,
+      "height": 748,
       "color": "#f8f8f8"
     },
     {
@@ -2176,9 +2143,9 @@
       "collection": "motivi",
       "slug": "motiv-21",
       "name": "Motiv 21",
-      "src": "/slike-na-platnu/slikePlatno21.jpg",
+      "src": "/slike-na-platnu/slikePlatno21.jpg?v=a5b3b664",
       "width": 1500,
-      "height": 850,
+      "height": 750,
       "color": "#081828"
     },
     {
@@ -2187,9 +2154,9 @@
       "collection": "motivi",
       "slug": "motiv-22",
       "name": "Motiv 22",
-      "src": "/slike-na-platnu/slikePlatno22.jpg",
+      "src": "/slike-na-platnu/slikePlatno22.jpg?v=370540b0",
       "width": 1500,
-      "height": 571,
+      "height": 469,
       "color": "#f8f8f8"
     },
     {
@@ -2198,9 +2165,9 @@
       "collection": "motivi",
       "slug": "motiv-23",
       "name": "Motiv 23",
-      "src": "/slike-na-platnu/slikePlatno23.jpg",
+      "src": "/slike-na-platnu/slikePlatno23.jpg?v=e302dbea",
       "width": 1500,
-      "height": 530,
+      "height": 430,
       "color": "#f8f8f8"
     },
     {
@@ -2209,9 +2176,9 @@
       "collection": "motivi",
       "slug": "motiv-24",
       "name": "Motiv 24",
-      "src": "/slike-na-platnu/slikePlatno24.jpg",
+      "src": "/slike-na-platnu/slikePlatno24.jpg?v=362547bd",
       "width": 1500,
-      "height": 862,
+      "height": 758,
       "color": "#f8f8f8"
     },
     {
@@ -2220,9 +2187,9 @@
       "collection": "motivi",
       "slug": "motiv-25",
       "name": "Motiv 25",
-      "src": "/slike-na-platnu/slikePlatno25.jpg",
+      "src": "/slike-na-platnu/slikePlatno25.jpg?v=b0e28b32",
       "width": 1500,
-      "height": 670,
+      "height": 570,
       "color": "#f8f8f8"
     }
   ]

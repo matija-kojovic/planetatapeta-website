@@ -38,6 +38,8 @@ const nextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 30,
+    // Any local image, with or without the ?v= content version the catalog adds to design images.
+    localPatterns: [{ pathname: "/**" }],
   },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
